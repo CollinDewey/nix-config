@@ -1,0 +1,23 @@
+{ pkgs, lib, config, ...}:
+
+with lib;
+let cfg = config.modules.printing;
+
+in {
+  options.modules.printing = { enable = mkEnableOption "printing"; };
+  config = mkIf cfg.enable {
+
+    # Enable CUPS to print documents
+    services.printing.enable = true;
+    services.printing.drivers = [ pkgs.hplipWithPlugin ];
+
+     # Enable SANE to scan documents
+     hardware.sane.enable = true;
+     hardware.sane.extraBackends = [ pkgs.hplipWithPlugin pkgs.epkowa ];
+
+    # Enable avahi to automagically find printers
+    services.avahi.enable = true;
+    services.avahi.nssmdns = true;
+
+ };
+}
