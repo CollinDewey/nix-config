@@ -109,6 +109,7 @@
       "/var/log" # Keep system logs
       "/var/lib/docker" # Keep Docker junk
       "/var/lib/libvirt" # Keep KVM junk
+      "/var/lib/systemd/coredump" # Keep coredumps
       "/etc/nixos" # Not nuke my configuration
       "/etc/ssh" # Not reset my host keys
       "/etc/NetworkManager/system-connections" # I like using WiFi
