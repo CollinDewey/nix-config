@@ -54,9 +54,9 @@
     };
   };
   nodev = {
-    "/" = { # May need to replace with btrfs snapshots if I use more than 2G?
+    "/" = { # May need to replace with btrfs snapshots if I use more than 8G?
       fsType = "tmpfs";
-      mountOptions = [ "defaults" "size=2G" "mode=755" ];
+      mountOptions = [ "defaults" "size=8G" "mode=755" ];
     };
   };
 }
