@@ -42,68 +42,6 @@
   outputs = { nixpkgs, impermanence, nix-alien, sops-nix, disko, home-manager, plasma-manager, ... }@inputs: {
     
     nixosConfigurations = {
-      VM = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
-          # Global Config + Modules
-          ./config
-          ./overlays
-          ./modules
-
-          # Specialized Hardware Configuration
-          disko.nixosModules.disko
-          impermanence.nixosModules.impermanence
-          ./hosts/VM/hardware-configuration.nix
-
-          {
-            environment.systemPackages = with nix-alien.packages.x86_64-linux; [ nix-index-update ]; # Temporary
-            modules = {
-              plasma.enable = true;
-              printing.enable = true;
-              ssh.enable = true;
-              virtualisation.enable = true;
-              zsh.enable = true;
-            };
-          }
-
-          # User
-          sops-nix.nixosModules.sops
-          ./users/collin
-          home-manager.nixosModules.home-manager
-          ./config/home.nix
-
-          {
-
-            home-manager.users.collin = {
-
-              imports = [
-                # Modules
-                plasma-manager.homeManagerModules.plasma-manager
-                ./home
-
-                # Computer Specific Config
-                ./hosts/VM/home.nix
-
-                # User Specific Config
-                ./users/collin/home.nix
-              ];
-
-              modules = {
-                communication.enable = true;
-                cyber.enable = true;
-                gaming.enable = true;
-                lock.enable = true;
-                misc.enable = true;
-                multimedia.enable = true;
-                plasma-hm.enable = true;
-                utilities.enable = true;
-              };
-
-              home.stateVersion = "23.05";
-            };
-          }
-        ];
-      };
       BURGUNDY = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
