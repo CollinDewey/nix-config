@@ -19,6 +19,7 @@
     enableRedistributableFirmware = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     bluetooth.enable = true;
+    logitech.wireless.enable = true;
     nvidia.prime = {
       sync.enable = true;
       amdgpuBusId = "PCI:6:0:0";

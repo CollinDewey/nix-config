@@ -17,6 +17,7 @@ in {
       ark
       libsForQt5.qtstyleplugin-kvantum
       plasma-systemmonitor
+      solaar # I use logitech all over
     ];
 
     # Fix Default Settings
