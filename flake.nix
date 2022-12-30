@@ -97,6 +97,7 @@
                 multimedia.enable = true;
                 plasma.enable = true;
                 utilities.enable = true;
+                zsh.enable = true;
               };
 
               home.stateVersion = "23.05";

@@ -12,5 +12,6 @@
     ./multimedia.nix
     ./plasma.nix
     ./utilities.nix
+    ./zsh.nix
   ];
 }
