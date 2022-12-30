@@ -10,7 +10,7 @@
     ./lock.nix
     ./misc.nix
     ./multimedia.nix
-    ./plasma-hm.nix
+    ./plasma.nix
     ./utilities.nix
   ];
 }

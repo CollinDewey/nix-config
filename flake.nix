@@ -95,7 +95,7 @@
                 lock.enable = true;
                 misc.enable = true;
                 multimedia.enable = true;
-                plasma-hm.enable = true;
+                plasma.enable = true;
                 utilities.enable = true;
               };
 
