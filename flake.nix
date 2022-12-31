@@ -120,13 +120,14 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./config
+          ./config/home.nix
+          ./users/collin/home.nix
           ./hosts/COPPER/configuration.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.users.collin = {
               imports = [
                 ./home
-                ./users/collin/home.nix
                 ./hosts/COPPER/home.nix
                 plasma-manager.homeManagerModules.plasma-manager
               ];
