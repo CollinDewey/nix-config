@@ -25,5 +25,5 @@
     sshfs
     tmux
     comma
-  ]
+  ];
 }
