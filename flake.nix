@@ -118,13 +118,13 @@
         system = "x86_64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
+          ./config
           ./hosts/COPPER/configuration.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.users.collin = {
               imports = [
                 ./home
-                ./config/home.nix
                 ./users/collin/home.nix
                 ./hosts/COPPER/home.nix
               ];
