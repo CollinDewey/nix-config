@@ -16,7 +16,6 @@
     curl
     aria
     htop
-    iotop
     git
     ncdu
     neofetch
@@ -25,5 +24,7 @@
     sshfs
     tmux
     comma
-  ];
+  ] ++ lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [ 
+    iotop
+  ]);
 }
