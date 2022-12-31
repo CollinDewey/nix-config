@@ -8,7 +8,8 @@ in {
   config = mkIf cfg.enable {
     programs.zsh = {
       enable = true;
-      enableCompletion = true;
+      enableCompletion = pkgs.stdenv.isDarwin; # enableCompletion and enableSyntaxHighlighting are managed by the NixOS module
+      enableSyntaxHighlighting = pkgs.stdenv.isDarwin;
       plugins = [
         {
           name = "zsh-nix-shell";

@@ -1,6 +1,7 @@
+{ pkgs, ... }:
 {
   home.username = "collin";
-  home.homeDirectory = "/home/collin";
+  home.homeDirectory = if pkgs.stdenv.isDarwin then "/Users/collin" else "/home/collin";
 
   programs.git = {
     userName = "LegitMagic";

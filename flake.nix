@@ -22,6 +22,11 @@
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
 
+    nix-darwin = {
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,10 +44,11 @@
     };
   };
 
-  outputs = { nixpkgs, impermanence, nix-alien, sops-nix, disko, home-manager, plasma-manager, ... }@inputs: {
+  outputs = { nixpkgs, impermanence, nix-alien, sops-nix, nix-darwin, disko, home-manager, plasma-manager, ... }@inputs: {
     
     nixosConfigurations = {
       BURGUNDY = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
           # Global Config + Modules
@@ -106,5 +112,32 @@
         ];
       };
     };
+
+    #darwinConfigurations = {
+    #  COPPER = nix-darwin.lib.darwinSystem {
+    #    system = "x86_64-darwin";
+    #    specialArgs = { inherit inputs; };
+    #    modules = [
+    #      ./hosts/COPPER/configuration.nix
+    #      home-manager.darwinModules.home-manager
+    #      {
+    #        home-manager.users.collin = {
+    #          imports = [
+    #            ./home
+    #            ./config/home.nix
+    #            ./users/collin/home.nix
+    #            ./hosts/COPPER/home.nix
+    #          ];
+#
+    #          modules = {
+    #            zsh.enable = true;
+    #          };
+#
+    #          home.stateVersion = "23.05";
+    #        };
+    #      }
+    #    ];
+    #  };
+    #};
   };
 }
