@@ -22,7 +22,7 @@
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
 
-    nix-darwin = {
+    darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -44,7 +44,7 @@
     };
   };
 
-  outputs = { nixpkgs, impermanence, nix-alien, sops-nix, nix-darwin, disko, home-manager, plasma-manager, ... }@inputs: {
+  outputs = { nixpkgs, impermanence, nix-alien, sops-nix, darwin, disko, home-manager, plasma-manager, ... }@inputs: {
     
     nixosConfigurations = {
       BURGUNDY = nixpkgs.lib.nixosSystem {
@@ -115,7 +115,7 @@
     };
 
     darwinConfigurations = {
-      COPPER = nix-darwin.lib.darwinSystem {
+      COPPER = darwin.lib.darwinSystem {
         system = "x86_64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
