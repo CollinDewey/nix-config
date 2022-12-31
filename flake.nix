@@ -113,31 +113,31 @@
       };
     };
 
-    #darwinConfigurations = {
-    #  COPPER = nix-darwin.lib.darwinSystem {
-    #    system = "x86_64-darwin";
-    #    specialArgs = { inherit inputs; };
-    #    modules = [
-    #      ./hosts/COPPER/configuration.nix
-    #      home-manager.darwinModules.home-manager
-    #      {
-    #        home-manager.users.collin = {
-    #          imports = [
-    #            ./home
-    #            ./config/home.nix
-    #            ./users/collin/home.nix
-    #            ./hosts/COPPER/home.nix
-    #          ];
-#
-    #          modules = {
-    #            zsh.enable = true;
-    #          };
-#
-    #          home.stateVersion = "23.05";
-    #        };
-    #      }
-    #    ];
-    #  };
-    #};
+    darwinConfigurations = {
+      COPPER = nix-darwin.lib.darwinSystem {
+        system = "x86_64-darwin";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/COPPER/configuration.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.users.collin = {
+              imports = [
+                ./home
+                ./config/home.nix
+                ./users/collin/home.nix
+                ./hosts/COPPER/home.nix
+              ];
+
+              modules = {
+                zsh.enable = true;
+              };
+
+              home.stateVersion = "23.05";
+            };
+          }
+        ];
+      };
+    };
   };
 }
