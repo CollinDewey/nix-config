@@ -128,6 +128,7 @@
                 ./home
                 ./users/collin/home.nix
                 ./hosts/COPPER/home.nix
+                plasma-manager.homeManagerModules.plasma-manager
               ];
 
               modules = {
