@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   # TEMPORARY
   homebrew.enable = true;
