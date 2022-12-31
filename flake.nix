@@ -53,6 +53,7 @@
         modules = [
           # Global Config + Modules
           ./config
+          ./config/linux.nix
           ./overlays
           ./modules
 
