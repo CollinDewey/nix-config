@@ -1,5 +1,10 @@
 { pkgs, ... }:
 {
+  environment.shells = with pkgs; [
+    bashInteractive
+    zsh
+  ]
+
   # TEMPORARY
   homebrew.enable = true;
   homebrew.brews = [ "tiger-vnc" ];
