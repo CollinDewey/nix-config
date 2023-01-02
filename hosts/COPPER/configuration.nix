@@ -3,7 +3,7 @@
   environment.shells = with pkgs; [
     bashInteractive
     zsh
-  ]
+  ];
 
   # TEMPORARY
   homebrew.enable = true;
