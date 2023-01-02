@@ -5,6 +5,8 @@
     zsh
   ];
 
+  programs.zsh.enable = true;
+
   # TEMPORARY
   homebrew.enable = true;
   homebrew.brews = [ "tiger-vnc" ];
