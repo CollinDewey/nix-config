@@ -37,6 +37,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-22.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
     plasma-manager = {
       url = "github:pjones/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,7 +49,7 @@
     };
   };
 
-  outputs = { nixpkgs, impermanence, nix-alien, sops-nix, darwin, disko, home-manager, plasma-manager, ... }@inputs: {
+  outputs = { nixpkgs, nixpkgs-stable, impermanence, nix-alien, sops-nix, darwin, disko, home-manager, home-manager-stable, plasma-manager, ... }@inputs: {
     
     nixosConfigurations = {
       BURGUNDY = nixpkgs.lib.nixosSystem {
@@ -108,6 +113,71 @@
               };
 
               home.stateVersion = "23.05";
+            };
+          }
+        ];
+      };
+      
+      TEAL = nixpkgs-stable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          # Global Config + Modules
+          ./config
+          ./config/linux.nix
+          ./overlays
+          ./modules
+          ./hosts/TEAL/configuration.nix
+
+          # Specialized Hardware Configuration
+          ./hosts/TEAL/hardware-configuration.nix
+
+          {
+            environment.systemPackages = with nix-alien.packages.x86_64-linux; [ nix-index-update ]; # Temporary
+            modules = {
+              plasma.enable = true;
+              printing.enable = true;
+              ssh.enable = true;
+              virtualisation.enable = true;
+              zsh.enable = true;
+            };
+          }
+
+          # User
+          sops-nix.nixosModules.sops
+          ./users/collin
+          home-manager-stable.nixosModules.home-manager
+          ./config/home.nix
+
+          {
+
+            home-manager.users.collin = {
+
+              imports = [
+                # Modules
+                plasma-manager.homeManagerModules.plasma-manager
+                ./home
+
+                # Computer Specific Config
+                ./hosts/TEAL/home.nix
+
+                # User Specific Config
+                ./users/collin/home.nix
+              ];
+
+              modules = {
+                communication.enable = true;
+                cyber.enable = true;
+                gaming.enable = true;
+                lock.enable = true;
+                misc.enable = true;
+                multimedia.enable = true;
+                plasma.enable = true;
+                utilities.enable = true;
+                zsh.enable = true;
+              };
+
+              home.stateVersion = "22.11";
             };
           }
         ];
