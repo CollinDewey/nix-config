@@ -14,6 +14,7 @@ in {
       google-chrome
       filelight
       conky
+      xdotool
       krdc
       keeweb
       gnome.simple-scan
