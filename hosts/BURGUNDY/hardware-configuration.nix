@@ -112,11 +112,14 @@
       "/var/lib/libvirt" # Keep KVM junk
       "/var/lib/systemd/coredump" # Keep coredumps
       "/etc/nixos" # Not nuke my configuration
-      "/etc/ssh" # Not reset my host keys
       "/etc/NetworkManager/system-connections" # I like using WiFi
     ];
     files = [
       "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
+      "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
+      "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
+      "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
+      "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
     ];
   };
 
