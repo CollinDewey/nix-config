@@ -96,10 +96,10 @@
   # Partitioning
   disko.devices = import ./disko.nix;
 
-  fileSystems."/mnt/Shared" = {
-    device = "/dev/disk/by-label/Shared";
-    fsType = "ntfs";
-  };
+  #fileSystems."/mnt/Shared" = {
+  #  device = "/dev/disk/by-label/Shared";
+  #  fsType = "ntfs";
+  #};
 
   # Persistance
   users.mutableUsers = false;
