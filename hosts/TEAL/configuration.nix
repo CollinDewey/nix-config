@@ -4,10 +4,9 @@
     enable = true;
     user = "root"; # yuck
   };
-
-  environment.systemPackages = with pkgs; [
-    rclone # Needed for Duplicati
-  ];
+  systemd.services.duplicati = {
+    path = [ pkgs.rclone ];
+  };
 
   services.netdata.enable = true;
 }
