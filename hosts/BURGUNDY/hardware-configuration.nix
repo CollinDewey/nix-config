@@ -9,6 +9,9 @@
     kernelParams = [ "mitigations=off" "retbleed=off" ];
     kernelPackages = pkgs.linuxPackages_latest;
 
+    # Filesystems
+    supportedFilesystems = [ "ntfs" ];
+
     # Boot
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
