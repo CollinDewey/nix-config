@@ -32,9 +32,12 @@
 
   # Video
   services.xserver = {
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = [ "nvidia" "amdgpu" ];
     #screenSection = '''';
   };
+
+  # SDDM workaround for starting before drivers load
+  systemd.services.display-manager.preStart = ''${pkgs.coreutils}/bin/sleep 1'';
 
   # Networking
   time.timeZone = "America/Louisville";
