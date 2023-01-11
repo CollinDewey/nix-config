@@ -1,4 +1,4 @@
-{ config, ... }: let
+{ pkgs, config, ... }: let
   keys = builtins.fetchurl {
     url = "https://github.com/LegitMagic.keys";
     sha256 = "0vlzvfif2ccqwjjz5sn70wbgj7i7vmc3ga62s2idlws0hha9j6rl";
@@ -10,6 +10,7 @@ in
   users.users.collin = {
     uid = 1000;
     group = "collin";
+    shell = pkgs.zsh;
     isNormalUser = true;
     passwordFile = config.sops.secrets.collin-hashed-password.path;
     openssh.authorizedKeys.keyFiles = [ keys ];

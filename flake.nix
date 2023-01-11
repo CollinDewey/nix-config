@@ -80,6 +80,7 @@
 
           # User
           sops-nix.nixosModules.sops
+          ./users
           ./users/collin
           home-manager.nixosModules.home-manager
           ./config/home.nix
@@ -145,6 +146,7 @@
 
           # User
           sops-nix.nixosModules.sops
+          ./users
           ./users/collin
           home-manager-stable.nixosModules.home-manager
           ./config/home.nix
@@ -192,6 +194,10 @@
           ./config
           ./config/home.nix
           ./hosts/COPPER/configuration.nix
+          ./modules/zsh.nix
+          {
+            modules.zsh.enable = true;
+          }
           home-manager.darwinModules.home-manager
           {
             home-manager.users.collin = {
