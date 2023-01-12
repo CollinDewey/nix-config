@@ -30,6 +30,9 @@
       nvidiaBusId = "PCI:1:0:0";
     };
   };
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;
 

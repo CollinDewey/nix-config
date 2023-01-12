@@ -47,9 +47,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    android-nixpkgs = {
+      url = "github:tadfisher/android-nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, impermanence, nix-alien, sops-nix, darwin, disko, home-manager, home-manager-stable, plasma-manager, ... }@inputs: {
+  outputs = { nixpkgs, nixpkgs-stable, impermanence, nix-alien, sops-nix, darwin, disko, home-manager, home-manager-stable, plasma-manager, android-nixpkgs, ... }@inputs: {
     
     nixosConfigurations = {
       BURGUNDY = nixpkgs.lib.nixosSystem {
@@ -60,6 +65,7 @@
           ./config
           ./config/linux.nix
           ./overlays
+          ./overlays/android-sdk.nix
           ./modules
 
           # Specialized Hardware Configuration
@@ -92,7 +98,9 @@
               imports = [
                 # Modules
                 plasma-manager.homeManagerModules.plasma-manager
+                android-nixpkgs.hmModule
                 ./home
+                ./home/android-sdk.nix
 
                 # Computer Specific Config
                 ./hosts/BURGUNDY/home.nix
@@ -102,6 +110,7 @@
               ];
 
               modules = {
+                android-sdk.enable = true;
                 communication.enable = true;
                 cyber.enable = true;
                 gaming.enable = true;
