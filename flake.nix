@@ -67,6 +67,7 @@
           ./overlays
           ./overlays/android-sdk.nix
           ./modules
+          ./hosts/BURGUNDY/configuration.nix
 
           # Specialized Hardware Configuration
           disko.nixosModules.disko

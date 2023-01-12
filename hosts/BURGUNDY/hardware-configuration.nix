@@ -5,7 +5,7 @@
   boot = {
     # Kernel
     initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usb_storage" "sd_mod" ];
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = [ "kvm-amd" "uinput" ];
     kernelParams = [ "mitigations=off" "retbleed=off" ];
     kernelPackages = pkgs.linuxPackages_latest;
 
@@ -22,7 +22,6 @@
     enableRedistributableFirmware = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     bluetooth.enable = true;
-    logitech.wireless.enable = true;
     steam-hardware.enable = true;
     nvidia.prime = {
       sync.enable = true;
@@ -30,9 +29,6 @@
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;
 
@@ -41,9 +37,6 @@
     videoDrivers = [ "nvidia" "amdgpu" ];
     #screenSection = '''';
   };
-
-  # SDDM workaround for starting before drivers load
-  systemd.services.display-manager.preStart = ''${pkgs.coreutils}/bin/sleep 1'';
 
   # Networking
   time.timeZone = "America/Louisville";
@@ -78,9 +71,6 @@
       };
     };
   };
-
-  # State
-  system.stateVersion = "23.05";
 
   # Disks
   boot.cleanTmpDir = true;
