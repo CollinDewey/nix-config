@@ -27,7 +27,9 @@ in {
         zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/sudo/sudo.plugin.zsh";
         zsh-defer source "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
         bindkey "$terminfo[kcuu1]" history-substring-search-up
+        bindkey "^[[A" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
+        bindkey "^[[B" history-substring-search-down
         alias gcl="git clone --recursive"; # programs.zsh.shellAliases missing from nix-darwin
       '';
       promptInit = ''
