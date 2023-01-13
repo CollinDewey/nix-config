@@ -5,13 +5,16 @@ let cfg = config.modules.virtualisation;
 
 in {
   options.modules.virtualisation = { 
-    enable = mkEnableOption "virtualisation"; 
-    nvidia = mkEnableOption "nvidia";  
+    docker = mkEnableOption "docker";
+    libvirt = mkEnableOption "libvirt";
+    nvidia = mkEnableOption "nvidia";
   };
-  config = mkIf cfg.enable {
-    virtualisation.docker.enable = true;
-    security.polkit.enable = true; # Needed for libvirtd
-    virtualisation.libvirtd.enable = true;
-    virtualisation.docker.enableNvidia = cfg.nvidia;
+  config = {
+    virtualisation.docker.enable = cfg.docker;
+    environment.systemPackages = mkIf cfg.docker [ pkgs.ctop ];
+    virtualisation.docker.enableNvidia = cfg.docker && cfg.nvidia;
+
+    security.polkit.enable = lib.mkDefault cfg.libvirt; # Needed for libvirtd
+    virtualisation.libvirtd.enable = cfg.libvirt;
   };
 }

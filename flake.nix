@@ -80,7 +80,11 @@
               plasma.enable = true;
               printing.enable = true;
               ssh.enable = true;
-              virtualisation.enable = true;
+              virtualisation = {
+                docker = true;
+                libvirt = true;
+                nvidia = true;
+              };
               zsh.enable = true;
             };
           }
@@ -149,7 +153,11 @@
               plasma.enable = true;
               printing.enable = true;
               ssh.enable = true;
-              virtualisation.enable = true;
+              virtualisation = {
+                docker = true;
+                libvirt = true;
+                nvidia = true;
+              };
               zsh.enable = true;
             };
           }
