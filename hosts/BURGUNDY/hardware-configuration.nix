@@ -7,7 +7,7 @@
     initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usb_storage" "sd_mod" ];
     kernelModules = [ "kvm-amd" "uinput" ];
     kernelParams = [ "mitigations=off" "retbleed=off" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
 
     # Filesystems
     supportedFilesystems = [ "ntfs" ];
