@@ -33,8 +33,8 @@
 
   # Video
   services.xserver = {
-    videoDrivers = [ "nvidia" "amdgpu" ];
-    #screenSection = '''';
+    videoDrivers = [ "nvidia" ];
+    screenSection = ''Option "metamodes" "DP-0.2: 1920x1080_60_0 +1920+0 {viewportin=1920x1080, viewportout=1824x1026+48+27, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}, DP-0.1: nvidia-auto-select +1920+1080 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}, DP-0.3: nvidia-auto-select +0+1080 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}"'';
   };
 
   # Networking
@@ -56,6 +56,7 @@
   specialisation = {
     integrated.configuration = {
       system.nixos.tags = [ "Integrated" ];
+      services.xserver.videoDrivers = [ "amdgpu" ];
       powerManagement.cpuFreqGovernor = lib.mkForce "powersave";
       hardware.nvidia.prime.sync.enable = lib.mkForce false;
       hardware.nvidia.prime.offload.enable = true;
