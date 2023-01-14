@@ -13,6 +13,8 @@ in {
       firefox
       google-chrome
       filelight
+      lm_sensors
+      pciutils
       conky
       xdotool
       krdc
