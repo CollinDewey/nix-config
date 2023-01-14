@@ -65,8 +65,8 @@
       services.tlp = {
         enable = true;
         settings = {
-          CPU_SCALING_GOVERNOR_ON_AC="performance";
-          CPU_SCALING_GOVERNOR_ON_BAT="powersave";
+          CPU_SCALING_GOVERNOR_ON_AC = "performance";
+          CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
         };
       };
     };
@@ -88,7 +88,7 @@
       spec = "/home";
       hashTableSizeMB = 1024;
       verbosity = "crit";
-      extraOptions  = [ "--loadavg-target" "10.0" ];
+      extraOptions = [ "--loadavg-target" "10.0" ];
     };
   };
 

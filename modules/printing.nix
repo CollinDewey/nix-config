@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ...}:
+{ pkgs, lib, config, ... }:
 
 with lib;
 let cfg = config.modules.printing;
@@ -11,13 +11,13 @@ in {
     services.printing.enable = true;
     services.printing.drivers = [ pkgs.hplipWithPlugin ];
 
-     # Enable SANE to scan documents
-     hardware.sane.enable = true;
-     hardware.sane.extraBackends = [ pkgs.hplipWithPlugin pkgs.epkowa ];
+    # Enable SANE to scan documents
+    hardware.sane.enable = true;
+    hardware.sane.extraBackends = [ pkgs.hplipWithPlugin pkgs.epkowa ];
 
     # Enable avahi to automagically find printers
     services.avahi.enable = true;
     services.avahi.nssmdns = true;
 
- };
+  };
 }

@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ...}:
+{ pkgs, lib, config, ... }:
 
 with lib;
 let cfg = config.modules.plasma;
@@ -25,26 +25,26 @@ in {
       enable = true;
       workspace.clickItemTo = "select";
       files = {
-      "klaunchrc"."FeedbackStyle"."BusyCursor" = false;
-      "kcmfonts"."General"."forceFontDPI" = 96;
-      "kwinrc" = {
-        "Effect-PresentWindows"."BorderActivateAll" = 9;
-        "TabBox"."BorderActivate" = 9;
-        "Plugins"."wobblywindowsEnabled" = true;
-        "Desktops" = {
-        "Number" = 4;
-        "Rows" = 2;
+        "klaunchrc"."FeedbackStyle"."BusyCursor" = false;
+        "kcmfonts"."General"."forceFontDPI" = 96;
+        "kwinrc" = {
+          "Effect-PresentWindows"."BorderActivateAll" = 9;
+          "TabBox"."BorderActivate" = 9;
+          "Plugins"."wobblywindowsEnabled" = true;
+          "Desktops" = {
+            "Number" = 4;
+            "Rows" = 2;
+          };
+          "org.kde.kdecoration2" = {
+            "ButtonsOnLeft" = "";
+            "ButtonsOnRight" = "SBFIAX";
+          };
+          "MouseBindings"."CommandAllKey" = "Alt";
         };
-        "org.kde.kdecoration2" = {
-        "ButtonsOnLeft" = "";
-        "ButtonsOnRight" = "SBFIAX";
+        "kdeglobals" = {
+          "KDE"."widgetStyle" = "kvantum";
+          "Icons"."Theme" = "Papirus-Dark";
         };
-        "MouseBindings"."CommandAllKey" = "Alt";
-      };
-      "kdeglobals" = {
-        "KDE"."widgetStyle" = "kvantum";
-        "Icons"."Theme" = "Papirus-Dark";
-      };
       };
     };
 

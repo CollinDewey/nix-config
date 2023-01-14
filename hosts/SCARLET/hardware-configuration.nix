@@ -39,7 +39,7 @@
 
   # Disks
   boot.cleanTmpDir = true;
-  swapDevices = [ { device = "/swapfile"; size = 16384; } ];
+  swapDevices = [{ device = "/swapfile"; size = 16384; }];
   fileSystems = {
     "/" = {
       device = "/dev/sda1";
@@ -50,7 +50,7 @@
       fsType = "vfat";
     };
   };
-  
+
   # Persistance
   users.mutableUsers = false;
 

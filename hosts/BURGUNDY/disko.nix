@@ -43,7 +43,8 @@
                 "/persist" = {
                   mountOptions = [ "compress=zstd" ];
                 };
-                "/tmp" = { # /tmp gets cleared on boot
+                "/tmp" = {
+                  # /tmp gets cleared on boot
                   mountOptions = [ "noatime" ];
                 };
               };
@@ -54,7 +55,8 @@
     };
   };
   nodev = {
-    "/" = { # May need to replace with btrfs snapshots if I use more than 8G?
+    "/" = {
+      # May need to replace with btrfs snapshots if I use more than 8G?
       fsType = "tmpfs";
       mountOptions = [ "defaults" "size=8G" "mode=755" ];
     };

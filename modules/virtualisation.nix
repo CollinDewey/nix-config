@@ -1,10 +1,10 @@
-{ pkgs, lib, config, ...}:
+{ pkgs, lib, config, ... }:
 
 with lib;
 let cfg = config.modules.virtualisation;
 
 in {
-  options.modules.virtualisation = { 
+  options.modules.virtualisation = {
     docker = mkEnableOption "docker";
     libvirt = mkEnableOption "libvirt";
     nvidia = mkEnableOption "nvidia";

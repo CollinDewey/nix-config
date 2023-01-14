@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ...}:
+{ pkgs, lib, config, ... }:
 
 with lib;
 let cfg = config.modules.ssh;
@@ -12,5 +12,5 @@ in {
       passwordAuthentication = false;
       kbdInteractiveAuthentication = false;
     };
- };
+  };
 }

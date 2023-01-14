@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ...}:
+{ pkgs, lib, config, ... }:
 
 with lib;
 let
@@ -14,7 +14,8 @@ let
     rev = "57a6650ff262f577278275ddf11139673e01e471";
     sha256 = "sha256-/rcIS2AbTyGw2HjsLPkHtt50c2CrtAFDnLuV5wsHcLc=";
   };
-in {
+in
+{
   options.modules.zsh = { enable = mkEnableOption "zsh"; };
   config = mkIf cfg.enable {
     programs.zsh = {

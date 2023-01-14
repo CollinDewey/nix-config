@@ -1,5 +1,4 @@
-
-{ pkgs, lib, config, ...}:
+{ pkgs, lib, config, ... }:
 
 with lib;
 let
@@ -59,11 +58,12 @@ let
       --wrong-pos="ix:iy + 15"
     '';
   };
-in {
+in
+{
   options.modules.lock = { enable = mkEnableOption "lock"; };
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-    lock
+      lock
     ];
   };
 }

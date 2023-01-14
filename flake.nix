@@ -5,12 +5,13 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/release-22.11";
     impermanence.url = "github:nix-community/impermanence";
-    
-    nix-alien = { # Remove in favor of nix-index-database
+
+    nix-alien = {
+      # Remove in favor of nix-index-database
       url = "github:thiagokokada/nix-alien";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,7 +56,7 @@
   };
 
   outputs = { nixpkgs, nixpkgs-stable, impermanence, nix-alien, sops-nix, darwin, disko, home-manager, home-manager-stable, plasma-manager, android-nixpkgs, ... }@inputs: {
-    
+
     nixosConfigurations = {
       BURGUNDY = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -132,7 +133,7 @@
           }
         ];
       };
-      
+
       TEAL = nixpkgs-stable.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };

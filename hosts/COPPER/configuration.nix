@@ -12,7 +12,7 @@
   homebrew.onActivation.autoUpdate = true;
   homebrew.onActivation.cleanup = "zap";
   homebrew.brews = [ "tiger-vnc" ];
-  homebrew.casks = [ 
+  homebrew.casks = [
     "firefox"
     "google-chrome"
     "obsidian"
@@ -35,5 +35,5 @@
   nix.package = pkgs.nix;
 
   # Read changelog before changing (darwin-rebuild changelog)
-  system.stateVersion = 4;   
+  system.stateVersion = 4;
 }

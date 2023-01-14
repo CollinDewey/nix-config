@@ -26,24 +26,24 @@
     useDHCP = false;
     firewall.enable = false;
     vlans = {
-      iot = { 
+      iot = {
         id = 10;
         interface = "eth0";
       };
     };
     interfaces = {
       eth0 = {
-        ipv4.addresses = [ {
+        ipv4.addresses = [{
           address = "172.16.0.3";
           prefixLength = 24;
-        } ];
+        }];
         useDHCP = false;
       };
       iot = {
-        ipv4.addresses = [ {
+        ipv4.addresses = [{
           address = "172.16.1.3";
           prefixLength = 24;
-        } ];
+        }];
         useDHCP = false;
       };
     };
@@ -57,7 +57,7 @@
 
   # Disks
   boot.cleanTmpDir = true;
-  swapDevices = [ { device = "/swapfile"; size = 4096; } ];
+  swapDevices = [{ device = "/swapfile"; size = 4096; }];
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
@@ -75,7 +75,7 @@
       options = [ "defaults,x-systemd.requires=/mnt/Seagate3TB,lowerdir=/mnt/Seagate3TB/www,upperdir=/home/collin/Docker/php/contents,workdir=/home/collin/Docker/php/workdir" ];
     };
   };
-  
+
   # Persistance
   users.mutableUsers = false;
 

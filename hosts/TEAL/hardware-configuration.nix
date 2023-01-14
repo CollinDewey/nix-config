@@ -42,14 +42,14 @@
   system.stateVersion = "21.05";
 
   # Disks
-  swapDevices = [ { device = "/swapfile"; size = 8192; } ];
+  swapDevices = [{ device = "/swapfile"; size = 8192; }];
   boot.cleanTmpDir = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/Linux";
     fsType = "ext4";
   };
-  
+
   fileSystems."/mnt/Shared" = {
     device = "/dev/disk/by-label/Shared";
     fsType = "ntfs";
@@ -87,7 +87,7 @@
     options = [ "x-systemd.automount" "_netdev" "user" "idmap=user" "transform_symlinks" "identityfile=/home/collin/.ssh/id_rsa" "allow_other" "reconnect" "ServerAliveInterval=15" "ServerAliveCountMax=3" "default_permissions" "uid=1000" "gid=1000" ];
     fsType = "fuse.sshfs";
   };
-  
+
   fileSystems."/mnt/Block" = {
     device = "collin@BROWN:/mnt/Block";
     options = [ "x-systemd.automount" "_netdev" "user" "idmap=user" "transform_symlinks" "identityfile=/home/collin/.ssh/id_rsa" "allow_other" "reconnect" "ServerAliveInterval=15" "ServerAliveCountMax=3" "default_permissions" "uid=1000" "gid=1000" ];
