@@ -203,6 +203,36 @@
         ];
       };
 
+      VIRIDIAN = nixpkgs-stable.lib.nixosSystem {
+        system = "aarch64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          # Global Config + Modules
+          ./config
+          ./config/linux.nix
+          ./overlays
+          ./modules
+          ./hosts/VIRIDIAN/configuration.nix
+
+          # Specialized Hardware Configuration
+          ./hosts/VIRIDIAN/hardware-configuration.nix
+
+          {
+            environment.systemPackages = with nix-alien.packages.aarch64-linux; [ nix-index-update ]; # Temporary
+            modules = {
+              ssh.enable = true;
+              virtualisation.docker = true;
+              zsh.enable = true;
+            };
+          }
+
+          # User
+          sops-nix.nixosModules.sops
+          ./users
+          ./users/collin
+        ];
+      };
+
       BROWN = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = { inherit inputs; };
