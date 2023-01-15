@@ -102,6 +102,7 @@
 
   # Persistance
   users.mutableUsers = false;
+  systemd.coredump.extraConfig = "Storage=none";
   fileSystems."/persist".neededForBoot = true;
   environment.persistence."/persist" = {
     hideMounts = true;
@@ -109,7 +110,6 @@
       "/var/log" # Keep system logs
       "/var/lib/docker" # Keep Docker junk
       "/var/lib/libvirt" # Keep KVM junk
-      "/var/lib/systemd/coredump" # Keep coredumps
       "/var/lib/iwd" # I like using WiFi
       "/var/lib/NetworkManager" # I like using WiFi
       "/etc/nixos" # Not nuke my configuration
