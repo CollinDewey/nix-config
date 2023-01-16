@@ -2,7 +2,7 @@
 {
   # Secret configuration
   sops = {
-    defaultSopsFile = ../secrets/secrets.yaml;
+    defaultSopsFile = lib.mkDefault ../secrets/secrets.yaml;
     age.generateKey = false;
     gnupg.sshKeyPaths = [ ]; # sops-nix#167
     age.sshKeyPaths = [ ]; # sops-nix#167

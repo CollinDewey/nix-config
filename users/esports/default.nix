@@ -6,15 +6,15 @@ let
   };
 in
 {
-  sops.defaultSopsFile = ../../secrets/collin.yaml;
-  sops.secrets.collin-hashed-password.neededForUsers = true;
-  users.groups.collin.gid = 1000;
-  users.users.collin = {
+  sops.defaultSopsFile = ../../secrets/esports.yaml;
+  sops.secrets.esports-hashed-password.neededForUsers = true;
+  users.groups.esports.gid = 1000;
+  users.users.esports = {
     uid = 1000;
-    group = "collin";
+    group = "esports";
     shell = pkgs.zsh;
     isNormalUser = true;
-    passwordFile = config.sops.secrets.collin-hashed-password.path;
+    passwordFile = config.sops.secrets.esports-hashed-password.path;
     openssh.authorizedKeys.keyFiles = [ keys ];
     extraGroups = [ "wheel" "docker" "dialout" "scanner" "lp" "libvirtd" "wireshark" "plugdev" "adbusers" ];
   };
