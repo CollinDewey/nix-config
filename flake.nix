@@ -53,9 +53,14 @@
       url = "github:tadfisher/android-nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, impermanence, nix-alien, sops-nix, darwin, disko, home-manager, home-manager-stable, plasma-manager, android-nixpkgs, ... }@inputs: {
+  outputs = { nixpkgs, nixpkgs-stable, impermanence, nix-alien, sops-nix, darwin, disko, home-manager, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, ... }@inputs: {
 
     nixosConfigurations = {
       BURGUNDY = nixpkgs.lib.nixosSystem {
@@ -352,6 +357,45 @@
             };
           }
         ];
+      };
+    };
+
+    packages.x86_64-linux = {
+      ISO = nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          home-manager.nixosModules.home-manager
+          ./config
+          ./config/home.nix
+          ./overlays
+          ./modules
+          {
+            environment.systemPackages = with nix-alien.packages.x86_64-linux; [ nix-index-update ]; # Temporary
+            modules = {
+              plasma.enable = true;
+              ssh.enable = true;
+              zsh.enable = true;
+            };
+
+            home-manager.users.nixos = {
+              imports = [
+                plasma-manager.homeManagerModules.plasma-manager
+                ./home
+              ];
+              modules = {
+                communication.enable = true;
+                lock.enable = true;
+                multimedia.enable = true;
+                plasma.enable = true;
+                utilities.enable = true;
+                zsh.enable = true;
+              };
+              home.stateVersion = "23.05";
+            };
+          }
+        ];
+        format = "install-iso";
       };
     };
   };

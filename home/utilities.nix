@@ -26,6 +26,7 @@ in {
       x11vnc
       barrier
       imhex
+      partition-manager
     ];
   };
 }
