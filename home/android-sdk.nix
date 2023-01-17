@@ -12,7 +12,7 @@ in {
     ];
     android-sdk = {
       enable = true;
-      path = "${config.home.homeDirectory}/.android/sdk";
+      path = "${config.home.homeDirectory}/Android/Sdk";
       packages = sdk: with sdk; [
         build-tools-30-0-0
         cmdline-tools-latest
