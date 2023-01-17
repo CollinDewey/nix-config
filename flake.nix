@@ -398,5 +398,39 @@
         format = "install-iso";
       };
     };
+
+    # This doesn't work yet on the Pi4
+    packages.aarch64-linux = {
+      VIRIDIAN_IMAGE = nixos-generators.nixosGenerate {
+        system = "aarch64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          # Global Config + Modules
+          ./config
+          ./config/linux.nix
+          ./overlays
+          ./modules
+          ./hosts/VIRIDIAN/configuration.nix
+
+          # Specialized Hardware Configuration
+          ./hosts/VIRIDIAN/hardware-configuration.nix
+
+          {
+            environment.systemPackages = with nix-alien.packages.aarch64-linux; [ nix-index-update ]; # Temporary
+            modules = {
+              ssh.enable = true;
+              virtualisation.docker = true;
+              zsh.enable = true;
+            };
+          }
+
+          # User
+          sops-nix.nixosModules.sops
+          ./users
+          ./users/collin
+        ];
+        format = "sd-aarch64";
+      };
+    };
   };
 }
