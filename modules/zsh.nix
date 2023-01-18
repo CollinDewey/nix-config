@@ -5,8 +5,8 @@ let
   cfg = config.modules.zsh;
   agnoster-nix = pkgs.fetchgit {
     url = "https://gist.github.com/LegitMagic/2e6b6c5b257d2f6895603ddb160e6f1d";
-    rev = "18a3df5e62a3caa2854bc82ee466590bf41e3341";
-    sha256 = "sha256-lCNPjLmrE1WF1S34y5cPUTOp4G7bd7oZ80vZKZRV92U=";
+    rev = "ac34ed17fcf5f18d93c6a9a6c9801b9a8699f271";
+    sha256 = "sha256-0gdv/TOvsIpZz2rFzB2V90fJxXLGDQFx+FGwL1WpPTM=";
   };
   zsh-defer = pkgs.fetchFromGitHub {
     owner = "romkatv";
