@@ -55,7 +55,7 @@
     };
 
     nixos-generators = {
-      url = "github:nix-community/nixos-generators";
+      url = "github:LegitMagic/nixos-generators/sd-aarch64-fix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
