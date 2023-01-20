@@ -6,22 +6,16 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/release-22.11";
     impermanence.url = "github:nix-community/impermanence";
 
-    nix-alien = {
-      # Remove in favor of nix-index-database
-      url = "github:thiagokokada/nix-alien";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
 
-    #nix-index-database = { # Wait for Mic92/nix-index-database#34
-    #  url = "github:Mic92/nix-index-database";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
+    nix-index-database = { # Wait for Mic92/nix-index-database#34
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     darwin = {
       url = "github:lnl7/nix-darwin/master";
@@ -60,7 +54,7 @@
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, impermanence, nix-alien, sops-nix, darwin, disko, home-manager, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, ... }@inputs: {
+  outputs = { nixpkgs, nixpkgs-stable, impermanence, sops-nix, nix-index-database, darwin, disko, home-manager, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, ... }@inputs: {
 
     nixosConfigurations = {
       BURGUNDY = nixpkgs.lib.nixosSystem {
@@ -78,10 +72,10 @@
           # Specialized Hardware Configuration
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
+
           ./hosts/BURGUNDY/hardware-configuration.nix
 
           {
-            environment.systemPackages = with nix-alien.packages.x86_64-linux; [ nix-index-update ]; # Temporary
             modules = {
               plasma.enable = true;
               printing.enable = true;
@@ -110,6 +104,7 @@
                 # Modules
                 plasma-manager.homeManagerModules.plasma-manager
                 android-nixpkgs.hmModule
+                nix-index-database.hmModules.nix-index
                 ./home
                 ./home/android-sdk.nix
 
@@ -154,7 +149,6 @@
           ./hosts/TEAL/hardware-configuration.nix
 
           {
-            environment.systemPackages = with nix-alien.packages.x86_64-linux; [ nix-index-update ]; # Temporary
             modules = {
               plasma.enable = true;
               printing.enable = true;
@@ -182,6 +176,7 @@
               imports = [
                 # Modules
                 plasma-manager.homeManagerModules.plasma-manager
+                nix-index-database.hmModules.nix-index
                 ./home
 
                 # Computer Specific Config
@@ -219,12 +214,12 @@
           ./overlays
           ./modules
           ./hosts/VIRIDIAN/configuration.nix
+          nix-index-database.nixosModules.nix-index
 
           # Specialized Hardware Configuration
           ./hosts/VIRIDIAN/hardware-configuration.nix
 
           {
-            environment.systemPackages = with nix-alien.packages.aarch64-linux; [ nix-index-update ]; # Temporary
             modules = {
               ssh.enable = true;
               virtualisation.docker = true;
@@ -248,12 +243,12 @@
           ./config/linux.nix
           ./overlays
           ./modules
+          nix-index-database.nixosModules.nix-index
 
           # Specialized Hardware Configuration
           ./hosts/BROWN/hardware-configuration.nix
 
           {
-            environment.systemPackages = with nix-alien.packages.aarch64-linux; [ nix-index-update ]; # Temporary
             modules = {
               ssh.enable = true;
               virtualisation.docker = true;
@@ -277,12 +272,12 @@
           ./config/linux.nix
           ./overlays
           ./modules
+          nix-index-database.nixosModules.nix-index
 
           # Specialized Hardware Configuration
           ./hosts/SCARLET/hardware-configuration.nix
 
           {
-            environment.systemPackages = with nix-alien.packages.aarch64-linux; [ nix-index-update ]; # Temporary
             modules = {
               ssh.enable = true;
               virtualisation.docker = true;
@@ -306,12 +301,12 @@
           ./config/linux.nix
           ./overlays
           ./modules
+          nix-index-database.nixosModules.nix-index
 
           # Specialized Hardware Configuration
           ./hosts/ESPORTS/hardware-configuration.nix
 
           {
-            environment.systemPackages = with nix-alien.packages.aarch64-linux; [ nix-index-update ]; # Temporary
             modules = {
               ssh.enable = true;
               virtualisation.docker = true;
@@ -347,6 +342,7 @@
                 ./users/collin/home.nix
                 ./hosts/COPPER/home.nix
                 plasma-manager.homeManagerModules.plasma-manager
+                nix-index-database.hmModules.nix-index
               ];
 
               modules = {
@@ -371,7 +367,6 @@
           ./overlays
           ./modules
           {
-            environment.systemPackages = with nix-alien.packages.x86_64-linux; [ nix-index-update ]; # Temporary
             modules = {
               plasma.enable = true;
               ssh.enable = true;
@@ -381,6 +376,7 @@
             home-manager.users.nixos = {
               imports = [
                 plasma-manager.homeManagerModules.plasma-manager
+                nix-index-database.hmModules.nix-index
                 ./home
               ];
               modules = {
@@ -416,7 +412,6 @@
           ./hosts/VIRIDIAN/hardware-configuration.nix
 
           {
-            environment.systemPackages = with nix-alien.packages.aarch64-linux; [ nix-index-update ]; # Temporary
             modules = {
               ssh.enable = true;
               virtualisation.docker = true;
