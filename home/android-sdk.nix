@@ -14,11 +14,14 @@ in {
       enable = true;
       path = "${config.home.homeDirectory}/Android/Sdk";
       packages = sdk: with sdk; [
-        build-tools-30-0-0
+        build-tools-33-0-1
+        build-tools-30-0-3
         cmdline-tools-latest
         emulator
-        platforms-android-30
-        sources-android-30
+        platform-tools
+        platforms-android-32
+        patcher-v4
+        system-images-android-30-google-apis-x86
       ];
     };
   };
