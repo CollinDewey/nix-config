@@ -214,7 +214,6 @@
           ./overlays
           ./modules
           ./hosts/VIRIDIAN/configuration.nix
-          nix-index-database.nixosModules.nix-index
 
           # Specialized Hardware Configuration
           ./hosts/VIRIDIAN/hardware-configuration.nix
@@ -243,7 +242,6 @@
           ./config/linux.nix
           ./overlays
           ./modules
-          nix-index-database.nixosModules.nix-index
 
           # Specialized Hardware Configuration
           ./hosts/BROWN/hardware-configuration.nix
@@ -272,7 +270,6 @@
           ./config/linux.nix
           ./overlays
           ./modules
-          nix-index-database.nixosModules.nix-index
 
           # Specialized Hardware Configuration
           ./hosts/SCARLET/hardware-configuration.nix
@@ -301,7 +298,6 @@
           ./config/linux.nix
           ./overlays
           ./modules
-          nix-index-database.nixosModules.nix-index
 
           # Specialized Hardware Configuration
           ./hosts/ESPORTS/hardware-configuration.nix
