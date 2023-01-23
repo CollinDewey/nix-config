@@ -70,9 +70,6 @@
           ./hosts/BURGUNDY/configuration.nix
 
           # Specialized Hardware Configuration
-          disko.nixosModules.disko
-          impermanence.nixosModules.impermanence
-
           ./hosts/BURGUNDY/hardware-configuration.nix
 
           {
@@ -90,7 +87,6 @@
           }
 
           # User
-          sops-nix.nixosModules.sops
           ./users
           ./users/collin
           home-manager.nixosModules.home-manager
@@ -163,7 +159,6 @@
           }
 
           # User
-          sops-nix.nixosModules.sops
           ./users
           ./users/collin
           home-manager-stable.nixosModules.home-manager
@@ -227,7 +222,6 @@
           }
 
           # User
-          sops-nix.nixosModules.sops
           ./users
           ./users/collin
         ];
@@ -255,7 +249,6 @@
           }
 
           # User
-          sops-nix.nixosModules.sops
           ./users
           ./users/collin
         ];
@@ -283,7 +276,6 @@
           }
 
           # User
-          sops-nix.nixosModules.sops
           ./users
           ./users/collin
         ];
@@ -311,7 +303,6 @@
           }
 
           # User
-          sops-nix.nixosModules.sops
           ./users
           ./users/esports
         ];
@@ -416,7 +407,6 @@
           }
 
           # User
-          sops-nix.nixosModules.sops
           ./users
           ./users/collin
         ];

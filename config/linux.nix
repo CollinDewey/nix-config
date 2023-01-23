@@ -1,5 +1,8 @@
-{ lib, ... }:
+{ lib, inputs, ... }:
 {
+  # Modules
+  imports = [ inputs.sops-nix.nixosModules.sops ];
+
   # Secret configuration
   sops = {
     defaultSopsFile = lib.mkDefault ../secrets/secrets.yaml;
