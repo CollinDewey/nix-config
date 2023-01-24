@@ -52,6 +52,7 @@ in {
     home.sessionVariables = {
       QT_STYLE_OVERRIDE = "kvantum";
       GTK_USE_PORTAL = "1";
+      MOZ_ENABLE_WAYLAND = "0";
     };
   };
 }
