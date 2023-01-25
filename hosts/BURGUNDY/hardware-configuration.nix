@@ -40,8 +40,9 @@
   # Video
   services.xserver = {
     videoDrivers = [ "nvidia" ];
-    screenSection = ''Option "metamodes" "DP-0.2: 1920x1080_60_0 +1920+0 {viewportin=1920x1080, viewportout=1824x1026+48+27, ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}, DP-0.1: nvidia-auto-select +1920+1080 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}, DP-0.3: nvidia-auto-select +0+1080 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}"'';
+    screenSection = ''Option "metamodes" "DP-0.2: 1920x1080 +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}, DP-0.1: nvidia-auto-select +1920+1080 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}, DP-0.3: 1920x1080 +0+1080 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}"'';
   };
+  hardware.nvidia.forceFullCompositionPipeline = true;
 
   # Networking
   time.timeZone = "America/Louisville";
