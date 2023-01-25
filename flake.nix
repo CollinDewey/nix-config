@@ -49,7 +49,7 @@
     };
 
     nixos-generators = {
-      url = "github:LegitMagic/nixos-generators/sd-aarch64-fix";
+      url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -382,7 +382,6 @@
       };
     };
 
-    # This doesn't work yet on the Pi4
     packages.aarch64-linux = {
       VIRIDIAN_IMAGE = nixos-generators.nixosGenerate {
         system = "aarch64-linux";

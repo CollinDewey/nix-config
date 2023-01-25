@@ -9,11 +9,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1674505248,
-        "narHash": "sha256-Sp24l7ef9P2HQJsvPVrMUR8FzWYjZYDW7070bEr/4XE=",
+        "lastModified": 1674591636,
+        "narHash": "sha256-LTlA1r+59APvW9l7DwoZlcVdx0teNkreFH4kIR2LaGk=",
         "owner": "tadfisher",
         "repo": "android-nixpkgs",
-        "rev": "94315ee656f6dae03fec7bace5bf072f943479f1",
+        "rev": "acdefe98ec8c0d069300467f9a8b1dadcbbefab7",
         "type": "github"
       },
       "original": {
@@ -204,16 +204,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1674090259,
-        "narHash": "sha256-5YC94x9HtXxqHUBeJl2PT6+B6KcQNLcnXKm6RFfAx24=",
-        "owner": "LegitMagic",
+        "lastModified": 1674666581,
+        "narHash": "sha256-KNI2s/xrL7WOYaPJAWKBtb7cCH3335rLfsL+B+ssuGY=",
+        "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "4a6b7a279569b3f0c7a3ea21f78eb870669c68b9",
+        "rev": "6a5dc1d3d557ea7b5c19b15ff91955124d0400fa",
         "type": "github"
       },
       "original": {
-        "owner": "LegitMagic",
-        "ref": "sd-aarch64-fix",
+        "owner": "nix-community",
         "repo": "nixos-generators",
         "type": "github"
       }
@@ -236,11 +235,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1674564306,
-        "narHash": "sha256-c69EcuFa2azaQygNMoktc+BZ5wyjq+RJ/ekuN1PJfeI=",
+        "lastModified": 1674665771,
+        "narHash": "sha256-NebRCVU3XFelpXVciaPrJfFjy1QT7MnToePPZ8cxz58=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e07b11d054e7190ddda1e759966be99c0e60de5c",
+        "rev": "6ddce71da0dd99c2ce131875dcd21c579ce2d852",
         "type": "github"
       },
       "original": {
