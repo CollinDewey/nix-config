@@ -7,6 +7,7 @@
     ./communication.nix
     ./cyber.nix
     ./gaming.nix
+    ./klipper.nix
     ./lock.nix
     ./misc.nix
     ./multimedia.nix
