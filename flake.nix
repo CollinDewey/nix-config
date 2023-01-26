@@ -116,6 +116,7 @@
                 communication.enable = true;
                 cyber.enable = true;
                 gaming.enable = true;
+                klipper.enable = true;
                 lock.enable = true;
                 misc.enable = true;
                 multimedia.enable = true;
@@ -123,6 +124,14 @@
                 utilities.enable = true;
                 zsh.enable = true;
               };
+
+              home.stateVersion = "23.05";
+            };
+
+            home-manager.users.root = {
+              imports = [
+                nix-index-database.hmModules.nix-index
+              ];
 
               home.stateVersion = "23.05";
             };
@@ -194,6 +203,14 @@
               };
 
               home.stateVersion = "22.11";
+            };
+
+            home-manager.users.root = {
+              imports = [
+                nix-index-database.hmModules.nix-index
+              ];
+
+              home.stateVersion = "23.05";
             };
           }
         ];
@@ -374,6 +391,14 @@
                 utilities.enable = true;
                 zsh.enable = true;
               };
+              home.stateVersion = "23.05";
+            };
+
+            home-manager.users.root = {
+              imports = [
+                nix-index-database.hmModules.nix-index
+              ];
+
               home.stateVersion = "23.05";
             };
           }
