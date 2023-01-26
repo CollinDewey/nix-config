@@ -63,7 +63,7 @@
   specialisation = {
     integrated.configuration = {
       system.nixos.tags = [ "Integrated" ];
-      services.xserver.videoDrivers = [ "amdgpu" ];
+      services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
       powerManagement.cpuFreqGovernor = lib.mkForce "powersave";
       hardware.nvidia.prime.sync.enable = lib.mkForce false;
       hardware.nvidia.prime.offload.enable = true;
