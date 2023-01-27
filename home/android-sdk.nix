@@ -19,7 +19,7 @@ in {
         cmdline-tools-latest
         emulator
         platform-tools
-        platforms-android-32
+        platforms-android-33
         patcher-v4
         system-images-android-30-google-apis-x86
       ];
