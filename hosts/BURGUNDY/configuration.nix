@@ -14,6 +14,11 @@
   # Cross compilation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  # Testing if my audio issues are pipewire based
+  services.pipewire.enable = pkgs.lib.mkForce false;
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+
   # State
   system.stateVersion = "23.05";
 }
