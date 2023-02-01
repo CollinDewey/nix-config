@@ -2,34 +2,34 @@
   description = "Collin's Nix Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/release-22.11";
     impermanence.url = "github:nix-community/impermanence";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
 
     nix-index-database = { # Wait for Mic92/nix-index-database#34
       url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     darwin = {
       url = "github:lnl7/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
-    home-manager = {
+    home-manager-unstable = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     home-manager-stable = {
@@ -39,25 +39,25 @@
 
     plasma-manager = {
       url = "github:pjones/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+      inputs.home-manager.follows = "home-manager-stable";
     };
 
     android-nixpkgs = {
       url = "github:tadfisher/android-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
-  outputs = { nixpkgs, nixpkgs-stable, impermanence, sops-nix, nix-index-database, darwin, disko, home-manager, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, ... }@inputs: {
+  outputs = { nixpkgs-unstable, nixpkgs-stable, impermanence, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, ... }@inputs: {
 
     nixosConfigurations = {
-      BURGUNDY = nixpkgs.lib.nixosSystem {
+      BURGUNDY = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -89,7 +89,7 @@
           # User
           ./users
           ./users/collin
-          home-manager.nixosModules.home-manager
+          home-manager-unstable.nixosModules.home-manager
           ./config/home.nix
 
           {
@@ -338,7 +338,7 @@
           {
             modules.zsh.enable = true;
           }
-          home-manager.darwinModules.home-manager
+          home-manager-unstable.darwinModules.home-manager
           {
             home-manager.users.collin = {
               imports = [
@@ -365,7 +365,7 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          home-manager.nixosModules.home-manager
+          home-manager-unstable.nixosModules.home-manager
           ./config
           ./config/home.nix
           ./overlays
