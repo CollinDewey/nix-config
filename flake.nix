@@ -125,7 +125,7 @@
                 zsh.enable = true;
               };
 
-              home.stateVersion = "23.05";
+              home.stateVersion = "22.11";
             };
 
             home-manager.users.root = {
@@ -133,7 +133,7 @@
                 nix-index-database.hmModules.nix-index
               ];
 
-              home.stateVersion = "23.05";
+              home.stateVersion = "22.11";
             };
           }
         ];
@@ -210,7 +210,7 @@
                 nix-index-database.hmModules.nix-index
               ];
 
-              home.stateVersion = "23.05";
+              home.stateVersion = "22.11";
             };
           }
         ];
@@ -353,7 +353,7 @@
                 zsh.enable = true;
               };
 
-              home.stateVersion = "23.05";
+              home.stateVersion = "22.11";
             };
           }
         ];
@@ -391,7 +391,7 @@
                 utilities.enable = true;
                 zsh.enable = true;
               };
-              home.stateVersion = "23.05";
+              home.stateVersion = "22.11";
             };
 
             home-manager.users.root = {
@@ -399,7 +399,7 @@
                 nix-index-database.hmModules.nix-index
               ];
 
-              home.stateVersion = "23.05";
+              home.stateVersion = "22.11";
             };
           }
         ];
