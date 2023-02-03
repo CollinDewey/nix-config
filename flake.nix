@@ -52,9 +52,14 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = { nixpkgs-unstable, nixpkgs-stable, impermanence, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, ... }@inputs: {
+  outputs = { self, nixpkgs-unstable, nixpkgs-stable, impermanence, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, deploy-rs, ... }@inputs: {
 
     nixosConfigurations = {
       BURGUNDY = nixpkgs-unstable.lib.nixosSystem {
@@ -437,5 +442,47 @@
         format = "sd-aarch64";
       };
     };
+
+    deploy = {
+      user = "root";
+      remoteBuild = true;
+
+      # deploy-rs#78
+      magicRollback = false;
+      sshOpts = [ "-t" ];
+    
+      nodes = {
+        TEAL = {
+          hostname = "TEAL";
+          user = "root";
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
+        };
+
+        VIRIDIAN = {
+          hostname = "VIRIDIAN";
+          user = "root";
+          profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
+        };
+
+        BROWN = {
+          hostname = "brown.terascripting.com";
+          user = "root";
+          profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.BROWN;
+        };
+
+        SCARLET = {
+          hostname = "scarlet.terascripting.com";
+          profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.SCARLET;
+        };
+
+        ESPORTS = {
+          hostname = "mc.uoflesports.com";
+          sshUser = "esports";
+          profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.ESPORTS;
+        };
+      };
+    };
+
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }
