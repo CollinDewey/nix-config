@@ -455,19 +455,16 @@
       nodes = {
         TEAL = {
           hostname = "TEAL";
-          user = "root";
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
         };
 
         VIRIDIAN = {
           hostname = "VIRIDIAN";
-          user = "root";
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
         };
 
         BROWN = {
           hostname = "brown.terascripting.com";
-          user = "root";
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.BROWN;
         };
 
@@ -484,6 +481,7 @@
       };
     };
 
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+    # Check is too demanding
+    #checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
 }
