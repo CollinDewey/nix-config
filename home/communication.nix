@@ -9,6 +9,7 @@ in {
     home.packages = with pkgs; [
       discord
       teams
+      teams-for-linux
     ];
   };
 }
