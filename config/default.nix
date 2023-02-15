@@ -30,8 +30,4 @@
     iotop
   ]);
 
-  # Wait for nixpkgs#213593 to be backported. I could've just used an overlay...
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-18.1.0"
-  ];
 }
