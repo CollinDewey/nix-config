@@ -2,6 +2,14 @@
 
 A personal Nix configuration across my computers running Nix and NixOS.
 
+## NixOS Live Media
+- Nix needs to be installed
+- Build an ISO by running the following command
+```
+nix build .#ISO --extra-experimental-features "nix-command flakes" --verbose --print-build-logs
+```
+- Resulting ISO will be in the ./result/iso
+
 ## NixOS installation
 - Load into the NixOS Live Installation Image
 - Clone and enter the repo using `git clone`
