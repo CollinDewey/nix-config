@@ -14,6 +14,9 @@
   # Cross compilation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  # NFS
+  services.nfs.server.enable = true;
+
   # Testing if my audio issues are pipewire based
   services.pipewire.enable = pkgs.lib.mkForce false;
   hardware.pulseaudio.enable = true;
