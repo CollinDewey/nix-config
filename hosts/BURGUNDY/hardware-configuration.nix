@@ -46,7 +46,7 @@
 
   # Networking
   time.timeZone = "America/Louisville";
-  time.hardwareClockInLocalTime = true; # Windows is silly and I need it for work/school
+  #time.hardwareClockInLocalTime = true; # Windows is silly and I need it for work/school
   networking = {
     hostName = "BURGUNDY";
     networkmanager.enable = true;
