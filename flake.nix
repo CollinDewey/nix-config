@@ -453,10 +453,11 @@
       sshOpts = [ "-t" ];
     
       nodes = {
-        TEAL = {
-          hostname = "TEAL";
-          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
-        };
+        # Keeps failing with "too many root sets, look into that"
+        #TEAL = {
+        #  hostname = "TEAL";
+        #  profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
+        #};
 
         VIRIDIAN = {
           hostname = "VIRIDIAN";
