@@ -21,6 +21,7 @@
   services.pipewire.enable = pkgs.lib.mkForce false;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
+  programs.noisetorch.enable = true;
 
   # State
   system.stateVersion = "23.05";
