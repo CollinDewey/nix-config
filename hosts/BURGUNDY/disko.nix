@@ -10,7 +10,6 @@
         partitions = [
           {
             name = "ESP";
-            type = "partition";
             start = "1MiB";
             end = "1GiB";
             fs-type = "fat32";
@@ -23,7 +22,6 @@
           }
           {
             name = "Linux";
-            type = "partition";
             start = "1GiB";
             end = "100%";
             content = {
