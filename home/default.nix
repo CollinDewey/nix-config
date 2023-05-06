@@ -12,6 +12,7 @@
     ./misc.nix
     ./multimedia.nix
     ./plasma.nix
+    ./plover.nix
     ./utilities.nix
     ./zsh.nix
   ];

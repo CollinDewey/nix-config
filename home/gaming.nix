@@ -9,7 +9,7 @@ in {
     home.packages = with pkgs; [
       steam
       lutris
-      moonlight-qt
+      #moonlight-qt
       lunar-client
       grapejuice
       godot

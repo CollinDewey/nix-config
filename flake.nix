@@ -127,6 +127,7 @@
                 misc.enable = true;
                 multimedia.enable = true;
                 plasma.enable = true;
+                plover.enable = true;
                 utilities.enable = true;
                 zsh.enable = true;
               };
