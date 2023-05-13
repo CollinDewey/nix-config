@@ -9,9 +9,9 @@ in {
     home.packages = with pkgs; [
       steam
       lutris
-      #moonlight-qt
+      #moonlight-qt (broken for some reason?)
       lunar-client
-      grapejuice
+      #grapejuice #New ROBLOX update breaks stuff
       godot
       heroic
       prismlauncher-qt5
