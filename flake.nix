@@ -476,7 +476,7 @@
         };
 
         ESPORTS = {
-          hostname = "mc.uoflesports.com";
+          hostname = "esportsvps";
           sshUser = "esports";
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.ESPORTS;
         };
