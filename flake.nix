@@ -305,7 +305,7 @@
         ];
       };
 
-      ESPORTS = nixpkgs-stable.lib.nixosSystem {
+      RUBY = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -316,7 +316,7 @@
           ./modules
 
           # Specialized Hardware Configuration
-          ./hosts/ESPORTS/hardware-configuration.nix
+          ./hosts/RUBY/hardware-configuration.nix
 
           {
             modules = {
@@ -328,7 +328,7 @@
 
           # User
           ./users
-          ./users/esports
+          ./users/collin
         ];
       };
     };
@@ -461,10 +461,11 @@
         #  profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
         #};
 
-        VIRIDIAN = {
-          hostname = "VIRIDIAN";
-          profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
-        };
+        # Won't switch configurations for no reason - Fix with 23.05 upgrade
+        #VIRIDIAN = {
+        #  hostname = "VIRIDIAN";
+        #  profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
+        #};
 
         BROWN = {
           hostname = "brown.terascripting.com";
@@ -476,10 +477,9 @@
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.SCARLET;
         };
 
-        ESPORTS = {
-          hostname = "esportsvps";
-          sshUser = "esports";
-          profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.ESPORTS;
+        RUBY = {
+          hostname = "RUBY";
+          profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.RUBY;
         };
       };
     };
