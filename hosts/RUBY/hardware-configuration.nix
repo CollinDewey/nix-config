@@ -26,7 +26,7 @@
   # Networking
   time.timeZone = "America/Louisville";
   networking = {
-    hostName = "ESPORTS";
+    hostName = "RUBY";
     nameservers = [ "8.8.8.8" "1.1.1.1" ];
     useDHCP = false;
     interfaces.enp0s3.useDHCP = true;
