@@ -375,6 +375,7 @@
           home-manager-unstable.nixosModules.home-manager
           ./config
           ./config/home.nix
+          ./hosts/ISO/configuration.nix
           ./overlays
           ./modules
           {
