@@ -71,7 +71,7 @@
           ./config
           ./config/linux.nix
           ./overlays
-          ./overlays/android-sdk.nix
+          #./overlays/android-sdk.nix
           ./modules
           ./hosts/BURGUNDY/configuration.nix
 
@@ -108,7 +108,7 @@
                 android-nixpkgs.hmModule
                 nix-index-database.hmModules.nix-index
                 ./home
-                ./home/android-sdk.nix
+                #./home/android-sdk.nix
 
                 # Computer Specific Config
                 ./hosts/BURGUNDY/home.nix
@@ -118,7 +118,7 @@
               ];
 
               modules = {
-                android-sdk.enable = true;
+                #android-sdk.enable = true;
                 communication.enable = true;
                 cyber.enable = true;
                 gaming.enable = true;
