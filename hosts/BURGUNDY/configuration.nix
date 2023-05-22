@@ -23,6 +23,9 @@
   hardware.pulseaudio.support32Bit = true;
   programs.noisetorch.enable = true;
 
+  # Goofy different distro name just for /pts/
+  system.nixos.distroName = "NyxOS";
+
   # State
   system.stateVersion = "23.05";
 }
