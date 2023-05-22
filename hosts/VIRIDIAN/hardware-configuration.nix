@@ -69,11 +69,6 @@
       fsType = "ext4";
       options = [ "auto,nofail,noatime,errors=remount-ro,x-systemd.mount-timeout=5" ];
     };
-    "/var/www" = {
-      device = "overlay";
-      fsType = "overlay";
-      options = [ "defaults,x-systemd.requires=/mnt/Seagate3TB,lowerdir=/mnt/Seagate3TB/www,upperdir=/home/collin/Docker/php/contents,workdir=/home/collin/Docker/php/workdir" ];
-    };
   };
 
   # Persistance
