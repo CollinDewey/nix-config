@@ -2,7 +2,7 @@
 {
   services.duplicati = {
     enable = true;
-    user = "root"; # yuck
+    user = "collin";
   };
   systemd.services.duplicati = {
     path = [ pkgs.rclone ];
