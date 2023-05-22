@@ -43,7 +43,7 @@
 
   # Disks
   swapDevices = [{ device = "/swapfile"; size = 8192; }];
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/Linux";

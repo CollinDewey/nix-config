@@ -40,7 +40,7 @@
   system.stateVersion = "22.05";
 
   # Disks
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
   swapDevices = [{ device = "/swapfile"; size = 16384; }];
   fileSystems = {
     "/" = {

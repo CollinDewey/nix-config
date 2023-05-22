@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-23.05";
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
@@ -34,7 +34,7 @@
     };
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager";#/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
@@ -461,11 +461,10 @@
         #  profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
         #};
 
-        # Won't switch configurations for no reason - Fix with 23.05 upgrade
-        #VIRIDIAN = {
-        #  hostname = "VIRIDIAN";
-        #  profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
-        #};
+        VIRIDIAN = {
+          hostname = "VIRIDIAN";
+          profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
+        };
 
         BROWN = {
           hostname = "brown.terascripting.com";

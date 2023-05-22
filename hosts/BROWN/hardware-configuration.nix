@@ -38,7 +38,7 @@
   system.stateVersion = "21.11";
 
   # Disks
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
   swapDevices = [{ device = "/swapfile"; size = 16384; }];
   fileSystems = {
     "/" = {
