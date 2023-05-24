@@ -456,10 +456,10 @@
     
       nodes = {
         # Keeps failing with "too many root sets, look into that"
-        #TEAL = {
-        #  hostname = "TEAL";
-        #  profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
-        #};
+        TEAL = {
+          hostname = "TEAL";
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
+        };
 
         VIRIDIAN = {
           hostname = "VIRIDIAN";
@@ -477,7 +477,7 @@
         };
 
         RUBY = {
-          hostname = "RUBY";
+          hostname = "ruby.terascripting.com";
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.RUBY;
         };
       };
