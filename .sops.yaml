@@ -1,12 +1,7 @@
 keys:
   - &collin age1xkaqxca8axzcvjnp7axqdvt3w03ppmyt97d0y7qneu5g4d99acfsxp97f3
-  - &esports age1ecwukweacjgl5a4pxeeg0un3zx3wlhe84rhg46sry7kpccpz9uysa92gtr
 creation_rules:
   - path_regex: secrets/collin.yaml$
     key_groups:
     - age:
       - *collin
-  - path_regex: secrets/esports.yaml$
-    key_groups:
-    - age:
-      - *esports
