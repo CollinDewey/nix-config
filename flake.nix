@@ -49,8 +49,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
+    nixos-generators = { #https://github.com/nix-community/nixos-generators/pull/233
+      url = "github:therishidesai/nixos-generators/rdesai/isoName";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
