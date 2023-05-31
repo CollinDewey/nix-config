@@ -95,6 +95,7 @@
           # User
           ./users
           ./users/collin
+          ./users/shimmer
           home-manager-unstable.nixosModules.home-manager
           ./config/home.nix
 
@@ -133,6 +134,34 @@
               };
 
               home.stateVersion = "22.11";
+            };
+
+            home-manager.users.shimmer = {
+              imports = [
+                # Modules
+                plasma-manager.homeManagerModules.plasma-manager
+                nix-index-database.hmModules.nix-index
+                ./home
+
+                # Computer Specific Config
+                ./hosts/BURGUNDY/home.nix
+
+                # User Specific Config
+                ./users/shimmer/home.nix
+              ];
+
+              modules = {
+                communication.enable = true;
+                gaming.enable = true;
+                lock.enable = true;
+                misc.enable = true;
+                multimedia.enable = true;
+                plasma.enable = true;
+                utilities.enable = true;
+                zsh.enable = true;
+              };
+
+              home.stateVersion = "23.05";
             };
 
             home-manager.users.root = {
@@ -453,7 +482,7 @@
       # deploy-rs#78
       magicRollback = false;
       sshOpts = [ "-t" ];
-    
+
       nodes = {
         # Keeps failing with "too many root sets, look into that"
         TEAL = {
