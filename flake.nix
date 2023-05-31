@@ -34,7 +34,7 @@
     };
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager";#/release-23.05";
+      url = "github:nix-community/home-manager/release-23.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
@@ -49,8 +49,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    nixos-generators = { #https://github.com/nix-community/nixos-generators/pull/233
-      url = "github:therishidesai/nixos-generators/rdesai/isoName";
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
