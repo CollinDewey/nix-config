@@ -8,6 +8,11 @@
             withOpenASAR = true;
             nss = pkgs.nss_latest;
           };
+
+          discord-ptb = super.discord-ptb.override {
+            withOpenASAR = true;
+            nss = pkgs.nss_latest;
+          };
         }
     )
   ];
