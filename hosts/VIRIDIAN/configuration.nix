@@ -14,5 +14,6 @@
         MusicFolder = "/mnt/Seagate3TB/Music";
       };
     };
+    jmusicbot.enable = true;
   };
 }
