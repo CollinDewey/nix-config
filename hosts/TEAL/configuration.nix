@@ -8,5 +8,7 @@
     path = [ pkgs.rclone ];
   };
 
+  services.jellyfin.enable = true;
+
   services.netdata.enable = true;
 }
