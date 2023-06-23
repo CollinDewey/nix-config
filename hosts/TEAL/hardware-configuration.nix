@@ -8,6 +8,7 @@
     kernelModules = [ "kvm-amd" ];
     kernelParams = [ "mitigations=off" "retbleed=off" "iommu=soft" ];
     kernelPackages = pkgs.linuxPackages_latest;
+    kernel.sysctl = { "kernel.sysrq" = 1; };
 
     # Boot
     loader.systemd-boot.enable = true;

@@ -14,6 +14,7 @@
     kernelModules = [ "kvm-amd" "uinput" ];
     kernelParams = [ "mitigations=off" "retbleed=off" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernel.sysctl = { "kernel.sysrq" = 1; };
 
     # Filesystems
     supportedFilesystems = [ "ntfs" ];
