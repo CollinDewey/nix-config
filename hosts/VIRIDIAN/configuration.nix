@@ -4,8 +4,11 @@
     netdata.enable = true;
     ntopng = {
       enable = true;
-      extraConfig = "--disable-login 1";
       interfaces = [ "eth0" ];
+      extraConfig = ''
+        --disable-login 1
+        --local-networks 172.16.0.0/24=Main,172.16.1.0/24=IoT
+      '';
     };
     navidrome = {
       enable = true;
