@@ -107,7 +107,6 @@
                 # Modules
                 plasma-manager.homeManagerModules.plasma-manager
                 android-nixpkgs.hmModule
-                nix-index-database.hmModules.nix-index
                 ./home
                 #./home/android-sdk.nix
 
@@ -140,7 +139,6 @@
               imports = [
                 # Modules
                 plasma-manager.homeManagerModules.plasma-manager
-                nix-index-database.hmModules.nix-index
                 ./home
 
                 # Computer Specific Config
@@ -162,14 +160,6 @@
               };
 
               home.stateVersion = "23.05";
-            };
-
-            home-manager.users.root = {
-              imports = [
-                nix-index-database.hmModules.nix-index
-              ];
-
-              home.stateVersion = "22.11";
             };
           }
         ];
@@ -216,7 +206,6 @@
               imports = [
                 # Modules
                 plasma-manager.homeManagerModules.plasma-manager
-                nix-index-database.hmModules.nix-index
                 ./home
 
                 # Computer Specific Config
@@ -237,14 +226,6 @@
                 utilities.enable = true;
                 zsh.enable = true;
               };
-
-              home.stateVersion = "22.11";
-            };
-
-            home-manager.users.root = {
-              imports = [
-                nix-index-database.hmModules.nix-index
-              ];
 
               home.stateVersion = "22.11";
             };
@@ -417,7 +398,6 @@
             home-manager.users.nixos = {
               imports = [
                 plasma-manager.homeManagerModules.plasma-manager
-                nix-index-database.hmModules.nix-index
                 ./home
               ];
               modules = {
@@ -428,14 +408,6 @@
                 utilities.enable = true;
                 zsh.enable = true;
               };
-              home.stateVersion = "22.11";
-            };
-
-            home-manager.users.root = {
-              imports = [
-                nix-index-database.hmModules.nix-index
-              ];
-
               home.stateVersion = "22.11";
             };
           }

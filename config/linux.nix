@@ -1,7 +1,10 @@
 { lib, inputs, ... }:
 {
   # Modules
-  imports = [ inputs.sops-nix.nixosModules.sops ];
+  imports = with inputs; [
+    sops-nix.nixosModules.sops
+    nix-index-database.nixosModules.nix-index  
+  ];
 
   # Secret configuration
   sops = {
@@ -25,4 +28,8 @@
     targets.network-online.wantedBy = lib.mkForce [ ];
     services.NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
   };
+
+  # Comma
+  programs.nix-index-database.comma.enable = true;
+  programs.command-not-found.enable = false;
 }

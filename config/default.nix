@@ -25,7 +25,6 @@
     killall
     sshfs
     tmux
-    comma
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [
     iotop
   ]);
