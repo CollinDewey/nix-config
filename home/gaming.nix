@@ -11,6 +11,12 @@ in {
       lutris
       godot
       heroic
+      dolphin-emu
+      (retroarch.override {
+        cores = with libretro; [
+          snes9x
+        ];
+      })
       prismlauncher-qt5
     ];
   };
