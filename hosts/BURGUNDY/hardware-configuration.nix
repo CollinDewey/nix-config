@@ -79,6 +79,15 @@
         };
       };
     };
+    reversePrime.configuration = {
+      system.nixos.tags = [ "ReversePrime" ];
+      services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+      hardware.nvidia = {
+        prime.sync.enable = lib.mkForce false;
+        prime.reverseSync.enable = true;
+        modesetting.enable = true;
+      };
+    };
   };
 
   # Disks
