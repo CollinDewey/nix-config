@@ -33,15 +33,19 @@
                 #  mountOptions = [ "compress=zstd" ];
                 #};
                 "/home" = {
+                  mountpoint = "/home";
                   mountOptions = [ "compress=zstd" ];
                 };
                 "/nix" = {
+                  mountpoint = "/nix";
                   mountOptions = [ "compress=zstd" "noatime" ];
                 };
                 "/persist" = {
+                  mountpoint = "/persist";
                   mountOptions = [ "compress=zstd" ];
                 };
                 "/tmp" = {
+                  mountpoint = "/tmp";
                   # /tmp gets cleared on boot
                   mountOptions = [ "noatime" ];
                 };
