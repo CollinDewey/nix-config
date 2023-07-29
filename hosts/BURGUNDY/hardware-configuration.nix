@@ -106,7 +106,7 @@
       spec = "/home";
       hashTableSizeMB = 1024;
       verbosity = "crit";
-      extraOptions = [ "--loadavg-target" "10.0" ];
+      extraOptions = [ "--thread-count" "1" "--loadavg-target" "3.0" ];
     };
   };
 
