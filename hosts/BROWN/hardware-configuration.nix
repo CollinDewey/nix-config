@@ -39,7 +39,7 @@
 
   # Disks
   boot.tmp.cleanOnBoot = true;
-  swapDevices = [{ device = "/swapfile"; size = 16384; }];
+  swapDevices = [{ device = "/swapfile"; size = 4096; }];
   fileSystems = {
     "/" = {
       device = "/dev/sda1";
