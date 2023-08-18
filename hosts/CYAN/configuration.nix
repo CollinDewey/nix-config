@@ -3,8 +3,13 @@
   # udev rules
   services.udev.packages = [
     pkgs.logitech-udev-rules
-    pkgs.steamPackages.steam
   ];
+
+  #
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+  };
 
   # Cross compilation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
