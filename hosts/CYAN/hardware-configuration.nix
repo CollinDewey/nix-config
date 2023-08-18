@@ -51,6 +51,7 @@
   # Performance
   powerManagement.cpuFreqGovernor = "performance";
 
+  # VFIO
   specialisation."VFIO".configuration = {
     system.nixos.tags = [ "vfio" ];
     boot = {
@@ -67,8 +68,6 @@
       ];
       kernelParams = [ "mitigations=off" "retbleed=off" "amd_iommu=on" "vfio-pci.ids=10de:1e82,10de:10f8,10de:1ad8"];
     };
-
-    hardware.opengl.enable = true;
     virtualisation.spiceUSBRedirection.enable = true;
   };
 
