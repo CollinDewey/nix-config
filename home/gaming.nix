@@ -7,7 +7,8 @@ in {
   options.modules.gaming = { enable = mkEnableOption "gaming"; };
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      steam
+      #steam # Enable via programs.steam.enable for now in the global config
+      gamemode
       lutris
       godot
       heroic

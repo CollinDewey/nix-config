@@ -4,9 +4,11 @@
   services.udev.packages = [
     pkgs.logitech-udev-rules
     pkgs.teensy-udev-rules
-    pkgs.steamPackages.steam
     pkgs.android-udev-rules
   ];
+
+  # Steam
+  programs.steam.enable = true;
 
   # SDDM workaround for starting before drivers load
   systemd.services.display-manager.preStart = ''${pkgs.coreutils}/bin/sleep 1'';
