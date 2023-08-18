@@ -63,6 +63,105 @@
   outputs = { self, nixpkgs-unstable, nixpkgs-stable, impermanence, nixos-hardware, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, deploy-rs, ... }@inputs: {
 
     nixosConfigurations = {
+      CYAN = nixpkgs-unstable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          # Global Config + Modules
+          ./config
+          ./config/linux.nix
+          ./overlays
+          ./modules
+          ./hosts/CYAN/configuration.nix
+
+          # Specialized Hardware Configuration
+          ./hosts/CYAN/hardware-configuration.nix
+
+          {
+            modules = {
+              plasma.enable = true;
+              printing.enable = true;
+              ssh.enable = true;
+              virtualisation = {
+                docker = true;
+                libvirt = true;
+                nvidia = true;
+              };
+              zsh.enable = true;
+            };
+          }
+
+          # User
+          ./users
+          ./users/collin
+          ./users/shimmer
+          home-manager-unstable.nixosModules.home-manager
+          ./config/home.nix
+
+          {
+
+            home-manager.users.collin = {
+
+              imports = [
+                # Modules
+                plasma-manager.homeManagerModules.plasma-manager
+                android-nixpkgs.hmModule
+                ./home
+
+                # Computer Specific Config
+                ./hosts/CYAN/home.nix
+
+                # User Specific Config
+                ./users/collin/home.nix
+              ];
+
+              modules = {
+                communication.enable = true;
+                cyber.enable = true;
+                gaming.enable = true;
+                klipper.enable = true;
+                lock.enable = true;
+                misc.enable = true;
+                multimedia.enable = true;
+                plasma.enable = true;
+                plover.enable = true;
+                utilities.enable = true;
+                zsh.enable = true;
+              };
+
+              home.stateVersion = "23.11";
+            };
+
+            home-manager.users.shimmer = {
+              imports = [
+                # Modules
+                plasma-manager.homeManagerModules.plasma-manager
+                ./home
+
+                # Computer Specific Config
+                ./hosts/BURGUNDY/home.nix
+
+                # User Specific Config
+                ./users/shimmer/home.nix
+              ];
+
+              modules = {
+                communication.enable = true;
+                gaming.enable = true;
+                lock.enable = true;
+                misc.enable = true;
+                multimedia.enable = true;
+                plasma.enable = true;
+                utilities.enable = true;
+                zsh.enable = true;
+              };
+
+              home.stateVersion = "23.11";
+            };
+          }
+        ];
+      };
+
       BURGUNDY = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
