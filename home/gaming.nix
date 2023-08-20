@@ -11,7 +11,7 @@ in {
       #gamemode # Enable via programs.gamemode.enable = true;
       mangohud
       lutris
-      godot
+      godot3
       heroic
       dolphin-emu
       (retroarch.override {
