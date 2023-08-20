@@ -8,7 +8,8 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       #steam # Enable via programs.steam.enable for now in the global config
-      gamemode
+      #gamemode # Enable via programs.gamemode.enable = true;
+      mangohud
       lutris
       godot
       heroic

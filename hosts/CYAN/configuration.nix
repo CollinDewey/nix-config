@@ -10,6 +10,7 @@
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   };
+  programs.gamemode.enable = true;
 
   # Cross compilation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
