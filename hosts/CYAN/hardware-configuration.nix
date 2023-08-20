@@ -51,7 +51,7 @@
   # Performance
   powerManagement.cpuFreqGovernor = "performance";
 
-  # VFIO
+  # VFIO NVIDIA 2080
   specialisation."VFIO".configuration = {
     system.nixos.tags = [ "vfio" ];
     boot = {
@@ -66,7 +66,7 @@
         "nvidia_uvm"
         "nvidia_drm"
       ];
-      kernelParams = [ "mitigations=off" "retbleed=off" "amd_iommu=on" "vfio-pci.ids=10de:1e82,10de:10f8,10de:1ad8"];
+      kernelParams = [ "mitigations=off" "retbleed=off" "amd_iommu=on" "vfio-pci.ids=10de:1e82,10de:10f8,10de:1ad8" "default_hugepagesz=1G" "hugepagesz=1G" "hugepages=32" "amd_pstate=active" ];
     };
     virtualisation.spiceUSBRedirection.enable = true;
   };
