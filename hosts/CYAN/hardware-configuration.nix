@@ -11,8 +11,8 @@
   boot = {
     # Kernel
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-    initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" ];
-    kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" "amd_pstate=active" ];
+    initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
+    kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" "amd_pstate=active" "iommu=pt" "kvm.ignore_msrs=1" "report_ignored_msrs=0" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
