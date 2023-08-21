@@ -11,7 +11,8 @@
   boot = {
     # Kernel
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-    kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" ];
+    initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" "vfio_virqfd" ];
+    kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" "amd_pstate=active" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
@@ -35,6 +36,16 @@
   # Video
   services.xserver = {
     videoDrivers = [ "amdgpu" "nvidia" ];
+    extraConfig = ''
+    Section "Device"
+    	Identifier      "Radeon"
+		  Driver          "amdgpu"
+	    BusId           "PCI:3:0:0"
+    EndSection
+    Section "ServerFlags"
+      Option "AutoAddGPU" "off"
+    EndSection
+    '';
   };
 
   # Networking
@@ -51,25 +62,9 @@
   # Performance
   powerManagement.cpuFreqGovernor = "performance";
 
-  # VFIO NVIDIA 2080
-  specialisation."VFIO".configuration = {
-    system.nixos.tags = [ "vfio" ];
-    boot = {
-      initrd.kernelModules = [
-        "vfio_pci"
-        "vfio"
-        "vfio_iommu_type1"
-        "vfio_virqfd"
-
-        "nvidia"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvidia_drm"
-      ];
-      kernelParams = [ "mitigations=off" "retbleed=off" "amd_iommu=on" "vfio-pci.ids=10de:1e82,10de:10f8,10de:1ad8" "default_hugepagesz=1G" "hugepagesz=1G" "hugepages=32" "amd_pstate=active" ];
-    };
-    virtualisation.spiceUSBRedirection.enable = true;
-  };
+  # VFIO
+  systemd.tmpfiles.rules = [ "f /dev/shm/looking-glass 0660 collin kvm -" ];
+  virtualisation.spiceUSBRedirection.enable = true;
 
   # Disks
   boot.tmp.cleanOnBoot = true;
