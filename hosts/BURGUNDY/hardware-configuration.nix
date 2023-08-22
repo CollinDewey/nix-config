@@ -11,7 +11,9 @@
   boot = {
     # Kernel
     initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usb_storage" "sd_mod" ];
-    kernelModules = [ "kvm-amd" "uinput" ];
+    extraModulePackages = [ config.boot.kernelPackages.kvmfr ];
+    kernelModules = [ "kvm-amd" "uinput" "kvmfr" ];
+    extraModprobeConfig = ''options kvmfr static_size_mb=64'';
     kernelParams = [ "mitigations=off" "retbleed=off" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernel.sysctl = { "kernel.sysrq" = 1; };
@@ -89,6 +91,25 @@
       };
     };
   };
+
+  # VFIO
+  services.udev.extraRules = ''
+    SUBSYSTEM=="kvmfr", OWNER="root", GROUP="libvirtd", MODE="0660"
+  '';
+  environment.etc."looking-glass-client.ini".text = ''
+    [app]
+    shmFile=/dev/kvmfr0
+  '';
+  virtualisation.libvirtd.qemuVerbatimConfig = ''
+    namespaces = []
+    cgroup_device_acl = [
+      "/dev/null", "/dev/full", "/dev/zero",
+      "/dev/random", "/dev/urandom",
+      "/dev/ptmx", "/dev/kvm", "/dev/kvmfr0"
+    ]
+  '';
+  #systemd.tmpfiles.rules = [ "f /dev/shm/looking-glass 0660 collin kvm -" ];
+  virtualisation.spiceUSBRedirection.enable = true;
 
   # Disks
   boot.tmp.cleanOnBoot = true;
