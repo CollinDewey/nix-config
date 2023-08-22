@@ -280,8 +280,6 @@
 
           {
             modules = {
-              plasma.enable = true;
-              printing.enable = true;
               ssh.enable = true;
               virtualisation = {
                 docker = true;
@@ -315,14 +313,6 @@
               ];
 
               modules = {
-                communication.enable = true;
-                cyber.enable = true;
-                gaming.enable = true;
-                lock.enable = true;
-                misc.enable = true;
-                multimedia.enable = true;
-                plasma.enable = true;
-                utilities.enable = true;
                 zsh.enable = true;
               };
 
