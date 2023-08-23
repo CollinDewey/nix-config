@@ -19,14 +19,9 @@
   hardware = {
     enableRedistributableFirmware = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    logitech.wireless.enable = true;
-    steam-hardware.enable = true;
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;
-
-  # Video
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   # Networking
   time.timeZone = "America/Louisville";

@@ -284,7 +284,7 @@
               virtualisation = {
                 docker = true;
                 libvirt = true;
-                nvidia = true;
+                nvidia = false;
               };
               zsh.enable = true;
             };
