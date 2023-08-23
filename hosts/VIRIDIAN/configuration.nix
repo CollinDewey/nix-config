@@ -32,5 +32,12 @@
         }
       ];
     };
+    nfs.server = {
+      enable = true;
+      exports = ''
+      /               172.16.0.150(rw,fsid=0,no_subtree_check)
+      /mnt/Seagate3TB 172.16.0.150(rw,nohide,insecure,no_subtree_check)
+      '';
+    };
   };
 }

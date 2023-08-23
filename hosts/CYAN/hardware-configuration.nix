@@ -1,5 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
-
+let
+  nfs_opts = [ "x-systemd.automount" "x-systemd.idle-timeout=3600" "noauto" "noatime" ];
+in
 {
   # Imports
   imports = [
@@ -56,6 +58,9 @@
   networking = {
     hostName = "CYAN";
     networkmanager.enable = true;
+    hosts = {
+      "10.133.133.1" = [ "TEAL" ]; # 10 Gigabit Link
+    };
     firewall = {
       enable = false;
       checkReversePath = false; # Wireguard
@@ -106,6 +111,38 @@
 
   # Partitioning
   disko.devices = import ./disko.nix;
+
+  # NFS
+  fileSystems."/mnt/TEAL" = {
+    device = "TEAL:/";
+    fsType = "nfs";
+    options = nfs_opts;
+  };
+  fileSystems."/mnt/Shared" = {
+    device = "TEAL:/mnt/Shared";
+    fsType = "nfs";
+    options = nfs_opts;
+  };
+  fileSystems."/mnt/Storage" = {
+    device = "TEAL:/mnt/Storage";
+    fsType = "nfs";
+    options = nfs_opts;
+  };
+  fileSystems."/mnt/Other" = {
+    device = "TEAL:/mnt/Other";
+    fsType = "nfs";
+    options = nfs_opts;
+  };
+  fileSystems."/mnt/VIRIDIAN" = {
+    device = "VIRIDIAN:/";
+    fsType = "nfs";
+    options = nfs_opts;
+  };
+  fileSystems."/mnt/Seagate3TB" = {
+    device = "VIRIDIAN:/mnt/Seagate3TB";
+    fsType = "nfs";
+    options = nfs_opts;
+  };
 
   # Persistance
   users.mutableUsers = false;
