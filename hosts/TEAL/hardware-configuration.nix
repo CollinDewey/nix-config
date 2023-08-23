@@ -32,10 +32,20 @@
   time.timeZone = "America/Louisville";
   networking = {
     hostName = "TEAL";
-    networkmanager.enable = true;
-    firewall = {
-      enable = false; # Temporary
-      checkReversePath = false; # Wireguard
+    nameservers = [ "172.16.0.3" ];
+    defaultGateway = "172.16.0.1";
+    useDHCP = false;
+    firewall.enable = false;
+    firewall.checkReversePath = false;
+    interfaces = {
+      enp6s0.useDHCP = true;
+      enp1s0f1 = {
+        ipv4.addresses = [{
+          address = "10.133.133.1";
+          prefixLength = 24;
+        }];
+        useDHCP = false;
+      };
     };
   };
 
