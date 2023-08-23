@@ -19,9 +19,8 @@
         /mnt/Other   10.133.133.2(rw,nohide,insecure,no_subtree_check)
       '';
     };
-
-    systemd.services.duplicati = {
-      path = [ pkgs.rclone ];
-    };
+  };
+  systemd.services.duplicati = {
+    path = [ pkgs.rclone ];
   };
 }
