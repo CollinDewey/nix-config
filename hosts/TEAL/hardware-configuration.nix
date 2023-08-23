@@ -39,7 +39,7 @@
     firewall.checkReversePath = false;
     interfaces = {
       enp6s0.useDHCP = true;
-      enp1s0f1 = {
+      enp2s0f1 = {
         ipv4.addresses = [{
           address = "10.133.133.1";
           prefixLength = 24;
