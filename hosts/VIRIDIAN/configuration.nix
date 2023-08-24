@@ -18,20 +18,6 @@
       };
     };
     jmusicbot.enable = true;
-    jirafeau = {
-      enable = true;
-      dataDir = "/mnt/Seagate3TB/jirafeau";
-      extraConfig = ''
-        $cfg['web_root'] = 'https://jirafeau.terascripting.com/';
-        $cfg['organisation'] = 'Terascripting';
-      '';
-      nginxConfig.listen = [
-        {
-          addr = "0.0.0.0";
-          port = 22393;
-        }
-      ];
-    };
     nfs.server = {
       enable = true;
       exports = ''
