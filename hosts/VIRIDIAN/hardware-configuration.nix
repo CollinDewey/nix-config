@@ -64,11 +64,6 @@
       fsType = "ext4";
       options = [ "noatime" ];
     };
-    "/mnt/Seagate3TB" = {
-      device = "/dev/disk/by-uuid/172ff5cd-d4cd-48fb-ac31-3a6d0e9902e6";
-      fsType = "ext4";
-      options = [ "auto,nofail,noatime,errors=remount-ro,x-systemd.mount-timeout=5" ];
-    };
   };
 
   # Persistance

@@ -148,11 +148,6 @@ in
     fsType = "nfs";
     options = nfs_opts;
   };
-  fileSystems."/mnt/Seagate3TB" = {
-    device = "VIRIDIAN:/mnt/Seagate3TB";
-    fsType = "nfs";
-    options = nfs_opts;
-  };
 
   # Persistance
   users.mutableUsers = false;

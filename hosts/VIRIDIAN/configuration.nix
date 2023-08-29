@@ -14,7 +14,7 @@
       enable = true;
       settings = {
         Address = "0.0.0.0";
-        MusicFolder = "/mnt/Seagate3TB/Music";
+        #MusicFolder = "/mnt/Seagate3TB/Music";
       };
     };
     jmusicbot.enable = true;
@@ -22,7 +22,6 @@
       enable = true;
       exports = ''
       /               172.16.0.150(rw,fsid=0,no_subtree_check)
-      /mnt/Seagate3TB 172.16.0.150(rw,nohide,insecure,no_subtree_check)
       '';
     };
   };

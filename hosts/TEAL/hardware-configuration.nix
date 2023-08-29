@@ -82,12 +82,6 @@
     fsType = "fuse.sshfs";
   };
 
-  fileSystems."/mnt/Seagate3TB" = {
-    device = "collin@172.16.0.3:/mnt/Seagate3TB";
-    options = [ "x-systemd.automount" "_netdev" "user" "idmap=user" "transform_symlinks" "identityfile=/home/collin/.ssh/id_rsa" "allow_other" "reconnect" "ServerAliveInterval=2" "ServerAliveCountMax=2" "compression=no" "cipher=chacha20-poly1305@openssh.com" "default_permissions" "uid=1000" "gid=1000" ];
-    fsType = "fuse.sshfs";
-  };
-
   fileSystems."/mnt/BROWN" = {
     device = "collin@BROWN:/";
     options = [ "x-systemd.automount" "_netdev" "user" "idmap=user" "transform_symlinks" "identityfile=/home/collin/.ssh/id_rsa" "allow_other" "reconnect" "ServerAliveInterval=15" "ServerAliveCountMax=3" "default_permissions" "uid=1000" "gid=1000" ];
