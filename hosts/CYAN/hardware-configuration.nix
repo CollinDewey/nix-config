@@ -57,7 +57,17 @@ in
   time.timeZone = "America/Louisville";
   networking = {
     hostName = "CYAN";
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      unmanaged = [ "interface-name:eno2" ];
+    };
+    interfaces.eno2 = {
+      ipv4.addresses = [{
+        address = "10.133.133.2";
+        prefixLength = 24;
+      }];
+      useDHCP = false;
+    };
     hosts = {
       "10.133.133.1" = [ "TEAL" ]; # 10 Gigabit Link
     };
