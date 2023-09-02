@@ -56,42 +56,14 @@
     fsType = "ext4";
   };
 
-  fileSystems."/mnt/Shared" = {
-    device = "/dev/disk/by-label/Shared";
-    fsType = "ntfs";
-  };
-
   fileSystems."/mnt/Storage" = {
     device = "/dev/disk/by-label/Storage";
     fsType = "ext4";
   };
 
-  fileSystems."/mnt/Other" = {
-    device = "/dev/disk/by-label/Other";
-    fsType = "ntfs";
-  };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
-  };
-
-  fileSystems."/mnt/PI" = {
-    device = "collin@172.16.0.3:/";
-    options = [ "x-systemd.automount" "_netdev" "user" "idmap=user" "transform_symlinks" "identityfile=/home/collin/.ssh/id_rsa" "allow_other" "reconnect" "ServerAliveInterval=2" "ServerAliveCountMax=2" "compression=no" "cipher=chacha20-poly1305@openssh.com" "default_permissions" "uid=1000" "gid=1000" ];
-    fsType = "fuse.sshfs";
-  };
-
-  fileSystems."/mnt/BROWN" = {
-    device = "collin@BROWN:/";
-    options = [ "x-systemd.automount" "_netdev" "user" "idmap=user" "transform_symlinks" "identityfile=/home/collin/.ssh/id_rsa" "allow_other" "reconnect" "ServerAliveInterval=15" "ServerAliveCountMax=3" "default_permissions" "uid=1000" "gid=1000" ];
-    fsType = "fuse.sshfs";
-  };
-
-  fileSystems."/mnt/Block" = {
-    device = "collin@BROWN:/mnt/Block";
-    options = [ "x-systemd.automount" "_netdev" "user" "idmap=user" "transform_symlinks" "identityfile=/home/collin/.ssh/id_rsa" "allow_other" "reconnect" "ServerAliveInterval=15" "ServerAliveCountMax=3" "default_permissions" "uid=1000" "gid=1000" ];
-    fsType = "fuse.sshfs";
   };
 
   # Users

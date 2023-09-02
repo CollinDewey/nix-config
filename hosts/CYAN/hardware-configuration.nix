@@ -128,18 +128,8 @@ in
     fsType = "nfs";
     options = nfs_opts;
   };
-  fileSystems."/mnt/Shared" = {
-    device = "TEAL:/mnt/Shared";
-    fsType = "nfs";
-    options = nfs_opts;
-  };
   fileSystems."/mnt/Storage" = {
     device = "TEAL:/mnt/Storage";
-    fsType = "nfs";
-    options = nfs_opts;
-  };
-  fileSystems."/mnt/Other" = {
-    device = "TEAL:/mnt/Other";
     fsType = "nfs";
     options = nfs_opts;
   };
