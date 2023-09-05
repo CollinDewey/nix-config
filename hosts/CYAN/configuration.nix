@@ -12,6 +12,10 @@
   };
   programs.gamemode.enable = true;
 
+  # Avahi
+  services.avahi.publish.enable = true;
+  services.avahi.publish.userServices = true;
+
   # Cross compilation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
