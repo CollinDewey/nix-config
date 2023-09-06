@@ -150,6 +150,7 @@
       "/var/lib/docker" # Keep Docker junk
       "/var/lib/libvirt" # Keep KVM junk
       "/var/lib/iwd" # I like using WiFi
+      "/var/lib/syncthing" # Syncthing
       "/var/lib/NetworkManager" # I like using WiFi
       "/etc/nixos" # Not nuke my configuration
       "/etc/NetworkManager/system-connections" # I like using WiFi

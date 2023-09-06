@@ -149,6 +149,7 @@ in
       "/var/log" # Keep system logs
       "/var/lib/docker" # Keep Docker junk
       "/var/lib/libvirt" # Keep KVM junk
+      "/var/lib/syncthing" # Syncthing
       "/var/lib/NetworkManager" # I like using WiFi
       "/etc/nixos" # Not nuke my configuration
     ];
