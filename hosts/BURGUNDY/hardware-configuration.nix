@@ -33,20 +33,12 @@
     bluetooth.enable = true;
     nvidia.open = true;
     nvidia.prime = {
-      sync.enable = true;
       amdgpuBusId = "PCI:6:0:0";
       nvidiaBusId = "PCI:1:0:0";
     };
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;
-
-  # Video
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
-    screenSection = ''Option "metamodes" "DP-0.2: 1920x1080 +1920+0 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}, DP-0.1: nvidia-auto-select +1920+1080 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}, DP-0.3: 1920x1080 +0+1080 {ForceCompositionPipeline=On, ForceFullCompositionPipeline=On, AllowGSYNC=Off}"'';
-  };
-  hardware.nvidia.forceFullCompositionPipeline = true;
 
   # Networking
   time.timeZone = "America/Louisville";
@@ -65,30 +57,39 @@
     };
   };
 
-  # Performance
-  powerManagement.cpuFreqGovernor = "performance";
+
+
+  # Video
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+  powerManagement.cpuFreqGovernor = "powersave";
+  hardware.nvidia.prime.offload.enable = true;
+  services.power-profiles-daemon.enable = false;
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    };
+  };
+
   specialisation = {
-    integrated.configuration = {
-      system.nixos.tags = [ "Integrated" ];
-      services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
-      powerManagement.cpuFreqGovernor = lib.mkForce "powersave";
-      hardware.nvidia.prime.sync.enable = lib.mkForce false;
-      hardware.nvidia.prime.offload.enable = true;
-      powerManagement.enable = true;
-      services.power-profiles-daemon.enable = lib.mkForce false;
-      services.tlp = {
-        enable = true;
-        settings = {
-          CPU_SCALING_GOVERNOR_ON_AC = "performance";
-          CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-        };
+    dedicated.configuration = {
+      system.nixos.tags = [ "Dedicated" ];
+      powerManagement.cpuFreqGovernor = lib.mkForce "performance";
+      services.power-profiles-daemon.enable = lib.mkForce true;
+      services.tlp.enable = lib.mkForce false;
+      services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
+      hardware.nvidia.forceFullCompositionPipeline = true;
+      hardware.nvidia.prime = {
+        offload.enable = lib.mkForce false;
+        sync.enable = true;
       };
     };
+
     reversePrime.configuration = {
       system.nixos.tags = [ "ReversePrime" ];
       services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
       hardware.nvidia = {
-        prime.sync.enable = lib.mkForce false;
         prime.reverseSync.enable = true;
         modesetting.enable = true;
       };
