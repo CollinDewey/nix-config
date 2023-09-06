@@ -13,6 +13,7 @@ in {
     virtualisation.docker.enable = cfg.docker;
     environment.systemPackages = mkIf cfg.docker [ pkgs.ctop ];
     virtualisation.docker.enableNvidia = cfg.docker && cfg.nvidia;
+    virtualisation.docker.storageDriver = "overlay2";
     hardware.opengl.driSupport32Bit = lib.mkOverride 999 cfg.nvidia;
 
     security.polkit.enable = lib.mkDefault cfg.libvirt; # Needed for libvirtd
