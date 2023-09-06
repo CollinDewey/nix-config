@@ -24,3 +24,9 @@ sudo nix run github:nix-community/disko --extra-experimental-features "nix-comma
 
 [^1]: Disko actually has flake support which would let me avoid needing to clone the repo, but I couldn't get it working
 [^2]: If using / on tmpfs, nixos-install creates a temporary directory for building. If you get an error from nixos-install about running out of space, give tmpfs more space. For example, `mount -o remount,size=8G /mnt`
+
+## Displaylink
+For BURGUNDY, the displaylink driver is downloaded using this command
+```
+nix-prefetch-url --name displaylink-570.zip https://www.synaptics.com/sites/default/files/exe_files/2023-04/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu5.7-EXE.zip
+```
