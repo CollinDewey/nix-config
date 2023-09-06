@@ -11,7 +11,10 @@
   programs.steam.enable = true;
 
   # Syncthing
-  services.syncthing.enable = true;
+  services.syncthing = {
+    enable = true;
+    user = "collin";
+  };
 
   # SDDM workaround for starting before drivers load
   systemd.services.display-manager.preStart = ''${pkgs.coreutils}/bin/sleep 1'';

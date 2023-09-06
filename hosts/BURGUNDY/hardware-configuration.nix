@@ -58,6 +58,9 @@
     wireless.iwd.enable = true;
     firewall = {
       enable = true;
+      # Syncthing
+      allowedTCPPorts = [ 22000 ];
+      allowedUDPPorts = [ 22000 21027 ];
       checkReversePath = false; # Wireguard
     };
   };
