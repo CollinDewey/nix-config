@@ -155,7 +155,6 @@
       "/var/lib/iwd" # I like using WiFi
       "/var/lib/syncthing" # Syncthing
       "/var/lib/NetworkManager" # I like using WiFi
-      "/etc/nixos" # Not nuke my configuration
       "/etc/NetworkManager/system-connections" # I like using WiFi
     ];
     files = [
