@@ -78,7 +78,7 @@
       powerManagement.cpuFreqGovernor = lib.mkForce "performance";
       services.power-profiles-daemon.enable = lib.mkForce true;
       services.tlp.enable = lib.mkForce false;
-      services.xserver.videoDrivers = lib.mkForce [ "nvidia" "displaylink" ];
+      services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
       hardware.nvidia.forceFullCompositionPipeline = true;
       hardware.nvidia.prime = {
         offload.enable = lib.mkForce false;
@@ -88,7 +88,6 @@
 
     reversePrime.configuration = {
       system.nixos.tags = [ "ReversePrime" ];
-      services.xserver.videoDrivers = [ "amdgpu" "nvidia" "displaylink" ];
       hardware.nvidia = {
         prime.reverseSync.enable = true;
         modesetting.enable = true;
