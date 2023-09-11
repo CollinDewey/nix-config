@@ -133,6 +133,11 @@ in
     fsType = "nfs";
     options = nfs_opts;
   };
+  fileSystems."/mnt/VMs" = {
+    device = "TEAL:/mnt/VMs";
+    fsType = "nfs";
+    options = nfs_opts;
+  };
   fileSystems."/mnt/VIRIDIAN" = {
     device = "VIRIDIAN:/";
     fsType = "nfs";

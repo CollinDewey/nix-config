@@ -15,6 +15,7 @@
       exports = ''
         /            10.133.133.2(rw,fsid=0,no_subtree_check)
         /mnt/Storage 10.133.133.2(rw,nohide,insecure,no_subtree_check)
+        /mnt/VMs 10.133.133.2(rw,nohide,insecure,no_subtree_check)
       '';
     };
   };

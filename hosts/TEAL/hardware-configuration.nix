@@ -61,6 +61,12 @@
     fsType = "ext4";
   };
 
+  fileSystems."/mnt/VMs" = {
+    device = "/dev/bcache0";
+    options = [ "subvol=VMs" "compress=zstd" "noatime" "nodiratime" ];
+    fsType = "btrfs";
+  };
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/BOOT";
     fsType = "vfat";
