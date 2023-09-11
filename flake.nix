@@ -123,6 +123,7 @@
                 lock.enable = true;
                 misc.enable = true;
                 multimedia.enable = true;
+                office.enable = true;
                 plasma.enable = true;
                 plover.enable = true;
                 utilities.enable = true;
@@ -225,6 +226,7 @@
                 lock.enable = true;
                 misc.enable = true;
                 multimedia.enable = true;
+                office.enable = true;
                 plasma.enable = true;
                 plover.enable = true;
                 utilities.enable = true;
