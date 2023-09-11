@@ -11,6 +11,7 @@
     ./lock.nix
     ./misc.nix
     ./multimedia.nix
+    ./office.nix
     ./plasma.nix
     ./plover.nix
     ./utilities.nix
