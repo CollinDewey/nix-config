@@ -11,7 +11,7 @@
   # Boot
   boot = {
     # Kernel
-    initrd.availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
+    initrd.availableKernelModules = [ "nvme" ];
     kernelModules = [ "kvm-intel" ];
     kernelParams = [ "mitigations=off" "retbleed=off" ];
     kernelPackages = pkgs.linuxPackages_latest;
@@ -38,11 +38,10 @@
     hostName = "TEAL";
     nameservers = [ "172.16.0.3" ];
     defaultGateway = "172.16.0.1";
-    useDHCP = false;
+    useDHCP = true;
     firewall.enable = false;
     firewall.checkReversePath = false;
     interfaces = {
-      enp6s0.useDHCP = true;
       enp2s0f1 = {
         ipv4.addresses = [{
           address = "10.133.133.1";
@@ -90,7 +89,7 @@
     "/persist" = {
       hideMounts = true;
       files = [
-        "/home/collin/.zsh_history" # Full tmpfs home
+        { file = "/home/collin/.zsh_history"; parentDirectory = { user = "collin"; group = "collin"; }; } # Full tmpfs home
         "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
         "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
         "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
@@ -108,5 +107,5 @@
   };
 
   # Sops Key File Location
-  sops.age.keyFile = "/root/sops-key.txt";
+  sops.age.keyFile = "/persist/sops-key.txt";
 }
