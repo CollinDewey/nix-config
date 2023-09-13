@@ -11,7 +11,7 @@
   # Boot
   boot = {
     # Kernel
-    initrd.availableKernelModules = [ "nvme" ];
+    initrd.availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
     kernelModules = [ "kvm-intel" ];
     kernelParams = [ "mitigations=off" "retbleed=off" ];
     kernelPackages = pkgs.linuxPackages_latest;
