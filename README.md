@@ -15,8 +15,7 @@ nix build .#ISO --extra-experimental-features "nix-command flakes" --verbose --p
 - Clone and enter the repo using `git clone`
 - If using disko[^1], setup disks using
 ```
-sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" -- --mode create hosts/{hostname}/disko.nix
-sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" -- --mode mount hosts/{hostname}/disko.nix
+sudo nix run github:nix-community/disko --extra-experimental-features "nix-command flakes" -- --mode disko hosts/{hostname}/disko.nix
 ```
 - Set a password for the nixos account using `passwd nixos`
 - Copy the sops-nix age key file using sftp to the specified location

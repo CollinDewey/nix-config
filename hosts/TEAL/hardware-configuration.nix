@@ -1,12 +1,19 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
+
+  # Imports
+  imports = [
+    inputs.disko.nixosModules.disko
+    inputs.impermanence.nixosModules.impermanence
+  ];
+
   # Boot
   boot = {
     # Kernel
-    initrd.availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sr_mod" ];
-    kernelModules = [ "kvm-amd" ];
-    kernelParams = [ "mitigations=off" "retbleed=off" "iommu=soft" ];
+    initrd.availableKernelModules = [ "usbhid" ];
+    kernelModules = [ "kvm-intel" ];
+    kernelParams = [ "mitigations=off" "retbleed=off" ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
@@ -18,13 +25,15 @@
   # Hardware
   hardware = {
     enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
+  services.xserver.videoDrivers = [ "nvidia" ];
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;
 
   # Networking
   time.timeZone = "America/Louisville";
+  systemd.network.wait-online.anyInterface = true;
   networking = {
     hostName = "TEAL";
     nameservers = [ "172.16.0.3" ];
@@ -45,35 +54,58 @@
   };
 
   # State
-  system.stateVersion = "21.05";
+  system.stateVersion = "23.05";
 
   # Disks
-  swapDevices = [{ device = "/swapfile"; size = 8192; }];
-  boot.tmp.cleanOnBoot = true;
+  zramSwap.enable = true;
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/Linux";
-    fsType = "ext4";
+  #fileSystems."/mnt/Storage" = {
+  #  device = "/dev/disk/by-label/Storage";
+  #  fsType = "ext4";
+  #};
+
+  # BTRFS Scrubbing
+  services.btrfs.autoScrub = {
+    fileSystems = [ "/persist" ]; # Crosses subpartition bounds
+    enable = true;
+    interval = "weekly";
   };
 
-  fileSystems."/mnt/Storage" = {
-    device = "/dev/disk/by-label/Storage";
-    fsType = "ext4";
+  # BTRFS De-duplicating
+  services.beesd.filesystems = {
+    system = {
+      spec = "/persist";
+      hashTableSizeMB = 1024;
+      verbosity = "crit";
+      extraOptions = [ "--loadavg-target" "10.0" ];
+    };
   };
 
-  fileSystems."/mnt/VMs" = {
-    device = "/dev/bcache0";
-    options = [ "subvol=VMs" "compress=zstd" "noatime" "nodiratime" ];
-    fsType = "btrfs";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/BOOT";
-    fsType = "vfat";
-  };
-
-  # Users
+  # Persistance
   users.mutableUsers = false;
+  systemd.coredump.extraConfig = "Storage=none";
+  fileSystems."/persist".neededForBoot = true;
+  fileSystems."/clearable".neededForBoot = true;
+  environment.persistence = {
+    "/persist" = {
+      hideMounts = true;
+      files = [
+        "/home/collin/.zsh_history" # Full tmpfs home
+        "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
+        "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
+        "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
+        "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
+        "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
+      ];
+    };
+    "/clearable" = {
+      hideMounts = true;
+      directories = [
+        "/var/log" # Keep system logs
+        "/var/lib/docker" # Keep Docker junk
+      ];
+    };
+  };
 
   # Sops Key File Location
   sops.age.keyFile = "/root/sops-key.txt";

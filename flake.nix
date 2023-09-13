@@ -276,6 +276,7 @@
           ./overlays
           ./modules
           ./hosts/TEAL/configuration.nix
+          ./hosts/TEAL/disko.nix
 
           # Specialized Hardware Configuration
           ./hosts/TEAL/hardware-configuration.nix
@@ -286,7 +287,7 @@
               virtualisation = {
                 docker = true;
                 libvirt = true;
-                nvidia = false;
+                nvidia = true;
               };
               zsh.enable = true;
             };
