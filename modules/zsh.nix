@@ -33,6 +33,7 @@ in
         bindkey "^[[B" history-substring-search-down
         alias gcl="git clone --recursive"; # programs.zsh.shellAliases missing from nix-darwin
         alias aria="aria2c -x 16 -s 16 --file-allocation=none";
+        alias ls='[ -f .hidden ] && ls --color=auto $(sed 's/^/--hide=/' .hidden) $@'
       '';
       promptInit = ''
         source "${agnoster-nix}"/agnoster-nix.zsh-theme;
