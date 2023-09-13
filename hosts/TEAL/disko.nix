@@ -42,15 +42,15 @@ in
                     mountpoint = "/clearable";
                     mountOptions = defaultOpts;
                   };
-                  "/libvirt" = { # Virtual Machine images + configurations
+                  "/virtualization" = { # Virtual Machine images + configurations
                     mountpoint = "/var/lib/libvirt";
                     mountOptions = defaultOpts;
                   };
-                  "/docker" = { # Docker
-                    mountpoint = "/docker";
+                  "/services" = { # Storage for multiple services
+                    mountpoint = "/services";
                     mountOptions = defaultOpts;
                   };
-                  "/syncthing" = { # Syncthing
+                  "/sync" = { # Syncthing
                     mountpoint = "/var/lib/syncthing";
                     mountOptions = defaultOpts;
                   };
