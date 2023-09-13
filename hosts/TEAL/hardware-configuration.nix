@@ -11,7 +11,7 @@
   # Boot
   boot = {
     # Kernel
-    initrd.availableKernelModules = [ "usbhid" ];
+    initrd.availableKernelModules = [ "nvme" ];
     kernelModules = [ "kvm-intel" ];
     kernelParams = [ "mitigations=off" "retbleed=off" ];
     kernelPackages = pkgs.linuxPackages_latest;
