@@ -42,7 +42,7 @@
     firewall.enable = false;
     firewall.checkReversePath = false;
     interfaces = {
-      enp2s0f1 = {
+      enp4s0f1 = {
         ipv4.addresses = [{
           address = "10.133.133.1";
           prefixLength = 24;
