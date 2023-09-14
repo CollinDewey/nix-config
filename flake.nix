@@ -548,7 +548,11 @@
       sshOpts = [ "-t" ];
 
       nodes = {
-        # Keeps failing with "too many root sets, look into that"
+        CYAN = {
+          hostname = "CYAN";
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.CYAN;
+        };
+
         TEAL = {
           hostname = "TEAL";
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
