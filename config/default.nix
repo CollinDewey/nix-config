@@ -25,6 +25,7 @@
     killall
     sshfs
     tmux
+    eza
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [
     iotop
   ]);

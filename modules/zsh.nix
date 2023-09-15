@@ -35,7 +35,8 @@ in
         alias aria="aria2c -x 16 -s 16 --file-allocation=none";
       '';
       promptInit = ''
-        alias ls='[ -f .hidden ] && ls --color=tty $(sed 's/^/--hide=/' .hidden) $@'
+        alias ls="eza --icons"
+        alias ll="eza -l"
         source "${agnoster-nix}"/agnoster-nix.zsh-theme;
       '';
     };
