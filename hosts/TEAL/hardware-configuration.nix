@@ -58,23 +58,24 @@
   # Disks
   zramSwap.enable = true;
 
-  #fileSystems."/mnt/Storage" = {
-  #  device = "/dev/disk/by-label/Storage";
-  #  fsType = "ext4";
-  #};
-
   # BTRFS Scrubbing
   services.btrfs.autoScrub = {
-    fileSystems = [ "/persist" ]; # Crosses subpartition bounds
+    fileSystems = [ "/persist" "/snapshots" ]; # Crosses subpartition bounds
     enable = true;
     interval = "weekly";
   };
 
   # BTRFS De-duplicating
   services.beesd.filesystems = {
-    system = {
+    ssd = {
       spec = "/persist";
-      hashTableSizeMB = 1024;
+      hashTableSizeMB = 512;
+      verbosity = "crit";
+      extraOptions = [ "--loadavg-target" "10.0" ];
+    };
+    raid = {
+      spec = "/snapshots";
+      hashTableSizeMB = 4096;
       verbosity = "crit";
       extraOptions = [ "--loadavg-target" "10.0" ];
     };

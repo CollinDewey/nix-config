@@ -5,9 +5,9 @@ in
 {
   disko.devices = {
     disk = {
-      nvme0n1 = {
+      ssd = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/disk/by-path/pci-0000:02:00.0-nvme-1";
         content = {
           type = "gpt";
           partitions = {
@@ -50,10 +50,6 @@ in
                     mountpoint = "/services";
                     mountOptions = defaultOpts;
                   };
-                  "/sync" = { # Syncthing
-                    mountpoint = "/var/lib/syncthing";
-                    mountOptions = defaultOpts;
-                  };
                 };
               };
             };
@@ -67,6 +63,22 @@ in
         fsType = "tmpfs";
         mountOptions = [ "defaults" "size=32G" "mode=755" ];
       };
+    };
+  };
+  fileSystems = { # Normally would do through disko, but disko seems to not support btrfs as the partition table? Needs looking into
+    "/var/log/syncthing" = {
+      device = "/dev/bcache0";
+      fsType = "btrfs";
+      options = defaultOpts ++ [ "subvol=sync" ];
+    };
+    "/snapshots" = {
+      device = "/dev/bcache0";
+      fsType = "btrfs";
+      options = defaultOpts ++ [ "subvol=snapshots" ];
+    };
+    fileSystems."/mnt/Storage" = {
+      device = "/dev/disk/by-label/Storage";
+      fsType = "ext4";
     };
   };
 }
