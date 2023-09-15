@@ -17,6 +17,11 @@ in {
     hardware.opengl.enable = true;
     hardware.opengl.driSupport32Bit = true;
 
+    # Extra Global Font Packages (https://nixos.wiki/wiki/Fonts)
+    fonts.packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "Hack" ]; })
+    ];
+
     # Audio Server
     security.rtkit.enable = true;
     services.pipewire = {
