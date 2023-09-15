@@ -103,7 +103,7 @@
     [app]
     shmFile=/dev/kvmfr0
   '';
-  virtualisation.libvirtd.qemuVerbatimConfig = ''
+  virtualisation.libvirtd.qemu.verbatimConfig = ''
     namespaces = []
     cgroup_device_acl = [
       "/dev/null", "/dev/full", "/dev/zero",
