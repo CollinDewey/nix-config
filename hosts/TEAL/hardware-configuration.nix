@@ -90,7 +90,6 @@
       hideMounts = true;
       files = [
         { file = "/home/collin/.zsh_history"; parentDirectory = { user = "collin"; group = "collin"; }; } # Full tmpfs home
-        "/.hidden" # Hide files on /
         "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
         "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
         "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
@@ -106,6 +105,9 @@
       ];
     };
   };
+  systemd.tmpfiles.rules = [
+    "L /persist/hiddenRoot - - - - /.hidden"
+  ];
 
   # Sops Key File Location
   sops.age.keyFile = "/persist/sops-key.txt";
