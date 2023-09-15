@@ -76,7 +76,7 @@ in
       fsType = "btrfs";
       options = defaultOpts ++ [ "subvol=snapshots" ];
     };
-    fileSystems."/mnt/Storage" = {
+    "/mnt/Storage" = {
       device = "/dev/disk/by-label/Storage";
       fsType = "ext4";
     };
