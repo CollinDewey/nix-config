@@ -50,6 +50,10 @@
         useDHCP = false;
       };
     };
+    macvlans."macvlan" = {
+      interface = "enp6s0";
+      mode = "vepa";
+    };
   };
 
   # State
