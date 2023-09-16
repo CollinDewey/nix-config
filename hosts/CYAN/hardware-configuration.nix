@@ -123,25 +123,37 @@ in
   disko.devices = import ./disko.nix;
 
   # NFS
-  fileSystems."/mnt/TEAL" = {
-    device = "TEAL:/";
-    fsType = "nfs";
-    options = nfs_opts;
-  };
-  fileSystems."/mnt/Storage" = {
-    device = "TEAL:/mnt/Storage";
-    fsType = "nfs";
-    options = nfs_opts;
-  };
-  fileSystems."/mnt/VMs" = {
-    device = "TEAL:/mnt/VMs";
-    fsType = "nfs";
-    options = nfs_opts;
-  };
-  fileSystems."/mnt/VIRIDIAN" = {
-    device = "VIRIDIAN:/";
-    fsType = "nfs";
-    options = nfs_opts;
+  fileSystems = {
+    "/mnt/TEAL" = {
+      device = "TEAL:/";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/Storage" = {
+      device = "TEAL:/mnt/Storage";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/virtualization" = {
+      device = "TEAL:/virtualization";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/snapshots" = {
+      device = "TEAL:/snapshots";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/services" = {
+      device = "TEAL:/services";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/VIRIDIAN" = {
+      device = "VIRIDIAN:/";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
   };
 
   # Persistance
