@@ -135,7 +135,7 @@ in
       options = nfs_opts;
     };
     "/mnt/virtualization" = {
-      device = "TEAL:/virtualization";
+      device = "TEAL:/var/lib/libvirt";
       fsType = "nfs";
       options = nfs_opts;
     };
