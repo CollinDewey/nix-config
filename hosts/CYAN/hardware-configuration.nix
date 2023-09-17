@@ -68,6 +68,16 @@ in
       }];
       useDHCP = false;
     };
+    macvlans = {
+      "macvlan" = {
+        interface = "eno1";
+        mode = "vepa";
+      };
+      "macvlan10" = {
+        interface = "eno2";
+        mode = "vepa";
+      };
+    };
     hosts = {
       "10.133.133.1" = [ "TEAL" ]; # 10 Gigabit Link
     };
