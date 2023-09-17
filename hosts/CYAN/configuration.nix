@@ -11,6 +11,7 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   };
   programs.gamemode.enable = true;
+  programs.dconf.enable = true; # Virt-manager keep config
 
   # Syncthing
   services.syncthing = {
