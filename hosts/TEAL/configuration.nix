@@ -12,6 +12,7 @@
         /var/lib/libvirt 10.133.133.2(rw,nohide,insecure,no_subtree_check,no_root_squash,async)
         /snapshots 10.133.133.2(ro,nohide,insecure,no_subtree_check,no_root_squash,async)
         /services 10.133.133.2(rw,nohide,insecure,no_subtree_check,no_root_squash,async)
+        /itunes 172.16.0.112(rw,nohide,insecure,no_subtree_check,no_root_squash,async)
       '';
     };
   };

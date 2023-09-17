@@ -12,8 +12,8 @@
   boot = {
     # Kernel
     initrd.availableKernelModules = [ "nvme" ];
-    kernelModules = [ "kvm-intel" ];
-    kernelParams = [ "mitigations=off" "retbleed=off" ];
+    kernelModules = [ "kvm-intel" "vfio_pci" "vfio" ];
+    kernelParams = [ "mitigations=off" "retbleed=off" "intel_iommu=on" "iommu=pt" "vfio_pci.ids=10ec:8168" ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
@@ -51,7 +51,7 @@
       };
     };
     macvlans."macvlan" = {
-      interface = "enp6s0";
+      interface = "enp4s0f0";
       mode = "vepa";
     };
   };
