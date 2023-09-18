@@ -7,8 +7,9 @@
     pkgs.android-udev-rules
   ];
 
-  # Steam
+  # Programs
   programs.steam.enable = true;
+  programs.dconf.enable = true; # Virt-manager keep config
 
   # Syncthing
   services.syncthing = {
