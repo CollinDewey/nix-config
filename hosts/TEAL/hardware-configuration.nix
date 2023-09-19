@@ -13,7 +13,7 @@
     # Kernel
     initrd.availableKernelModules = [ "nvme" ];
     kernelModules = [ "kvm-intel" "vfio_pci" "vfio" ];
-    kernelParams = [ "mitigations=off" "retbleed=off" "intel_iommu=on" "iommu=pt" "vfio_pci.ids=10ec:8168" ];
+    kernelParams = [ "mitigations=off" "retbleed=off" "intel_iommu=on" "iommu=pt" "vfio_pci.ids=8086:1521,103c:8157" ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
@@ -42,7 +42,7 @@
     firewall.enable = false;
     firewall.checkReversePath = false;
     interfaces = {
-      enp4s0f1 = {
+      enp5s0f1 = {
         ipv4.addresses = [{
           address = "10.133.133.1";
           prefixLength = 24;
@@ -51,7 +51,7 @@
       };
     };
     macvlans."macvlan" = {
-      interface = "enp4s0f0";
+      interface = "enp5s0f0";
       mode = "vepa";
     };
   };
