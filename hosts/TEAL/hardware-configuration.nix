@@ -96,6 +96,7 @@
       hideMounts = true;
       files = [
         { file = "/home/collin/.zsh_history"; parentDirectory = { user = "collin"; group = "collin"; }; } # Full tmpfs home
+        { file = "/home/collin/.config/htop/htoprc"; parentDirectory = { user = "collin"; group = "collin"; }; } # Full tmpfs home
         "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
         "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
         "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
