@@ -149,6 +149,11 @@ in
       fsType = "nfs";
       options = nfs_opts;
     };
+    "/mnt/virtualization_hdd" = {
+      device = "TEAL:/var/lib/libvirt/images_hdd";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
     "/mnt/snapshots" = {
       device = "TEAL:/snapshots";
       fsType = "nfs";
