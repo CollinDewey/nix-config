@@ -10,6 +10,7 @@
   # Programs
   programs.steam.enable = true;
   programs.dconf.enable = true; # Virt-manager keep config
+  programs.kdeconnect.enable = true;
 
   # Syncthing
   services.syncthing = {
