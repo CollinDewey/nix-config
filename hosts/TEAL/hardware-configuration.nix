@@ -19,6 +19,7 @@
 
     # Boot
     loader.systemd-boot.enable = true;
+    initrd.systemd.emergencyAccess = true;
     loader.efi.canTouchEfiVariables = true;
   };
 
@@ -115,6 +116,9 @@
   systemd.tmpfiles.rules = [
     "L /persist/hiddenRoot - - - - /.hidden"
     "d /home/collin/.config 0755 1000 1000 -"
+    "w /sys/block/bcache0/bcache/sequential_cutoff - - - - 16G"
+    "w /sys/block/bcache0/queue/read_ahead_kb - - - - 16384"
+    "w /sys/block/bcache0/bcache/cache_mode - - - - writearound"
   ];
 
   # Sops Key File Location
