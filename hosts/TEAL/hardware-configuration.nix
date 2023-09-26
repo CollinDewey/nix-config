@@ -114,6 +114,7 @@
   };
   systemd.tmpfiles.rules = [
     "L /persist/hiddenRoot - - - - /.hidden"
+    "d /home/collin/.config 0755 1000 1000 -"
   ];
 
   # Sops Key File Location
