@@ -6,8 +6,6 @@ let
   };
 in
 {
-  sops.defaultSopsFile = ../../secrets/collin.yaml;
-  sops.secrets.collin-hashed-password.neededForUsers = true;
   users.groups.shimmer.gid = 1001;
   users.users.shimmer = {
     uid = 1001;

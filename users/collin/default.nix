@@ -6,8 +6,6 @@ let
   };
 in
 {
-  sops.defaultSopsFile = ../../secrets/collin.yaml;
-  sops.secrets.collin-hashed-password.neededForUsers = true;
   users.groups.collin.gid = 1000;
   users.users.collin = {
     uid = 1000;
