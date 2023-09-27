@@ -103,7 +103,7 @@
     "/persist" = {
       hideMounts = true;
       files = [
-        { file = "/home/collin/.zsh_history"; parentDirectory = { user = "collin"; group = "collin"; }; } # Full tmpfs home
+        "/home/collin/.zsh_history" # Full tmpfs home
         { file = "/home/collin/.config/htop/htoprc"; parentDirectory = { user = "collin"; group = "collin"; }; } # Full tmpfs home
         "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
         "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
@@ -122,6 +122,7 @@
   };
   systemd.tmpfiles.rules = [
     "L /persist/hiddenRoot - - - - /.hidden"
+    "d /home/collin 0755 1000 1000 -"
     "d /home/collin/.config 0755 1000 1000 -"
     "w /sys/block/bcache0/bcache/sequential_cutoff - - - - 3221225472" # 3GB
     "w /sys/block/bcache1/bcache/sequential_cutoff - - - - 3221225472" # 3GB
