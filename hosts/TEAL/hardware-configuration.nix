@@ -120,7 +120,7 @@
       ];
     };
   };
-  systemd.tmpfiles.rules = [
+  systemd.tmpfiles.rules = [ # bcache setup based on https://www.reddit.com/r/linux_gaming/tc3rkj
     "L /persist/hiddenRoot - - - - /.hidden"
     "d /home/collin 0755 1000 1000 -"
     "d /home/collin/.config 0755 1000 1000 -"
@@ -130,7 +130,7 @@
     "w /sys/block/bcache1/queue/read_ahead_kb - - - - 16384" # Read ahead 16K
     "w /sys/block/bcache0/bcache/cache_mode - - - - writearound" # Read-only bcache
     "w /sys/block/bcache1/bcache/cache_mode - - - - writearound" # Read-only bcache
-    #"w /sys/fs/bcache/<fill in device name later>/congested_read_threshold_us - - - - 0" # No latency timeout
+    "w /sys/fs/bcache/5864fdf7-afe2-454c-b694-903dc1899a02/congested_read_threshold_us - - - - 0" # No latency timeout
   ];
 
   # Sops Key File Location
