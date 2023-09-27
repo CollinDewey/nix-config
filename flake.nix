@@ -277,6 +277,7 @@
           ./modules
           ./hosts/TEAL/configuration.nix
           ./hosts/TEAL/disko.nix
+          ./hosts/TEAL/external-disks.nix
 
           # Specialized Hardware Configuration
           ./hosts/TEAL/hardware-configuration.nix

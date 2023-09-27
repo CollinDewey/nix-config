@@ -87,6 +87,13 @@
     };
   };
 
+  # Specialisation
+  specialisation = {
+    NoMount.configuration = {
+      system.nixos.tags = [ "NoMount" ];
+    };
+  };
+
   # Persistance
   users.mutableUsers = false;
   systemd.coredump.extraConfig = "Storage=none";
@@ -116,9 +123,13 @@
   systemd.tmpfiles.rules = [
     "L /persist/hiddenRoot - - - - /.hidden"
     "d /home/collin/.config 0755 1000 1000 -"
-    "w /sys/block/bcache0/bcache/sequential_cutoff - - - - 16G"
-    "w /sys/block/bcache0/queue/read_ahead_kb - - - - 16384"
-    "w /sys/block/bcache0/bcache/cache_mode - - - - writearound"
+    "w /sys/block/bcache0/bcache/sequential_cutoff - - - - 3221225472" # 3GB
+    "w /sys/block/bcache1/bcache/sequential_cutoff - - - - 3221225472" # 3GB
+    "w /sys/block/bcache0/queue/read_ahead_kb - - - - 16384" # Read ahead 16K
+    "w /sys/block/bcache1/queue/read_ahead_kb - - - - 16384" # Read ahead 16K
+    "w /sys/block/bcache0/bcache/cache_mode - - - - writearound" # Read-only bcache
+    "w /sys/block/bcache1/bcache/cache_mode - - - - writearound" # Read-only bcache
+    #"w /sys/fs/bcache/<fill in device name later>/congested_read_threshold_us - - - - 0" # No latency timeout
   ];
 
   # Sops Key File Location
