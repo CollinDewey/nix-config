@@ -90,6 +90,20 @@ in
   # Performance
   powerManagement.cpuFreqGovernor = "performance";
 
+  # Power (Not working)
+  #power.ups = { # Based on https://github.com/Baughn/machine-config/blob/7934ea28473c6636112aacb38f138d2546687d23/tsugumi/configuration.nix#L232
+  #  enable = true;
+  #  maxStartDelay = 0;
+  #  ups.ups = {
+  #    port = "auto";
+  #    driver = "usbhid-ups";
+  #  };
+  #};
+  #systemd.services.upsd.preStart = "mkdir -p /var/lib/nut -m 0700";
+  #systemd.services.upsdrv.serviceConfig.User = "root";
+  #environment.etc."nut/upsd.conf".text = "";
+  #/etc/nut/upsd.users and /etc/nut/upsmon.conf in persist for now. Move to secrets eventually.
+
   # VFIO
   services.udev.extraRules = ''
     SUBSYSTEM=="kvmfr", OWNER="root", GROUP="libvirtd", MODE="0660"
@@ -191,6 +205,8 @@ in
       "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
       "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
       "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
+      #"/etc/nut/upsd.users"
+      #"/etc/nut/upsmon.conf"
     ];
   };
 
