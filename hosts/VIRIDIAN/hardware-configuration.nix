@@ -21,32 +21,8 @@
   time.timeZone = "America/Louisville";
   networking = {
     hostName = "VIRIDIAN";
-    nameservers = [ "208.67.222.222" "208.67.220.220" ];
-    defaultGateway = "172.16.0.1";
-    useDHCP = false;
+    useDHCP = true;
     firewall.enable = false;
-    vlans = {
-      iot = {
-        id = 10;
-        interface = "eth0";
-      };
-    };
-    interfaces = {
-      eth0 = {
-        ipv4.addresses = [{
-          address = "172.16.0.3";
-          prefixLength = 24;
-        }];
-        useDHCP = false;
-      };
-      iot = {
-        ipv4.addresses = [{
-          address = "172.16.1.3";
-          prefixLength = 24;
-        }];
-        useDHCP = false;
-      };
-    };
   };
 
   # Performance

@@ -178,11 +178,6 @@ in
       fsType = "nfs";
       options = nfs_opts;
     };
-    "/mnt/VIRIDIAN" = {
-      device = "VIRIDIAN:/";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
   };
 
   # Persistance
