@@ -39,7 +39,7 @@
     hostName = "TEAL";
     nameservers = [ "172.16.0.3" ];
     defaultGateway = "172.16.0.1";
-    useDHCP = false;
+    useDHCP = true;
     firewall.enable = false;
     firewall.checkReversePath = false;
     interfaces = {
@@ -50,7 +50,6 @@
         }];
         useDHCP = false;
       };
-      enp5s0f0.useDHCP = true;
     };
     macvlans."macvlan" = {
       interface = "enp5s0f0";
