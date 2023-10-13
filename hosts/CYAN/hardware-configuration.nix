@@ -36,6 +36,7 @@ in
     bluetooth.enable = true;
     opengl.extraPackages = with pkgs; [
       rocm-opencl-icd
+      rocm-runtime
       amdvlk
     ];
     opengl.extraPackages32 = with pkgs; [
