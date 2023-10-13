@@ -35,8 +35,8 @@ in
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     bluetooth.enable = true;
     opengl.extraPackages = with pkgs; [
-      rocm-opencl-icd
-      rocm-runtime
+      rocmPackages.clr.icd
+      rocmPackages.rocm-runtime
       amdvlk
     ];
     opengl.extraPackages32 = with pkgs; [

@@ -37,8 +37,8 @@
       nvidiaBusId = "PCI:1:0:0";
     };
     opengl.extraPackages = with pkgs; [
-      rocm-opencl-icd
-      rocm-runtime
+      rocmPackages.clr.icd
+      rocmPackages.rocm-runtime
       amdvlk
     ];
   };
