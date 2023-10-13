@@ -36,6 +36,11 @@
       amdgpuBusId = "PCI:6:0:0";
       nvidiaBusId = "PCI:1:0:0";
     };
+    opengl.extraPackages = with pkgs; [
+      rocm-opencl-icd
+      rocm-runtime
+      amdvlk
+    ];
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;
