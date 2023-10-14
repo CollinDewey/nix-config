@@ -53,7 +53,7 @@
       enp5s0f0.useDHCP = true;
     };
     macvlans."macvlan" = {
-      interface = "enp5s0f0";
+      interface = "enp9s0";
       mode = "vepa";
     };
   };
