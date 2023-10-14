@@ -15,6 +15,11 @@ in
         fsType = "btrfs";
         options = defaultOpts ++ [ "subvol=snapshots" ];
       };
+      "/cyber" = {
+        device = "/dev/bcache0";
+        fsType = "btrfs";
+        options = defaultOpts ++ [ "subvol=cyber" ];
+      };
       "/var/lib/libvirt/images_hdd" = {
         device = "/dev/bcache0";
         fsType = "btrfs";
