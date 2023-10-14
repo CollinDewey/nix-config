@@ -186,6 +186,11 @@ in
       fsType = "nfs";
       options = nfs_opts;
     };
+    "/mnt/cyber" = {
+      device = "TEAL:/cyber";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
   };
 
   # Persistance
