@@ -13,6 +13,7 @@ in {
       #xkbVariant = "colemak";
       displayManager.sddm.enable = true;
       desktopManager.plasma5.enable = true;
+      windowManager.openbox.enable = true;
     };
     hardware.opengl.enable = true;
     hardware.opengl.driSupport32Bit = true;
