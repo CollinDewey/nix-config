@@ -6,5 +6,6 @@
   };
   home.packages = [
     pkgs.looking-glass-client
+    pkgs.distrobox
   ];
 }
