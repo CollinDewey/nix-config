@@ -32,7 +32,11 @@ in
         bindkey "$terminfo[kcud1]" history-substring-search-down
         bindkey "^[[B" history-substring-search-down
         alias gcl="git clone --recursive"; # programs.zsh.shellAliases missing from nix-darwin
+        alias aria8="aria2c -x 8 -s 8 --file-allocation=none";
         alias aria="aria2c -x 16 -s 16 --file-allocation=none";
+        alias aria32="aria2c -x 32 -s 32 --file-allocation=none";
+        alias aria48="aria2c -x 48 -s 48 --file-allocation=none";
+        alias aria64="aria2c -x 64 -s 64 --file-allocation=none";
       '';
       promptInit = ''
         alias ls="eza --icons"
