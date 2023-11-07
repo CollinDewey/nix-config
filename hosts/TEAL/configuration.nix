@@ -7,6 +7,12 @@ in
   services = {
     jellyfin.enable = true;
     netdata.enable = true;
+    syncthing = {
+      enable = true;
+      user = "collin";
+      guiAddress = "0.0.0.0:8384";
+      dataDir = "/services/syncthing";
+    };
 
     nfs.server = {
       enable = true;
