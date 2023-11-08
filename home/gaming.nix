@@ -20,6 +20,7 @@ in {
         ];
       })
       prismlauncher-qt5
+      clonehero
     ];
   };
 }
