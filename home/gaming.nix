@@ -21,6 +21,8 @@ in {
       })
       prismlauncher-qt5
       clonehero
+      yuzu-ea
+      ryujinx
     ];
   };
 }
