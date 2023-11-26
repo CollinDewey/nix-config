@@ -16,6 +16,7 @@ in {
       gwenview
       ark
       libsForQt5.qtstyleplugin-kvantum
+      libsForQt5.colord-kde
       libsForQt5.krfb
       plasma-systemmonitor
       solaar # I use logitech all over

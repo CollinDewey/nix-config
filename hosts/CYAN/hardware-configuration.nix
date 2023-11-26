@@ -47,6 +47,7 @@ in
   services.fstrim.enable = true;
 
   # Video
+  services.colord.enable = true;
   services.xserver = {
     videoDrivers = [ "amdgpu" "nvidia" ];
     extraConfig = ''
