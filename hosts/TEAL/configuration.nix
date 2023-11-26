@@ -6,12 +6,19 @@ in
 {
   services = {
     jellyfin.enable = true;
+
     netdata.enable = true;
+
     syncthing = {
       enable = true;
       user = "collin";
       guiAddress = "0.0.0.0:8384";
       dataDir = "/services/syncthing";
+    };
+
+    adguardhome = {
+      enable = true;
+      mutableSettings = true; # TODO: Make this false and configure through services.adguardhome.settings
     };
 
     nfs.server = {
