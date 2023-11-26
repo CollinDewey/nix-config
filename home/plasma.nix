@@ -25,7 +25,7 @@ in {
     programs.plasma = {
       enable = true;
       workspace.clickItemTo = "select";
-      files = {
+      configFile = {
         "klaunchrc"."FeedbackStyle"."BusyCursor" = false;
         "kcmfonts"."General"."forceFontDPI" = 96;
         "kwinrc" = {
