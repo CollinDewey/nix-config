@@ -6,17 +6,32 @@ let cfg = config.modules.virtualisation;
 in {
   options.modules.virtualisation = {
     docker = mkEnableOption "docker";
+    podman = mkEnableOption "podman";
     libvirt = mkEnableOption "libvirt";
     nvidia = mkEnableOption "nvidia";
   };
   config = {
-    virtualisation.docker.enable = cfg.docker;
     environment.systemPackages = mkIf cfg.docker [ pkgs.ctop ];
-    virtualisation.docker.enableNvidia = cfg.docker && cfg.nvidia;
-    virtualisation.docker.storageDriver = "overlay2";
+    virtualisation.docker = {
+      enable = cfg.docker;
+      enableNvidia = cfg.docker && cfg.nvidia;
+      storageDriver = "overlay2"; # BTRFS subvolumes caused issues
+      autoPrune.enable = true;
+    };
+    virtualisation.podman = {
+      enable = cfg.podman;
+      enableNvidia = cfg.podman && cfg.nvidia;
+      autoPrune.enable = true;
+      dockerCompat = true;
+      dockerSocket.enable = true;
+    };
     hardware.opengl.driSupport32Bit = lib.mkOverride 999 cfg.nvidia;
 
     security.polkit.enable = lib.mkDefault cfg.libvirt; # Needed for libvirtd
-    virtualisation.libvirtd.enable = cfg.libvirt;
+    virtualisation.libvirtd = {
+      enable = cfg.libvirt;
+      qemu.swtpm.enable = true;
+      parallelShutdown = 10;
+    };
   };
 }
