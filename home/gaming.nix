@@ -23,6 +23,7 @@ in {
       clonehero
       yuzu-ea
       ryujinx
+      gamescope
     ];
   };
 }
