@@ -5,12 +5,13 @@
     pkgs.logitech-udev-rules
   ];
 
-  #
+  # Gaming
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   };
   programs.gamemode.enable = true;
+  chaotic.steam.extraCompatPackages = with pkgs; [ proton-ge-custom ];
   programs.dconf.enable = true; # Virt-manager keep config
 
   # Syncthing
