@@ -17,8 +17,11 @@ in
     kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" "amd_pstate=active" "iommu=pt" "kvm.ignore_msrs=1" "report_ignored_msrs=0" ];
     kernelModules = [ "kvmfr" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    extraModulePackages = [ config.boot.kernelPackages.kvmfr ];
-    extraModprobeConfig = ''options kvmfr static_size_mb=64'';
+    extraModulePackages = with config.boot.kernelPackages; [ kvmfr v4l2loopback ];
+    extraModprobeConfig = ''
+      options kvmfr static_size_mb=64
+      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    '';
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
     # Filesystems
