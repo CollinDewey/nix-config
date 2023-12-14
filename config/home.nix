@@ -3,6 +3,6 @@
   home-manager.useUserPackages = true;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [ # NixOS/nixpkgs#263764
-    "electron-24.8.6"
+    "electron-25.9.0"
   ];
 }
