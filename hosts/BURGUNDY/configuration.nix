@@ -9,6 +9,8 @@
 
   # Programs
   programs.steam.enable = true;
+  programs.gamemode.enable = true;
+  chaotic.steam.extraCompatPackages = with pkgs; [ proton-ge-custom ];
   programs.dconf.enable = true; # Virt-manager keep config
   programs.kdeconnect.enable = true;
 

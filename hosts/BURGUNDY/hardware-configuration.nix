@@ -65,7 +65,8 @@
 
 
   # Video
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" "displaylink" ];
+  #services.xserver.videoDrivers = [ "amdgpu" "nvidia" "displaylink" ]; # DL broken as of Dec 14th 2023
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
   powerManagement.cpuFreqGovernor = "powersave";
   hardware.nvidia.prime.offload.enable = true;
   services.power-profiles-daemon.enable = false;
