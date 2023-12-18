@@ -8,6 +8,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       cura
+      super-slicer-latest
     ];
   };
 }
