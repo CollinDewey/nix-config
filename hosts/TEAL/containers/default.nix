@@ -41,9 +41,6 @@
     adguardhome = {
       ephemeral = true;
       autoStart = true;
-      privateNetwork = true;
-      hostAddress = "192.168.100.1";
-      localAddress = "192.168.100.3";
       config = ./adguardhome.nix;
       bindMounts = {
         "/var/lib/private/AdGuardHome" = {
@@ -51,18 +48,21 @@
           isReadOnly = false;
         };
       };
-      forwardPorts = [
-        {
-          containerPort = 53;
-          hostPort = 53;
-          protocol = "udp";
-        }
-        {
-          containerPort = 53;
-          hostPort = 53;
-          protocol = "tcp";
-        }
-      ];
+    };
+
+    microbin = {
+      ephemeral = true;
+      autoStart = true;
+      privateNetwork = true;
+      hostAddress = "192.168.100.1";
+      localAddress = "192.168.100.3";
+      config = ./microbin.nix;
+      bindMounts = {
+        "/var/lib/microbin" = {
+          hostPath = "/services/microbin";
+          isReadOnly = false;
+        };
+      };
     };
   };
 }
