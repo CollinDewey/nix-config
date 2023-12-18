@@ -30,6 +30,9 @@
   # NFS
   services.nfs.server.enable = true;
 
+  # Various Services
+  services.preload.enable = true;
+
   # Goofy different distro name just for /pts/
   system.nixos.distroName = "NyxOS";
 
