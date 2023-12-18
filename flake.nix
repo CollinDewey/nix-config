@@ -295,6 +295,7 @@
                 nvidia = true;
               };
               zsh.enable = true;
+              server.enable = true;
             };
           }
 
@@ -349,6 +350,7 @@
               ssh.enable = true;
               virtualisation.docker = true;
               zsh.enable = true;
+              server.enable = true;
             };
           }
 
@@ -376,6 +378,7 @@
               ssh.enable = true;
               virtualisation.docker = true;
               zsh.enable = true;
+              server.enable = true;
             };
           }
 
@@ -403,6 +406,7 @@
               ssh.enable = true;
               virtualisation.docker = true;
               zsh.enable = true;
+              server.enable = true;
             };
           }
 
@@ -430,6 +434,7 @@
               ssh.enable = true;
               virtualisation.docker = true;
               zsh.enable = true;
+              server.enable = true;
             };
           }
 
