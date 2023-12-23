@@ -4,6 +4,7 @@
   imports = with inputs; [
     sops-nix.nixosModules.sops
     nix-index-database.nixosModules.nix-index  
+    kde2nix.nixosModules.plasma6
   ];
 
   # Secret configuration

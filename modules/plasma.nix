@@ -4,7 +4,10 @@ with lib;
 let cfg = config.modules.plasma;
 
 in {
-  options.modules.plasma = { enable = mkEnableOption "plasma"; };
+  options.modules.plasma = {
+    enable = mkEnableOption "plasma";
+    plasma6 = mkEnableOption "plasma6";
+  };
   config = mkIf cfg.enable {
     # X Server
     services.xserver = {
@@ -12,7 +15,8 @@ in {
       layout = "us";
       #xkbVariant = "colemak";
       displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = true;
+      desktopManager.plasma5.enable = !cfg.plasma6;
+      desktopManager.plasma6.enable = cfg.plasma6;
       windowManager.openbox.enable = true;
     };
     hardware.opengl.enable = true;
