@@ -58,7 +58,7 @@
       localAddress = "192.168.100.3";
       config = ./microbin.nix;
       bindMounts = {
-        "/var/lib/microbin" = {
+        "/var/lib/private/microbin" = {
           hostPath = "/services/microbin";
           isReadOnly = false;
         };
