@@ -10,7 +10,14 @@
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   };
-  programs.gamemode.enable = true;
+  programs.gamemode = {
+    enable = true;
+    settings = {
+      general = {
+        renice = 10;
+      };
+    };
+  };
   chaotic.steam.extraCompatPackages = with pkgs; [ proton-ge-custom ];
   programs.dconf.enable = true; # Virt-manager keep config
 
