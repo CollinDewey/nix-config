@@ -27,6 +27,14 @@
     user = "collin";
   };
 
+  # iPhone
+  services.usbmuxd.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    libimobiledevice
+    ifuse
+  ];
+
   # Avahi
   services.avahi.publish.enable = true;
   services.avahi.publish.userServices = true;
