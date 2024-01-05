@@ -9,6 +9,7 @@ in {
     home.packages = with pkgs; [
       discord
       discord-ptb
+      vesktop
       teams-for-linux
     ];
   };
