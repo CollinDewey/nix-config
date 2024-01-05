@@ -3,19 +3,27 @@
   # udev rules
   services.udev.packages = [
     pkgs.logitech-udev-rules
+    pkgs.android-udev-rules
   ];
 
   # Gaming
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-  };
-  programs.gamemode = {
-    enable = true;
-    settings = {
-      general = {
-        renice = 10;
+  programs = {
+    steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      gamescopeSession.enable = true;
+    };
+    gamemode = {
+      enable = true;
+      settings = {
+        general = {
+          renice = 10;
+        };
       };
+    };
+    gamescope = {
+      enable = true;
+      capSysNice = true;
     };
   };
   chaotic.steam.extraCompatPackages = with pkgs; [ proton-ge-custom ];
