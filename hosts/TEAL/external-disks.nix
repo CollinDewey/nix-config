@@ -25,10 +25,6 @@ in
         fsType = "btrfs";
         options = defaultOpts ++ [ "subvol=virtualization_hdd" ];
       };
-      "/mnt/Storage" = {
-        device = "/dev/disk/by-label/Storage";
-        fsType = "ext4";
-      };
     };
   };
 }
