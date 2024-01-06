@@ -70,7 +70,7 @@
   };
 
   system.activationScripts.mkContainerNet = ''
-    ${pkgs.docker} network inspect container_net >/dev/null 2>&1 || ${pkgs.docker} network create -d macvlan --subnet=10.111.111.0/24 --gateway=10.111.111.1 -o parent=virbr2 container_net
+    ${pkgs.docker}/bin/docker network inspect container_net >/dev/null 2>&1 || ${pkgs.docker}/bin/docker network create -d macvlan --subnet=10.111.111.0/24 --gateway=10.111.111.1 -o parent=virbr2 container_net
   '';
 
   virtualisation.oci-containers = {
@@ -91,6 +91,16 @@
           "/clearable/lancache/logs:/data/logs"
         ];
       };
+      homeassistant = {
+        image = "ghcr.io/home-assistant/home-assistant:stable";
+        hostname = "homeassistant";
+        extraOptions = [ "--network=container_net" "--ip=10.111.111.4"];
+        autoStart = true;
+        environment.TZ = "America/Louisville";
+        volumes = [
+          "/services/homeassistant:/config"
+        ];
+      };  
     };
   };
 }
