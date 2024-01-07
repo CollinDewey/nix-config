@@ -15,7 +15,7 @@
     kernelModules = [ "kvm-amd" "uinput" "kvmfr" ];
     extraModprobeConfig = ''options kvmfr static_size_mb=64'';
     kernelParams = [ "mitigations=off" "retbleed=off" ];
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod;
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
     # Filesystems
@@ -65,8 +65,8 @@
 
 
   # Video
-  #services.xserver.videoDrivers = [ "amdgpu" "nvidia" "displaylink" ]; # DL broken as of Dec 14th 2023
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" "displaylink" ]; # DL broken as of Dec 14th 2023
+  #services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
   powerManagement.cpuFreqGovernor = "powersave";
   hardware.nvidia.prime.offload.enable = true;
   services.power-profiles-daemon.enable = false;
