@@ -2,7 +2,7 @@
 let
   keys = builtins.fetchurl {
     url = "https://github.com/LegitMagic.keys";
-    sha256 = "sha256:04rxmfazbr9vjssvrnwxqvmjd9szkjblxr6dwi6982qh0w3a9892";
+    sha256 = "sha256:0f6j55wszsxg7kpwlf7p6av2mpkw3djpx35inqy8a97dh8hjyx7q";
   };
 in
 {
