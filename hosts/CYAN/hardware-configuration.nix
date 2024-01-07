@@ -165,11 +165,6 @@ in
       fsType = "nfs";
       options = nfs_opts;
     };
-    "/mnt/Storage" = {
-      device = "TEAL:/mnt/Storage";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
     "/mnt/virtualization" = {
       device = "TEAL:/var/lib/libvirt";
       fsType = "nfs";

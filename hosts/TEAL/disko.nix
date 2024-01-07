@@ -56,6 +56,29 @@ in
           };
         };
       };
+      hdd = {
+        type = "disk";
+        device = "pci-0000:00:11.4-ata-1";
+        content = {
+          type = "gpt";
+          partitions = {
+            Storage = {
+              name = "Storage";
+              size = "100%";
+              content = {
+                type = "btrfs";
+                extraArgs = [ "-f" ]; # Override existing partition (probably dangerous?)
+                subvolumes = {
+                  "/storage" = {
+                    mountpoint = "/storage";
+                    mountOptions = defaultOpts;
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
     };
     nodev = {
       "/" = {

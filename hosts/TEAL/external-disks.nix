@@ -5,11 +5,6 @@ in
 {
   config = lib.mkIf (config.specialisation != {}) {
     fileSystems = {
-      "/var/log/syncthing" = {
-        device = "/dev/bcache0";
-        fsType = "btrfs";
-        options = defaultOpts ++ [ "subvol=sync" ];
-      };
       "/snapshots" = {
         device = "/dev/bcache0";
         fsType = "btrfs";
@@ -24,6 +19,11 @@ in
         device = "/dev/bcache0";
         fsType = "btrfs";
         options = defaultOpts ++ [ "subvol=virtualization_hdd" ];
+      };
+      "/network_share" = {
+        device = "/dev/bcache0";
+        fsType = "btrfs";
+        options = defaultOpts ++ [ "subvol=network_share" ];
       };
     };
   };
