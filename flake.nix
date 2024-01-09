@@ -564,32 +564,32 @@
 
       nodes = {
         CYAN = {
-          hostname = "CYAN";
+          hostname = "CYAN.TERASCRIPTING";
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.CYAN;
         };
 
         TEAL = {
-          hostname = "TEAL";
+          hostname = "TEAL.TERASCRIPTING";
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
         };
 
         VIRIDIAN = {
-          hostname = "VIRIDIAN";
+          hostname = "VIRIDIAN.TERASCRIPTING";
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
         };
 
         BROWN = {
-          hostname = "brown.terascripting.com";
+          hostname = "BROWN.TERASCRIPTING.COM";
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.BROWN;
         };
 
         SCARLET = {
-          hostname = "scarlet.terascripting.com";
+          hostname = "SCARLET.TERASCRIPTING.COM";
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.SCARLET;
         };
 
         RUBY = {
-          hostname = "ruby.terascripting.com";
+          hostname = "RUBY.TERASCRIPTING.COM";
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.RUBY;
         };
       };
