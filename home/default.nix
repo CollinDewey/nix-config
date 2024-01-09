@@ -14,6 +14,7 @@
     ./office.nix
     ./plasma.nix
     ./plover.nix
+    ./unity.nix
     ./utilities.nix
     ./zsh.nix
   ];
