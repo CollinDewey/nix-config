@@ -74,24 +74,21 @@ in
       unmanaged = [ "interface-name:eno2" ];
     };
     interfaces.eno2 = {
-      ipv4.addresses = [{
-        address = "10.133.133.2";
-        prefixLength = 24;
-      }];
+      ipv4 = {
+        addresses = [{
+          address = "10.133.133.3";
+          prefixLength = 24;
+        }];
+        routes = [{ # Access container LAN through 10GbE link
+          address = "10.111.111.0";
+          prefixLength = 24;
+          via = "10.133.133.1";
+        }];
+      };
       useDHCP = false;
     };
-    macvlans = {
-      "macvlan" = {
-        interface = "eno1";
-        mode = "vepa";
-      };
-      "macvlan10" = {
-        interface = "eno2";
-        mode = "vepa";
-      };
-    };
     hosts = {
-      "10.133.133.1" = [ "TEAL" ]; # 10 Gigabit Link
+      "10.133.133.2" = [ "TEAL" ]; # 10 Gigabit Link
     };
     firewall = {
       enable = false;

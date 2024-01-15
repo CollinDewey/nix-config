@@ -45,7 +45,7 @@
     interfaces = {
       enp5s0f1 = {
         ipv4.addresses = [{
-          address = "10.133.133.1";
+          address = "10.133.133.2";
           prefixLength = 24;
         }];
         useDHCP = false;
