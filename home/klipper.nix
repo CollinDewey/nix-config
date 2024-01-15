@@ -7,7 +7,7 @@ in {
   options.modules.klipper = { enable = mkEnableOption "klipper"; };
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      cura
+      #cura
       super-slicer-latest
     ];
   };
