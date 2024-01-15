@@ -8,11 +8,9 @@
       auto-optimise-store = true;
       substituters = [
         "https://nix-community.cachix.org"
-        "https://0uptime.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "0uptime.cachix.org-1:ctw8yknBLg9cZBdqss+5krAem0sHYdISkw/IFdRbYdE="
       ];
     };
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;

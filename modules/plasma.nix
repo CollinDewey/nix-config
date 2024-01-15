@@ -27,6 +27,8 @@ in {
       (nerdfonts.override { fonts = [ "Hack" ]; })
     ];
 
+    programs.kdeconnect.enable = true;
+
     # Audio Server
     security.rtkit.enable = true;
     services.pipewire = {
