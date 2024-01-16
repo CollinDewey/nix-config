@@ -16,12 +16,18 @@ in {
       enable = cfg.docker;
       enableNvidia = cfg.docker && cfg.nvidia;
       storageDriver = "overlay2"; # BTRFS subvolumes caused issues
-      autoPrune.enable = true;
+      autoPrune = {
+        enable = true;
+        flags = [ "--all" ];
+      };
     };
     virtualisation.podman = {
       enable = cfg.podman;
       enableNvidia = cfg.podman && cfg.nvidia;
-      autoPrune.enable = true;
+      autoPrune = {
+        enable = true;
+        flags = [ "--all" ];
+      };
       dockerCompat = true;
       dockerSocket.enable = true;
     };
