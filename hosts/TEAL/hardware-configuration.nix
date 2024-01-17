@@ -77,13 +77,13 @@
       spec = "/persist";
       hashTableSizeMB = 512;
       verbosity = "crit";
-      extraOptions = [ "--loadavg-target" "60.0" ];
+      extraOptions = [ "--thread-count" "2" "--loadavg-target" "5.0" ];
     };
     raid = {
       spec = "/snapshots";
       hashTableSizeMB = 4096;
       verbosity = "crit";
-      extraOptions = [ "--loadavg-target" "60.0" ];
+      extraOptions = [ "--thread-count" "4" "--loadavg-target" "5.0" ];
     };
   };
 
