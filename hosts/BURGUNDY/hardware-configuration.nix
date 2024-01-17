@@ -69,6 +69,7 @@
   #services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
   powerManagement.cpuFreqGovernor = "powersave";
   hardware.nvidia.prime.offload.enable = true;
+  environment.variables.__RM_NO_VERSION_CHECK = "1";
   services.power-profiles-daemon.enable = false;
   services.tlp = {
     enable = true;

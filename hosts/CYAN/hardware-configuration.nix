@@ -64,6 +64,7 @@ in
     EndSection
     '';
   };
+  environment.variables.__RM_NO_VERSION_CHECK = "1";
 
   # Networking
   time.timeZone = "America/Louisville";
