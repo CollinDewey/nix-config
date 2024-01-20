@@ -7,7 +7,7 @@
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    kde2nix.url = "github:nix-community/kde2nix/89d3153ddab129a18860f7adc1319cc0402cdb4d"; # Commit 3d00e06 broke things
+    kde2nix.url = "github:nix-community/kde2nix";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
