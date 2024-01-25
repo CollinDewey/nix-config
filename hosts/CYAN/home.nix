@@ -2,7 +2,7 @@
 {
   programs.git = {
     signing.signByDefault = true;
-    signing.key = "21A02BCB3C3ABEDA";
+    signing.key = "F5B2AFFCB4386C88";
   };
   home.packages = with pkgs; [
     looking-glass-client
