@@ -4,7 +4,7 @@ with lib;
 let
   cfg = config.modules.zsh;
   agnoster-nix = pkgs.fetchgit {
-    url = "https://gist.github.com/LegitMagic/2e6b6c5b257d2f6895603ddb160e6f1d";
+    url = "https://gist.github.com/CollinDewey/2e6b6c5b257d2f6895603ddb160e6f1d";
     rev = "ac34ed17fcf5f18d93c6a9a6c9801b9a8699f271";
     sha256 = "sha256-0gdv/TOvsIpZz2rFzB2V90fJxXLGDQFx+FGwL1WpPTM=";
   };

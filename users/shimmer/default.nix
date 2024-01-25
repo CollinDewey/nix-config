@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 let
   keys = builtins.fetchurl {
-    url = "https://github.com/LegitMagic.keys";
+    url = "https://github.com/CollinDewey.keys";
     sha256 = "sha256:0f6j55wszsxg7kpwlf7p6av2mpkw3djpx35inqy8a97dh8hjyx7q";
   };
 in
