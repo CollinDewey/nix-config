@@ -69,9 +69,10 @@
     };
   };
 
-  system.activationScripts.mkContainerNet = ''
-    ${pkgs.docker}/bin/docker network inspect container_net >/dev/null 2>&1 || ${pkgs.docker}/bin/docker network create -d macvlan --subnet=10.111.111.0/24 --gateway=10.111.111.1 -o parent=virbr2 container_net
-  '';
+  # This fails if Docker is not running, aka if it's updating. Lovely. Needs to be converted into a SystemD service
+  #system.activationScripts.mkContainerNet = ''
+  #  ${pkgs.docker}/bin/docker network inspect container_net >/dev/null 2>&1 || ${pkgs.docker}/bin/docker network create -d macvlan --subnet=10.111.111.0/24 --gateway=10.111.111.1 -o parent=virbr2 container_net
+  #'';
 
   virtualisation.oci-containers = {
     backend = "docker";
