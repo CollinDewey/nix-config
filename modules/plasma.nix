@@ -16,7 +16,7 @@ in {
       #xkbVariant = "colemak";
       displayManager.sddm.enable = true;
       desktopManager.plasma5.enable = !cfg.plasma6;
-      desktopManager.plasma6.enable = cfg.plasma6;
+      #desktopManager.plasma6.enable = cfg.plasma6; # Disabled until 24.05
       windowManager.openbox.enable = true;
     };
     hardware.opengl.enable = true;

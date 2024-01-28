@@ -99,6 +99,7 @@
           ./users/collin
           ./users/shimmer
           chaotic.nixosModules.default
+          kde2nix.nixosModules.plasma6
           home-manager-unstable.nixosModules.home-manager
           ./config/home.nix
 
