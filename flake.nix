@@ -7,7 +7,6 @@
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    kde2nix.url = "github:nix-community/kde2nix";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -62,7 +61,7 @@
     };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-stable, impermanence, nixos-hardware, chaotic, kde2nix, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, deploy-rs, ... }@inputs: {
+  outputs = { self, nixpkgs-unstable, nixpkgs-stable, impermanence, nixos-hardware, chaotic, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, deploy-rs, ... }@inputs: {
 
     nixosConfigurations = {
       CYAN = nixpkgs-unstable.lib.nixosSystem {
@@ -99,7 +98,6 @@
           ./users/collin
           ./users/shimmer
           chaotic.nixosModules.default
-          kde2nix.nixosModules.plasma6
           home-manager-unstable.nixosModules.home-manager
           ./config/home.nix
 
