@@ -185,6 +185,7 @@
           {
             modules = {
               plasma.enable = true;
+              plasma.plasma6 = true;
               printing.enable = true;
               ssh.enable = true;
               virtualisation = {

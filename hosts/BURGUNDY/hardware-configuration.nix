@@ -65,7 +65,7 @@
 
 
   # Video
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" "displaylink" ]; # DL broken as of Dec 14th 2023
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" "displaylink" ];
   #services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
   powerManagement.cpuFreqGovernor = "powersave";
   hardware.nvidia.prime.offload.enable = true;
@@ -78,6 +78,7 @@
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
     };
   };
+  services.xserver.desktopManager.plasma6.enable = true; # Temporary until 24.05 releases
 
   specialisation = {
     dedicated.configuration = {
