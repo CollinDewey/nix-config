@@ -10,6 +10,7 @@ in {
     # Enable CUPS to print documents
     services.printing.enable = true;
     services.printing.drivers = [ pkgs.hplipWithPlugin ];
+    services.printing.cups-pdf.enable = true;
 
     # Enable SANE to scan documents
     hardware.sane.enable = true;
