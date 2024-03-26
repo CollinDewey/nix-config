@@ -78,7 +78,7 @@
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
     };
   };
-  services.xserver.desktopManager.plasma6.enable = true; # Temporary until 24.05 releases
+  services.desktopManager.plasma6.enable = true; # Temporary until 24.05 releases
 
   specialisation = {
     dedicated.configuration = {
