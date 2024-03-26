@@ -557,10 +557,8 @@
     deploy = {
       user = "root";
       remoteBuild = true;
-
-      # deploy-rs#78
-      magicRollback = false;
-      sshOpts = [ "-t" ];
+      interactiveSudo = true;
+      fastConnection = true;
 
       nodes = {
         CYAN = {
