@@ -1,37 +1,31 @@
 { ... }:
 {
   disk = {
-    vda = {
+    OS = {
       type = "disk";
       device = "/dev/nvme1n1";
       content = {
-        type = "table";
-        format = "gpt";
-        partitions = [
-          {
+        type = "gpt";
+        partitions = {
+          ESP = {
+            priority = 1;
             name = "ESP";
             start = "1MiB";
             end = "1GiB";
-            fs-type = "fat32";
-            bootable = true;
+            type = "EF00";
             content = {
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
             };
-          }
-          {
+          };
+          Linux = {
             name = "Linux";
-            start = "1GiB";
-            end = "100%";
+            size = "100%";
             content = {
               type = "btrfs";
               extraArgs = [ "-f" ]; # Override existing partition
               subvolumes = {
-                #"/root" = {
-                #  mountpoint = "/";
-                #  mountOptions = [ "compress=zstd" ];
-                #};
                 "/home" = {
                   mountpoint = "/home";
                   mountOptions = [ "compress=zstd" ];
@@ -51,8 +45,8 @@
                 };
               };
             };
-          }
-        ];
+          };
+        };
       };
     };
   };
