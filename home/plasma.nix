@@ -26,28 +26,28 @@ in {
     programs.plasma = {
       enable = true;
       workspace.clickItemTo = "select";
-      configFile = {
-        "klaunchrc"."FeedbackStyle"."BusyCursor" = false;
-        "kcmfonts"."General"."forceFontDPI" = 96;
-        "kwinrc" = {
-          "Effect-PresentWindows"."BorderActivateAll" = 9;
-          "TabBox"."BorderActivate" = 9;
-          "Plugins"."wobblywindowsEnabled" = true;
-          "Desktops" = {
-            "Number" = 4;
-            "Rows" = 2;
-          };
-          "org.kde.kdecoration2" = {
-            "ButtonsOnLeft" = "";
-            "ButtonsOnRight" = "SBFIAX";
-          };
-          "MouseBindings"."CommandAllKey" = "Alt";
-        };
-        "kdeglobals" = {
-          "KDE"."widgetStyle" = "kvantum";
-          "Icons"."Theme" = "Papirus-Dark";
-        };
-      };
+#      configFile = {
+#        "klaunchrc"."FeedbackStyle"."BusyCursor" = false;
+#        "kcmfonts"."General"."forceFontDPI" = 96;
+#        "kwinrc" = {
+#          "Effect-PresentWindows"."BorderActivateAll" = 9;
+#          "TabBox"."BorderActivate" = 9;
+#          "Plugins"."wobblywindowsEnabled" = true;
+#          "Desktops" = {
+#            "Number" = 4;
+#            "Rows" = 2;
+#          };
+#          "org.kde.kdecoration2" = {
+#            "ButtonsOnLeft" = "";
+#            "ButtonsOnRight" = "SBFIAX";
+#          };
+#          "MouseBindings"."CommandAllKey" = "Alt";
+#        };
+#        "kdeglobals" = {
+#          "KDE"."widgetStyle" = "kvantum";
+#          "Icons"."Theme" = "Papirus-Dark";
+#        };
+#      };
     };
 
     # Theming and Firefox File Dialog Fix
