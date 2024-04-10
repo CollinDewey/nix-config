@@ -20,7 +20,7 @@ in {
       krdc
       keeweb
       gnome.simple-scan
-      obsidian
+      #obsidian
       vscode
       tigervnc
       x11vnc
