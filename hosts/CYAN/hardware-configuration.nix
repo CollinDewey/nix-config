@@ -17,9 +17,9 @@ in
     kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" "amd_pstate=active" "iommu=pt" "kvm.ignore_msrs=1" "report_ignored_msrs=0" ];
     kernelModules = [ "kvmfr" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    extraModulePackages = with config.boot.kernelPackages; [ kvmfr v4l2loopback ];
+    extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (_: { patches = []; })) v4l2loopback ];
     extraModprobeConfig = ''
-      options kvmfr static_size_mb=64
+      options kvmfr static_size_mb=128
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
     kernel.sysctl = { "kernel.sysrq" = 1; };
@@ -186,6 +186,21 @@ in
     };
     "/mnt/cyber" = {
       device = "TEAL:/cyber";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/storage" = {
+      device = "TEAL:/storage";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/global" = {
+      device = "TEAL:/network_share/Global";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/cmd" = {
+      device = "TEAL:/network_share/CMD";
       fsType = "nfs";
       options = nfs_opts;
     };
