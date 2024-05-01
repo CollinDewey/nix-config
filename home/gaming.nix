@@ -19,7 +19,7 @@ in {
           snes9x
         ];
       })
-      prismlauncher-qt5
+      prismlauncher
       clonehero
       ryujinx
       gamescope
