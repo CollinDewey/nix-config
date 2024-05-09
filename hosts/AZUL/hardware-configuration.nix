@@ -1,0 +1,104 @@
+{ config, lib, pkgs, inputs, ... }:
+let
+  nfs_opts = [ "x-systemd.automount" "x-systemd.idle-timeout=3600" "noauto" "noatime" ];
+in
+{
+  # Imports
+  imports = [
+    inputs.disko.nixosModules.disko
+    inputs.impermanence.nixosModules.impermanence
+  ];
+
+  # Boot
+  boot = {
+    # Kernel
+    initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" ];
+    kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" ];
+    kernelModules = [ "kvm-intel" ];
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+    extraModprobeConfig = ''
+      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    '';
+    kernel.sysctl = { "kernel.sysrq" = 1; };
+
+    # Filesystems
+    supportedFilesystems = [ "ntfs" ];
+
+    # Boot
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = false;
+  };
+
+  # Hardware
+  hardware = {
+    enableRedistributableFirmware = true;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  services.fstrim.enable = true;
+
+  services.desktopManager.plasma6.enable = true; # Temporary until 24.05 releases
+
+  # Networking
+  time.timeZone = "America/Louisville";
+  networking = {
+    hostName = "AZUL";
+    useDHCP = true;
+    firewall.enable = false;
+  };
+
+  # Disks
+  boot.tmp.cleanOnBoot = true;
+
+  # BTRFS Scrubbing
+  services.btrfs.autoScrub = {
+    fileSystems = [ "/home" ]; # Crosses subpartition bounds
+    enable = true;
+    interval = "weekly";
+  };
+
+  # BTRFS De-duplicating
+  services.beesd.filesystems = {
+    system = {
+      spec = "/home";
+      hashTableSizeMB = 16;
+      verbosity = "crit";
+      extraOptions = [ "--thread-count" "1" "--loadavg-target" "5.0" ];
+    };
+  };
+
+  # Partitioning
+  disko.devices = import ./disko.nix;
+
+  # NFS
+  #fileSystems = {
+  #  "/mnt/storage" = {
+  #    device = "TEAL:/storage";
+  #    fsType = "nfs";
+  #    options = nfs_opts;
+  #  };
+  #};
+
+  # Persistance
+  users.mutableUsers = false;
+  systemd.coredump.extraConfig = "Storage=none";
+  fileSystems."/persist".neededForBoot = true;
+  environment.persistence."/persist" = {
+    hideMounts = true;
+    directories = [
+      "/var/log" # Keep system logs
+      "/var/lib/syncthing" # Syncthing
+    ];
+    files = [
+      "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
+      "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
+      "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
+      "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
+      "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
+    ];
+  };
+
+  # Sops Key File Location
+  sops.age.keyFile = "/persist/sops-key.txt";
+}

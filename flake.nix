@@ -364,6 +364,66 @@
         ];
       };
 
+      AZUL = nixpkgs-unstable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          # Global Config + Modules
+          ./config
+          ./config/linux.nix
+          ./overlays
+          ./modules
+          ./hosts/AZUL/configuration.nix
+
+          # Specialized Hardware Configuration
+          ./hosts/AZUL/hardware-configuration.nix
+
+          {
+            modules = {
+              plasma.enable = true;
+              plasma.plasma6 = true;
+              ssh.enable = true;
+              zsh.enable = true;
+            };
+          }
+
+          # User
+          ./users
+          ./users/collin
+          chaotic.nixosModules.default
+          home-manager-unstable.nixosModules.home-manager
+          ./config/home.nix
+
+          {
+
+            home-manager.users.collin = {
+
+              imports = [
+                # Modules
+                plasma-manager.homeManagerModules.plasma-manager
+                ./home
+
+                # Computer Specific Config
+                ./hosts/AZUL/home.nix
+
+                # User Specific Config
+                ./users/collin/home.nix
+              ];
+
+              modules = {
+                klipper.enable = true;
+                lock.enable = true;
+                multimedia.enable = true;
+                plasma.enable = true;
+                zsh.enable = true;
+              };
+
+              home.stateVersion = "24.05";
+            };
+          }
+        ];
+      };
+
       BROWN = nixpkgs-stable.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = { inherit inputs; };
@@ -571,9 +631,14 @@
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
         };
 
-        VIRIDIAN = {
-          hostname = "VIRIDIAN.TERASCRIPTING";
-          profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
+        #VIRIDIAN = {
+        #  hostname = "VIRIDIAN.TERASCRIPTING";
+        #  profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
+        #};
+
+        AZUL = {
+          hostname = "AZUL.TERASCRIPTING";
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.AZUL;
         };
 
         BROWN = {
