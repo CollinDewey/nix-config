@@ -9,7 +9,6 @@ in {
     # Basic KDE Packages
     home.packages = with pkgs; [
       kate
-      flameshot
       papirus-icon-theme
       lxqt.pavucontrol-qt
       guvcview
@@ -19,7 +18,6 @@ in {
       libsForQt5.colord-kde
       libsForQt5.krfb
       plasma-systemmonitor
-      solaar # I use logitech all over
     ];
 
     # Fix Default Settings
