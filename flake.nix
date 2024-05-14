@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-unstable";
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
@@ -35,7 +35,8 @@
     };
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager";
+      #url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
@@ -126,7 +127,7 @@
                 lock.enable = true;
                 misc.enable = true;
                 multimedia.enable = true;
-                office.enable = true;
+                #office.enable = true;
                 plasma.enable = true;
                 unity.enable = true;
                 plover.enable = true;
@@ -232,7 +233,7 @@
                 lock.enable = true;
                 misc.enable = true;
                 multimedia.enable = true;
-                office.enable = true;
+                #office.enable = true;
                 plasma.enable = true;
                 plover.enable = true;
                 unity.enable = true;
@@ -631,10 +632,10 @@
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
         };
 
-        #VIRIDIAN = {
-        #  hostname = "VIRIDIAN.TERASCRIPTING";
-        #  profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
-        #};
+        VIRIDIAN = {
+          hostname = "VIRIDIAN.TERASCRIPTING";
+          profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
+        };
 
         AZUL = {
           hostname = "AZUL.TERASCRIPTING";

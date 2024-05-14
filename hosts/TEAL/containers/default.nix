@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   # Currently connecting a bridge (virbr2) to my OPNSense VM, created through virsh
+  # Rebuilds will fail if the autostart fails. Figure out how to let it accept an error.
+  # I want to know if it breaks, but it's very hard to debug when the container keeps going up and down.
 
   networking.nat = {
     enable = true;
@@ -11,7 +13,7 @@
   containers = {
     jellyfin = {
       ephemeral = true;
-      autoStart = true;
+      autoStart = false;
       privateNetwork = true;
       hostAddress = "192.168.100.1";
       localAddress = "192.168.100.2";
@@ -30,7 +32,7 @@
     
     syncthing = {
       ephemeral = true;
-      autoStart = true;
+      autoStart = false;
       config = ./syncthing.nix;
       bindMounts = {
         "/var/lib/syncthing" = {
@@ -42,7 +44,7 @@
 
     adguardhome = {
       ephemeral = true;
-      autoStart = true;
+      autoStart = false;
       macvlans = [ "virbr2" ];
       config = ./adguardhome.nix;
       bindMounts = {
@@ -55,7 +57,7 @@
 
     microbin = {
       ephemeral = true;
-      autoStart = true;
+      autoStart = false;
       privateNetwork = true;
       hostAddress = "192.168.100.1";
       localAddress = "192.168.100.3";

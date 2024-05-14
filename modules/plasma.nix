@@ -10,14 +10,16 @@ in {
   };
   config = mkIf cfg.enable {
     # X Server
-    services.xserver = {
-      enable = true;
-      layout = "us";
-      #xkbVariant = "colemak";
+    services = {
+      xserver = {
+        enable = true;
+        xkb.layout = "us";
+        #xkbVariant = "colemak";
+        desktopManager.plasma5.enable = !cfg.plasma6;
+        windowManager.openbox.enable = true;
+      };
+      desktopManager.plasma6.enable = cfg.plasma6;
       displayManager.sddm.enable = true;
-      desktopManager.plasma5.enable = !cfg.plasma6;
-      #desktopManager.plasma6.enable = cfg.plasma6; # Disabled until 24.05
-      windowManager.openbox.enable = true;
     };
     hardware.opengl.enable = true;
     hardware.opengl.driSupport32Bit = true;
