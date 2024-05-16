@@ -10,6 +10,18 @@
     #externalInterface = "enp5s0f0";
   };
 
+  systemd.tmpfiles.rules = [
+    "d /services/jellyfin/config 0755 1000 1000 -"
+    "d /services/jellyfin/media 0755 1000 1000 -"
+    "d /services/syncthing 0755 1000 1000 -"
+    "d /services/adguardhome 0755 0 0 -"
+    "d /services/microbin 0755 0 0 -"
+    "d /services/vaultwarden 0755 0 0 -"
+    "d /services/vaultwarden/vaultwarden 0755 0 0 -"
+    "d /storage/vaultwarden_backup 0755 0 0 -"
+    "f /services/vaultwarden/config 0755 0 0 - -"
+  ];
+
   containers = {
     jellyfin = {
       ephemeral = true;
@@ -66,6 +78,29 @@
         "/var/lib/private/microbin" = {
           hostPath = "/services/microbin";
           isReadOnly = false;
+        };
+      };
+    };
+
+    vaultwarden = {
+      ephemeral = true;
+      autoStart = false;
+      privateNetwork = true;
+      hostAddress = "192.168.100.1";
+      localAddress = "192.168.100.4";
+      config = ./vaultwarden.nix;
+      bindMounts = {
+        "/var/lib/bitwarden_rs" = {
+          hostPath = "/services/vaultwarden/vaultwarden";
+          isReadOnly = false;
+        };
+        "/var/backup/vaultwarden" = {
+          hostPath = "/storage/vaultwarden_backup";
+          isReadOnly = false;
+        };
+        "/var/lib/vaultwarden.env" = {
+          hostPath = "/services/vaultwarden/config";
+          isReadOnly = true;
         };
       };
     };

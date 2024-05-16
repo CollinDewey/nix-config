@@ -18,7 +18,9 @@ in {
       conky
       xdotool
       krdc
-      keeweb
+      bitwarden-desktop
+      bitwarden-cli
+      bitwarden-menu
       gnome.simple-scan
       #obsidian
       vscode
