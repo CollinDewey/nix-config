@@ -78,6 +78,7 @@
               plasma.enable = true;
               plasma.plasma6 = true;
               printing.enable = true;
+              sanity.enable = true;
               ssh.enable = true;
               virtualisation = {
                 docker = true;
@@ -179,6 +180,7 @@
               plasma.enable = true;
               plasma.plasma6 = true;
               printing.enable = true;
+              sanity.enable = true;
               ssh.enable = true;
               virtualisation = {
                 docker = true;
