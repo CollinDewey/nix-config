@@ -15,6 +15,7 @@ in {
     # Enable SANE to scan documents
     hardware.sane.enable = true;
     hardware.sane.extraBackends = [ pkgs.hplipWithPlugin pkgs.epkowa ];
+    services.saned.enable = true;
 
     # Enable avahi to automagically find printers
     services.avahi.enable = true;
