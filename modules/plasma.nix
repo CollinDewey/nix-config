@@ -14,7 +14,6 @@ in {
       xserver = {
         enable = true;
         xkb.layout = "us";
-        #xkbVariant = "colemak";
         desktopManager.plasma5.enable = !cfg.plasma6;
         windowManager.openbox.enable = true;
       };
@@ -31,7 +30,7 @@ in {
 
     programs.kdeconnect.enable = true;
 
-    # Audio Server
+    # Audio
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;

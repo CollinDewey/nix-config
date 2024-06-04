@@ -38,8 +38,6 @@ in
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;
 
-  services.desktopManager.plasma6.enable = true; # Temporary until 24.05 releases
-
   # Networking
   time.timeZone = "America/Louisville";
   networking = {

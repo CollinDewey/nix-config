@@ -65,7 +65,6 @@ in
     '';
   };
   environment.variables.__RM_NO_VERSION_CHECK = "1";
-  services.desktopManager.plasma6.enable = true; # Temporary until 24.05 releases
 
   # Networking
   time.timeZone = "America/Louisville";

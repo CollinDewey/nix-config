@@ -8,7 +8,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       virt-manager
-      solaar
+      #solaar
     ];
   };
 }

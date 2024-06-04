@@ -10,7 +10,7 @@ in {
       discord
       discord-ptb
       vesktop
-      teams-for-linux
+      #teams-for-linux
     ];
   };
 }

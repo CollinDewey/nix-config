@@ -37,7 +37,6 @@
 
   # iPhone
   services.usbmuxd.enable = true;
-
   environment.systemPackages = with pkgs; [
     libimobiledevice
     ifuse
@@ -55,9 +54,6 @@
 
   # Various Services
   services.preload.enable = true;
-
-  # Goofy different distro name just for /pts/
-  system.nixos.distroName = "NyxOS";
 
   # State
   system.stateVersion = "23.11";

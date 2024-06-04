@@ -24,14 +24,13 @@
     nano
     wget
     curl
-    aria
+    aria2
     htop
     git
     ncdu
-    neofetch
+    fastfetch
     arp-scan
     killall
-    sshfs
     tmux
     eza
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [

@@ -28,8 +28,6 @@
     enableRedistributableFirmware = true;
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
-  #services.xserver.videoDrivers = [ "nvidia" ];
-  #environment.variables.__RM_NO_VERSION_CHECK = "1";
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;
 
