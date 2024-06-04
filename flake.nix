@@ -45,11 +45,6 @@
       inputs.home-manager.follows = "home-manager-stable";
     };
 
-    android-nixpkgs = {
-      url = "github:tadfisher/android-nixpkgs";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -61,7 +56,7 @@
     };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-stable, impermanence, nixos-hardware, chaotic, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, android-nixpkgs, nixos-generators, deploy-rs, ... }@inputs: {
+  outputs = { self, nixpkgs-unstable, nixpkgs-stable, impermanence, nixos-hardware, chaotic, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, ... }@inputs: {
 
     nixosConfigurations = {
       CYAN = nixpkgs-unstable.lib.nixosSystem {
@@ -108,7 +103,6 @@
               imports = [
                 # Modules
                 plasma-manager.homeManagerModules.plasma-manager
-                android-nixpkgs.hmModule
                 ./home
 
                 # Computer Specific Config
@@ -174,7 +168,6 @@
           ./config
           ./config/linux.nix
           ./overlays
-          #./overlays/android-sdk.nix
           ./modules
           ./hosts/BURGUNDY/configuration.nix
 
@@ -211,9 +204,7 @@
               imports = [
                 # Modules
                 plasma-manager.homeManagerModules.plasma-manager
-                android-nixpkgs.hmModule
                 ./home
-                #./home/android-sdk.nix
 
                 # Computer Specific Config
                 ./hosts/BURGUNDY/home.nix
@@ -223,7 +214,6 @@
               ];
 
               modules = {
-                #android-sdk.enable = true;
                 communication.enable = true;
                 cyber.enable = true;
                 gaming.enable = true;
