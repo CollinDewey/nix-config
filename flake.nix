@@ -128,7 +128,6 @@
                 multimedia.enable = true;
                 #office.enable = true;
                 plasma.enable = true;
-                unity.enable = true;
                 plover.enable = true;
                 utilities.enable = true;
                 zsh.enable = true;
@@ -235,7 +234,6 @@
                 #office.enable = true;
                 plasma.enable = true;
                 plover.enable = true;
-                unity.enable = true;
                 utilities.enable = true;
                 zsh.enable = true;
               };
