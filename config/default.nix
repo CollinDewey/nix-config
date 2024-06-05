@@ -33,6 +33,8 @@
     killall
     tmux
     eza
+    fzf
+    zoxide
   ] ++ lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [
     iotop
   ]);

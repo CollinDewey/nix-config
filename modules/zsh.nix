@@ -20,6 +20,7 @@ in
         zsh-defer source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
         zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/sudo/sudo.plugin.zsh";
         zsh-defer source "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
+        zsh-defer eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "^[[A" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
@@ -30,6 +31,8 @@ in
         alias aria32="aria2c -x 32 -s 32 --file-allocation=none";
         alias aria48="aria2c -x 48 -s 48 --file-allocation=none";
         alias aria64="aria2c -x 64 -s 64 --file-allocation=none";
+        alias cd="z"; # Using an alias instead of "zoxide init zsh --cmd cd", so I can easily unalias
+        alias cdi="zi";
       '';
       promptInit = ''
         alias ls="eza --icons"
