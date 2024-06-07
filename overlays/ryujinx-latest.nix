@@ -6,8 +6,8 @@
       src = super.fetchFromGitHub {
         owner = "Ryujinx";
         repo = "Ryujinx";
-        rev = "d2e97d4161df6aa405073b314526d0fa6e68774d";
-        sha256 = "1vf4xwn1z7bfm7c49r2yydx3dqqzqwp0qgzq12m9yskqsj898d63";
+        rev = "c0f2491eaee7eb1088605f5bda8055b941a14f99";
+        sha256 = "sha256-WyxfvvE9y+9vWLcw7CMAGV+mbfYGO803o9n1Hh+bz0A=";
       };
     });
   })];
