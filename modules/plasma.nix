@@ -18,7 +18,14 @@ in {
         windowManager.openbox.enable = true;
       };
       desktopManager.plasma6.enable = cfg.plasma6;
-      displayManager.sddm.enable = true;
+      displayManager.sddm = {
+        enable = true;
+        theme = "catppuccin-mocha";
+        wayland = {
+          enable = true;
+          compositor = "kwin";
+        };
+      };
     };
     hardware.opengl.enable = true;
     hardware.opengl.driSupport32Bit = true;
@@ -27,6 +34,17 @@ in {
     fonts.packages = with pkgs; [
       (nerdfonts.override { fonts = [ "Hack" ]; })
     ];
+
+    # Extra Packages
+    environment.systemPackages = [(
+      pkgs.catppuccin-sddm.override {
+        flavor = "mocha";
+        font  = "Hack";
+        fontSize = "10";
+        #background = "${./wallpaper.png}";
+        #loginBackground = true;
+      }
+    )];
 
     programs.kdeconnect.enable = true;
 
