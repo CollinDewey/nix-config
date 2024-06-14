@@ -6,7 +6,6 @@ let cfg = config.modules.plasma;
 in {
   options.modules.plasma = {
     enable = mkEnableOption "plasma";
-    plasma6 = mkEnableOption "plasma6";
   };
   config = mkIf cfg.enable {
     # X Server
@@ -14,10 +13,9 @@ in {
       xserver = {
         enable = true;
         xkb.layout = "us";
-        desktopManager.plasma5.enable = !cfg.plasma6;
         windowManager.openbox.enable = true;
       };
-      desktopManager.plasma6.enable = cfg.plasma6;
+      desktopManager.plasma6.enable = true;
       displayManager.sddm = {
         enable = true;
         theme = "catppuccin-mocha";

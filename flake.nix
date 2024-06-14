@@ -76,7 +76,6 @@
           {
             modules = {
               plasma.enable = true;
-              plasma.plasma6 = true;
               printing.enable = true;
               sanity.enable = true;
               ssh.enable = true;
@@ -178,7 +177,6 @@
           {
             modules = {
               plasma.enable = true;
-              plasma.plasma6 = true;
               printing.enable = true;
               sanity.enable = true;
               ssh.enable = true;
@@ -280,7 +278,6 @@
           {
             modules = {
               plasma.enable = true;
-              plasma.plasma6 = true;
               printing.enable = true;
               sanity.enable = true;
               ssh.enable = true;
@@ -441,7 +438,6 @@
           {
             modules = {
               plasma.enable = true;
-              plasma.plasma6 = true;
               ssh.enable = true;
               zsh.enable = true;
             };
