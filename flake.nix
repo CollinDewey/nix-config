@@ -263,6 +263,76 @@
         ];
       };
 
+      VM = nixpkgs-unstable.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          # Global Config + Modules
+          ./config
+          ./config/linux.nix
+          ./overlays
+          ./modules
+          ./hosts/VM/configuration.nix
+
+          # Specialized Hardware Configuration
+          ./hosts/VM/hardware-configuration.nix
+
+          {
+            modules = {
+              plasma.enable = true;
+              plasma.plasma6 = true;
+              printing.enable = true;
+              sanity.enable = true;
+              ssh.enable = true;
+              virtualisation = {
+                docker = true;
+                libvirt = true;
+              };
+              zsh.enable = true;
+            };
+          }
+
+          # User
+          #./users # This includes the root passwd through sops, which we wont have here.
+          ./users/dummy
+          chaotic.nixosModules.default
+          home-manager-unstable.nixosModules.home-manager
+          ./config/home.nix
+
+          {
+
+            home-manager.users.dummy = {
+
+              imports = [
+                # Modules
+                plasma-manager.homeManagerModules.plasma-manager
+                ./home
+
+                # User Specific Config
+                ./users/dummy/home.nix
+              ];
+
+              modules = {
+                communication.enable = true;
+                cyber.enable = true;
+                gaming.enable = true;
+                klipper.enable = true;
+                lock.enable = true;
+                misc.enable = true;
+                multimedia.enable = true;
+                #office.enable = true;
+                plasma.enable = true;
+                plover.enable = true;
+                utilities.enable = true;
+                zsh.enable = true;
+              };
+
+              home.stateVersion = "24.05";
+            };
+          }
+        ];
+      };
+
       TEAL = nixpkgs-stable.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
