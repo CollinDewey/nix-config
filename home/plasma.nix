@@ -53,9 +53,12 @@ in {
             right = ["on-all-desktops" "keep-below-windows" "keep-above-windows" "minimize" "maximize" "close"];
           };
           virtualDesktops = {
-            animation = "slide";
             rows = 2;
             number = 4;
+          };
+          effects = {
+            desktopSwitching.animation = "slide";
+            wobblyWindows.enable = true;
           };
         };
         hotkeys.commands = {
@@ -81,7 +84,6 @@ in {
           "kwinrc" = {
             "Compositing"."MaxFPS" = 165; # Really only needed on CYAN, shouldn't hurt anything else though.
             "Effect-overview"."BorderActivate" = 9;
-            "Plugins"."wobblywindowsEnabled" = true;
             "MouseBindings"."CommandAllKey" = "Alt";
           };
           "kdeglobals"."KDE"."widgetStyle" = "kvantum";
