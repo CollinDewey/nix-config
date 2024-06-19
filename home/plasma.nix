@@ -18,16 +18,17 @@ in {
   config = mkIf cfg.enable {
     # Basic KDE Packages
     home.packages = with pkgs; [
-      kate
+      kdePackages.kate
       papirus-icon-theme
       lxqt.pavucontrol-qt
       guvcview
-      gwenview
-      ark
+      kdePackages.gwenview
+      kdePackages.ark
       kdePackages.qtstyleplugin-kvantum
+      kdePackages.kimageformats
       kdePackages.colord-kde
       kdePackages.krfb
-      plasma-systemmonitor
+      kdePackages.plasma-systemmonitor
     ];
 
     # Default Settings

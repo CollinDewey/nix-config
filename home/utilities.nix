@@ -12,12 +12,12 @@ in {
     home.packages = with pkgs; [
       firefox
       google-chrome
-      filelight
+      kdePackages.filelight
       lm_sensors
       pciutils
       conky
       xdotool
-      krdc
+      kdePackages.krdc
       bitwarden-desktop
       bitwarden-cli
       bitwarden-menu
