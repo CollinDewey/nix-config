@@ -17,6 +17,11 @@ in
     kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" "amd_pstate=active" "iommu=pt" "kvm.ignore_msrs=1" "report_ignored_msrs=0" ];
     kernelModules = [ "kvmfr" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPatches = [ {
+      name = "fix-nvidia-amdgpu-pat-mem";
+      patch = null;
+      extraConfig = "HSA_AMD_SVM n";
+    } ]; # https://gitlab.freedesktop.org/drm/amd/-/issues/2794
     extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (_: { patches = []; })) v4l2loopback ];
     extraModprobeConfig = ''
       options kvmfr static_size_mb=128
