@@ -94,6 +94,59 @@ in {
           {
             location = "top";
             height = 26;
+            screen = 0;
+            widgets = [
+              {
+                name = "org.kde.plasma.kicker";
+                config.General = {
+                  useCustomButtonImage = "true";
+                  #customButtonImage = "start-here-kde-plasma-symbolic";
+                  customButtonImage = "${icon}";
+                  favoriteSystemActions = [];
+                };
+              }
+              "org.kde.plasma.appmenu"
+              "org.kde.plasma.panelspacer"
+              {
+                name = "org.kde.plasma.icontasks";
+                config.General.launchers = [];
+              }
+              "org.kde.plasma.systemtray"
+              {
+                digitalClock.date.enable = false;
+              }
+            ];
+          }
+          {
+            location = "top";
+            height = 26;
+            screen = 1;
+            widgets = [
+              {
+                name = "org.kde.plasma.kicker";
+                config.General = {
+                  useCustomButtonImage = "true";
+                  #customButtonImage = "start-here-kde-plasma-symbolic";
+                  customButtonImage = "${icon}";
+                  favoriteSystemActions = [];
+                };
+              }
+              "org.kde.plasma.appmenu"
+              "org.kde.plasma.panelspacer"
+              {
+                name = "org.kde.plasma.icontasks";
+                config.General.launchers = [];
+              }
+              "org.kde.plasma.systemtray"
+              {
+                digitalClock.date.enable = false;
+              }
+            ];
+          }
+          {
+            location = "top";
+            height = 26;
+            screen = 2;
             widgets = [
               {
                 name = "org.kde.plasma.kicker";
@@ -128,7 +181,16 @@ in {
       };
     };
 
-    # Theming and Firefox File Dialog Fix
+    # XDG
+    xdg.portal = {
+      enable = true;
+      configPackages = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
+    };
+
+    # Theming and Firefox Fix
     home.sessionVariables = {
       QT_STYLE_OVERRIDE = "kvantum";
       GTK_USE_PORTAL = "1";
