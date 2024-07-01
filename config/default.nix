@@ -6,6 +6,7 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
+      trusted-users = [ "@wheel" ];
       substituters = [
         "https://nix-community.cachix.org"
       ];
