@@ -15,7 +15,7 @@ in
         fsType = "btrfs";
         options = defaultOpts ++ [ "subvol=cyber" ];
       };
-      "/var/lib/libvirt/images_hdd" = {
+      "/vm_storage" = {
         device = "/dev/bcache0";
         fsType = "btrfs";
         options = defaultOpts ++ [ "subvol=virtualization_hdd" ];

@@ -13,7 +13,7 @@
     # Kernel
     initrd.availableKernelModules = [ "nvme" ];
     kernelModules = [ "kvm-intel" "vfio_pci" "vfio" ];
-    kernelParams = [ "mitigations=off" "retbleed=off" "intel_iommu=on" "iommu=pt" "vfio_pci.ids=8086:1521,103c:8157" ];
+    kernelParams = [ "mitigations=off" "retbleed=off" "intel_iommu=on" "iommu=pt" ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
@@ -50,15 +50,11 @@
         useDHCP = false;
       };
       enp5s0f0.useDHCP = true;
+      br0.useDHCP = true;
     };
-    macvlans."macvlan" = {
-      interface = "enp9s0";
-      mode = "vepa";
-    };
+    bridges.br0 = { interfaces = []; }; # VM Bridge
+    bridges.br1 = { interfaces = []; }; # Container Bridge
   };
-
-  # State
-  system.stateVersion = "23.05";
 
   # Disks
   zramSwap.enable = true;
