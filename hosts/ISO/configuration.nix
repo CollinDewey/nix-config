@@ -8,6 +8,8 @@
   programs.command-not-found.enable = false;
   boot.swraid.mdadmConf = "MAILADDR root";
   hardware.bluetooth.enable = true;
+  networking.networkmanager.enable = true;
+  networking.wireless.enable = false;
   services.xserver.videoDrivers = [
     "amdgpu"
     "radeon"
