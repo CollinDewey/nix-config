@@ -26,7 +26,6 @@ in {
       PermitRootLogin = lib.mkForce "no";
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
-      LoginGraceTime = 0; # CVE-2024-6387 temproary workaround
     };
 
   };
