@@ -118,7 +118,7 @@
         image = "lancachenet/monolithic:latest";
         hostname = "lancache";
         extraOptions = [ "--network=container_net" "--ip=10.111.111.2"];
-        autoStart = true;
+        autoStart = false;
         environment = {
           USE_GENERIC_CACHE = "TRUE";
           CACHE_DISK_SIZE = "500g";
@@ -133,7 +133,7 @@
         image = "ghcr.io/home-assistant/home-assistant:stable";
         hostname = "homeassistant";
         extraOptions = [ "--network=container_net" "--ip=10.111.111.4"];
-        autoStart = true;
+        autoStart = false;
         environment.TZ = "America/Louisville";
         volumes = [
           "/services/homeassistant:/config"
