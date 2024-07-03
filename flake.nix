@@ -677,7 +677,6 @@
 
     deploy = {
       user = "root";
-      remoteBuild = true;
       interactiveSudo = true;
       fastConnection = true;
 
