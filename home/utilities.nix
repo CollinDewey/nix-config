@@ -21,7 +21,7 @@ in {
       bitwarden-desktop
       bitwarden-cli
       bitwarden-menu
-      gnome.simple-scan
+      simple-scan
       #obsidian
       vscode
       tigervnc
