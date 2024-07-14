@@ -696,10 +696,10 @@
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
         };
 
-        AZUL = {
-          hostname = "AZUL.TERASCRIPTING";
-          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.AZUL;
-        };
+        #AZUL = {
+        #  hostname = "AZUL.TERASCRIPTING";
+        #  profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.AZUL;
+        #};
 
         BROWN = {
           hostname = "BROWN.TERASCRIPTING.COM";
