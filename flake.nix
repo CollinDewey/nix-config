@@ -127,7 +127,7 @@
                 multimedia.enable = true;
                 #office.enable = true;
                 plasma.enable = true;
-                plover.enable = true;
+                #plover.enable = true; # Plover 4.0.0.dev10 broke for no reason????
                 utilities.enable = true;
                 zsh.enable = true;
               };
