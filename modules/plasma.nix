@@ -69,6 +69,8 @@ in {
       KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4125", MODE="0666"
       # 44.1Hz with Mic
       KERNEL=="hidraw*", ATTRS{idVendor}=="0a12", ATTRS{idProduct}=="4126", MODE="0666"
+      # Polyglot Javelin
+      KERNEL=="hidraw*", ATTRS{idVendor}=="9000", ATTRS{idProduct}=="400d", MODE="0666"
     '';
   };
 }
