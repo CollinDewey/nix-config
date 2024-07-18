@@ -20,7 +20,7 @@ in
         zsh-defer source "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions/fast-syntax-highlighting.plugin.zsh";
         zsh-defer source "${pkgs.oh-my-zsh}/share/oh-my-zsh/plugins/sudo/sudo.plugin.zsh";
         zsh-defer source "${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
-        zsh-defer eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
+        eval "$(${pkgs.zoxide}/bin/zoxide init zsh)"
         bindkey "$terminfo[kcuu1]" history-substring-search-up
         bindkey "^[[A" history-substring-search-up
         bindkey "$terminfo[kcud1]" history-substring-search-down
