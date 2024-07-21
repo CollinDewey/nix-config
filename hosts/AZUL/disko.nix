@@ -3,7 +3,7 @@
   disk = {
     sda = {
       type = "disk";
-      device = "/dev/disk/by-id/ata-TS128GMTS400_C819561042";
+      device = "/dev/disk/by-id/nvme-UDSS_UD2CSEDT300-512G_TUSMA241JX00443";
       content = {
         type = "gpt";
         partitions = {

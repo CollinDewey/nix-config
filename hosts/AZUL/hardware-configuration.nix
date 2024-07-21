@@ -12,7 +12,7 @@ in
   # Boot
   boot = {
     # Kernel
-    initrd.availableKernelModules = [ "xhci_pci" "ehci_pci" "ahci" "usbhid" ];
+    initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" ];
     kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" ];
     kernelModules = [ "kvm-intel" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
