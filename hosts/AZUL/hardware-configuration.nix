@@ -69,6 +69,20 @@ in
   # Partitioning
   disko.devices = import ./disko.nix;
 
+  # Video
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-vaapi-driver # VAAPI
+      libvdpau-va-gl # No idea if this is needed
+      intel-media-sdk # QSV
+    ];
+  };
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };
+
+  # Audio
+  services.pipewire.enable = true;
+
   # NFS
   #fileSystems = {
   #  "/mnt/storage" = {
