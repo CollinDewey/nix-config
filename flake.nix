@@ -7,6 +7,7 @@
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -61,7 +62,7 @@
     };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-stable, impermanence, nixos-hardware, chaotic, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, ... }@inputs: {
+  outputs = { self, nixpkgs-unstable, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, ... }@inputs: {
 
     nixosConfigurations = {
       CYAN = nixpkgs-unstable.lib.nixosSystem {
@@ -696,10 +697,10 @@
           profiles.system.path = deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.VIRIDIAN;
         };
 
-        #AZUL = {
-        #  hostname = "AZUL.TERASCRIPTING";
-        #  profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.AZUL;
-        #};
+        AZUL = {
+          hostname = "AZUL.TERASCRIPTING";
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.AZUL;
+        };
 
         BROWN = {
           hostname = "BROWN.TERASCRIPTING.COM";
@@ -717,7 +718,6 @@
         };
       };
     };
-
     # Check is too demanding
     #checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
   };
