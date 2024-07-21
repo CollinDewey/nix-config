@@ -14,6 +14,6 @@ in
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.collin-hashed-password.path;
     openssh.authorizedKeys.keyFiles = [ keys ];
-    extraGroups = [ "wheel" "docker" "dialout" "scanner" "lp" "libvirtd" "wireshark" "plugdev" "adbusers" "kvm" "gamemode" ];
+    extraGroups = [ "wheel" "docker" "dialout" "scanner" "lp" "libvirtd" "wireshark" "plugdev" "adbusers" "kvm" "gamemode" "klipper" ];
   };
 }
