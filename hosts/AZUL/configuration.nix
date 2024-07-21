@@ -56,6 +56,12 @@
             "::1/128"
           ];
         };
+        virtual_sdcard.path = "${config.services.moonraker.stateDir}/gcodes";
+        timelapse = {
+          output_path = "${config.services.moonraker.stateDir}/timelapse/";
+          ffmpeg_binary_path = "${pkgs.ffmpeg}/bin/ffmpeg";
+          camera = "placeholder";
+        };
       };
     };
 
