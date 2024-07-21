@@ -42,7 +42,7 @@ in
   time.timeZone = "America/Louisville";
   networking = {
     hostName = "AZUL";
-    useDHCP = true;
+    networkmanager.enable = true;
     firewall.enable = false;
   };
 
