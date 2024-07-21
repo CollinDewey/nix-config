@@ -13,6 +13,10 @@ let
     url = "https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/ad50c97a5208477cb0185d33b5bea661aef44c08/Papirus/24x24/panel/start-here-kde-plasma-symbolic.svg";
     sha256 = "sha256:1cq3iqgsn59ch1bgk1ncbrlgmhwpnfcnflzxdfra2pj0axwm6snr";
   };
+  wallpaper = builtins.fetchurl {
+    url = "https://derpicdn.net/img/view/2012/6/17/4901.png";
+    sha256 = "56ecbf09d94b32f944bc372b271dd370f4056a67062d3978b09ba294d06868b4";
+  };
 in {
   options.modules.plasma = { enable = mkEnableOption "plasma"; };
   config = mkIf cfg.enable {
@@ -45,6 +49,7 @@ in {
           colorScheme = "BonnyDarkColor";
           iconTheme = "Papirus-Dark";
           clickItemTo = "select";
+          wallpaper = "${wallpaper}";
         };
         windows.allowWindowsToRememberPositions = true;
         spectacle.shortcuts.captureRectangularRegion = "Print";
