@@ -229,7 +229,7 @@
                 multimedia.enable = true;
                 #office.enable = true;
                 plasma.enable = true;
-                plover.enable = true;
+                #plover.enable = true;
                 utilities.enable = true;
                 zsh.enable = true;
               };
@@ -325,7 +325,7 @@
                 multimedia.enable = true;
                 #office.enable = true;
                 plasma.enable = true;
-                plover.enable = true;
+                #plover.enable = true;
                 utilities.enable = true;
                 zsh.enable = true;
               };
