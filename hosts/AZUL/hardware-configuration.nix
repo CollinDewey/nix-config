@@ -100,7 +100,7 @@ in
     hideMounts = true;
     directories = [
       "/var/log" # Keep system logs
-      "/var/lib/syncthing" # Syncthing
+      { directory = "/var/lib/syncthing"; user = "collin"; group = "collin"; }
       { directory = "/var/lib/klipper"; user = "klipper"; group = "klipper"; }
       { directory = "/var/lib/moonraker"; user = "klipper"; group = "klipper"; }
       { directory = "/var/lib/private/klipper"; user = "klipper"; group = "klipper"; }
