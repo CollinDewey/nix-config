@@ -51,6 +51,7 @@ in {
           clickItemTo = "select";
           wallpaper = "${wallpaper}";
         };
+        kscreenlocker.wallpaper = "${wallpaper}";
         windows.allowWindowsToRememberPositions = true;
         spectacle.shortcuts.captureRectangularRegion = "Print";
         kwin = {
