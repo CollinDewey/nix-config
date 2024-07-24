@@ -16,9 +16,8 @@ in {
     documentation.man.enable = lib.mkDefault false;
     documentation.nixos.enable = lib.mkDefault false;
 
-    # No Fonts. No Sound
+    # No Fonts.
     fonts.fontconfig.enable = lib.mkDefault false;
-    sound.enable = false;
 
     # No XDG
     xdg.autostart.enable = mkDefault false;

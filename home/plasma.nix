@@ -52,7 +52,7 @@ in {
           wallpaper = "${wallpaper}";
         };
         kscreenlocker.wallpaper = "${wallpaper}";
-        windows.allowWindowsToRememberPositions = true;
+        #windows.allowWindowsToRememberPositions = true; # Why is this gone? No idea.
         spectacle.shortcuts.captureRectangularRegion = "Print";
         kwin = {
           titlebarButtons = {
