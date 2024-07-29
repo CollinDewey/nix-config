@@ -52,7 +52,7 @@ in {
           wallpaper = "${wallpaper}";
         };
         kscreenlocker.wallpaper = "${wallpaper}";
-        #windows.allowWindowsToRememberPositions = true; # Why is this gone? No idea.
+        windows.allowWindowsToRememberPositions = true;
         spectacle.shortcuts.captureRectangularRegion = "Print";
         kwin = {
           titlebarButtons = {
@@ -66,7 +66,10 @@ in {
           effects = {
             desktopSwitching.animation = "slide";
             wobblyWindows.enable = true;
+            shakeCursor.enable = false;
           };
+          edgeBarrier = 0;
+          cornerBarrier = false;
         };
         hotkeys.commands = {
           "launch-firefox" = {
@@ -95,7 +98,12 @@ in {
           };
           "kdeglobals"."KDE"."widgetStyle" = "kvantum";
         };
-         panels = [
+        powerdevil = {
+          powerButtonAction = lib.mkDefault "shutDown";
+          autoSuspend.action = lib.mkDefault "nothing";
+          turnOffDisplay.idleTimeout = lib.mkDefault "never";
+        };
+        panels = [
           # Windows-like panel at the bottom
           {
             location = "top";
