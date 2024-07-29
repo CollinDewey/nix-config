@@ -15,7 +15,7 @@ in
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
     kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" "amd_pstate=active" "iommu=pt" "kvm.ignore_msrs=1" "report_ignored_msrs=0" ];
-    kernelModules = [ "kvmfr" ];
+    kernelModules = [ "kvmfr" "i2c-dev" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelPatches = [ {
       name = "fix-nvidia-amdgpu-pat-mem";
