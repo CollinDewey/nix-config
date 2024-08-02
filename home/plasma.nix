@@ -98,7 +98,7 @@ in {
           };
           "kdeglobals"."KDE"."widgetStyle" = "kvantum";
         };
-        powerdevil = {
+        powerdevil.AC = {
           powerButtonAction = lib.mkDefault "shutDown";
           autoSuspend.action = lib.mkDefault "nothing";
           turnOffDisplay.idleTimeout = lib.mkDefault "never";
