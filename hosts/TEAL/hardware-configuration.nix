@@ -6,6 +6,7 @@
   imports = [
     inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModules.impermanence
+    inputs.nvidia-vgpu.nixosModules.nvidia-vgpu
   ];
 
   # Boot
@@ -33,27 +34,84 @@
 
   # Networking
   time.timeZone = "America/Louisville";
-  systemd.network.wait-online.anyInterface = true;
+  systemd.network = {
+    enable = true;
+    wait-online.anyInterface = true;
+    links = {
+      "10-lan" = {
+        matchConfig.PermanentMACAddress = "a0:36:9f:54:a2:dc";
+        linkConfig.Name = "ten0";
+      };
+      "10-cyan" = {
+        matchConfig.PermanentMACAddress = "a0:36:9f:54:a2:de";
+        linkConfig.Name = "ten1";
+      };
+      "10-mobo" = {
+        matchConfig.PermanentMACAddress = "0a:e0:af:ad:2a:57";
+        linkConfig.Name = "mobo0";
+      };
+      "10-quad0" = {
+        matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4c";
+        linkConfig.Name = "quad0";
+      };
+      "10-quad1" = {
+        matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4d";
+        linkConfig.Name = "quad1";
+      };
+      "10-quad2" = {
+        matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4e";
+        linkConfig.Name = "quad2";
+      };
+      "10-quad3" = {
+        matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4f";
+        linkConfig.Name = "quad3";
+      };
+    };
+    networks = {
+      "10-lan" = {
+        matchConfig.Name = "ten0";
+        networkConfig.DHCP = "ipv4";
+      };
+      "10-cyan" = {
+        matchConfig.Name = "ten1";
+        linkConfig.MTUBytes = "9000";
+        #address = [ "172.26.0.101/32" ];
+        #routes = [{ 
+        #  routeConfig = {
+        #    Gateway = "172.26.0.100";
+        #    Destination = "172.26.1.10/32";
+        #  };
+        #}];
+        macvlan = [
+          "macvlan0"
+        ];
+      };
+      "20-macvlan0" = { # This is not setup correctly. I'll fix it later.
+        matchConfig.Name = "macvlan0";
+        linkConfig.MTUBytes = "9000";
+        address = [ "172.26.0.100/16" ];
+        routes = [{ 
+          routeConfig = {
+            Gateway = "172.26.0.1";
+            Destination = "172.26.0.0/16";
+          };
+        }];
+      };
+    };
+    netdevs = {
+      "10-macvlan" = {
+        netdevConfig = {
+          Name = "macvlan0";
+          Kind = "macvlan";
+        };
+        macvlanConfig.Mode = "bridge";
+      };
+    };
+  };
   networking = {
     hostName = "TEAL";
-    nameservers = [ "172.16.0.3" ];
-    defaultGateway = "172.16.0.1";
     useDHCP = false;
     firewall.enable = false;
-    firewall.checkReversePath = false;
-    interfaces = {
-      enp5s0f1 = {
-        ipv4.addresses = [{
-          address = "10.133.133.2";
-          prefixLength = 24;
-        }];
-        useDHCP = false;
-      };
-      enp5s0f0.useDHCP = true;
-      br0.useDHCP = true;
-    };
-    bridges.br0 = { interfaces = []; }; # VM Bridge
-    bridges.br1 = { interfaces = []; }; # Container Bridge
   };
 
   # Disks
@@ -117,8 +175,8 @@
   };
   systemd.tmpfiles.rules = [ # bcache setup based on https://www.reddit.com/r/linux_gaming/tc3rkj
     "L /persist/hiddenRoot - - - - /.hidden"
-    "d /home/collin 0755 1000 1000 -"
-    "d /home/collin/.config 0755 1000 1000 -"
+    "d /home/collin 0755 1000 1000 - -"
+    "d /home/collin/.config 0755 1000 1000 - -"
     "w /sys/block/bcache0/bcache/sequential_cutoff - - - - 3221225472" # 3GB
     "w /sys/block/bcache1/bcache/sequential_cutoff - - - - 3221225472" # 3GB
     "w /sys/block/bcache0/queue/read_ahead_kb - - - - 16384" # Read ahead 16K

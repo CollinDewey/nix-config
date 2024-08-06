@@ -82,19 +82,20 @@ in
     interfaces.eno2 = {
       ipv4 = {
         addresses = [{
-          address = "10.133.133.3";
-          prefixLength = 24;
+          address = "172.26.1.10";
+          prefixLength = 16;
         }];
-        routes = [{ # Access container LAN through 10GbE link
-          address = "10.111.111.0";
-          prefixLength = 24;
-          via = "10.133.133.1";
-        }];
+        #routes = [{ # Access container LAN through 10GbE link
+        #  address = "10.111.111.0";
+        #  prefixLength = 24;
+        #  via = "10.133.133.1";
+        #}];
       };
+      mtu = 9000;
       useDHCP = false;
     };
     hosts = {
-      "10.133.133.2" = [ "TEAL" ]; # 10 Gigabit Link
+      "172.26.0.100" = [ "TEAL" ]; # 10 Gigabit Link
     };
     firewall = {
       enable = false;
@@ -162,48 +163,48 @@ in
   disko.devices = import ./disko.nix;
 
   # NFS
-  fileSystems = {
-    "/mnt/TEAL" = {
-      device = "TEAL:/";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/vm_storage" = {
-      device = "TEAL:/vm_storage";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/snapshots" = {
-      device = "TEAL:/snapshots";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/services" = {
-      device = "TEAL:/services";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/cyber" = {
-      device = "TEAL:/cyber";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/storage" = {
-      device = "TEAL:/storage";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/global" = {
-      device = "TEAL:/network_share/Global";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/cmd" = {
-      device = "TEAL:/network_share/CMD";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-  };
+  #fileSystems = {
+  #  "/mnt/TEAL" = {
+  #    device = "TEAL:/";
+  #    fsType = "nfs";
+  #    options = nfs_opts;
+  #  };
+  #  "/mnt/vm_storage" = {
+  #    device = "TEAL:/vm_storage";
+  #    fsType = "nfs";
+  #    options = nfs_opts;
+  #  };
+  #  "/mnt/snapshots" = {
+  #    device = "TEAL:/snapshots";
+  #    fsType = "nfs";
+  #    options = nfs_opts;
+  #  };
+  #  "/mnt/services" = {
+  #    device = "TEAL:/services";
+  #    fsType = "nfs";
+  #    options = nfs_opts;
+  #  };
+  #  "/mnt/cyber" = {
+  #    device = "TEAL:/cyber";
+  #    fsType = "nfs";
+  #    options = nfs_opts;
+  #  };
+  #  "/mnt/storage" = {
+  #    device = "TEAL:/storage";
+  #    fsType = "nfs";
+  #    options = nfs_opts;
+  #  };
+  #  "/mnt/global" = {
+  #    device = "TEAL:/network_share/Global";
+  #    fsType = "nfs";
+  #    options = nfs_opts;
+  #  };
+  #  "/mnt/cmd" = {
+  #    device = "TEAL:/network_share/CMD";
+  #    fsType = "nfs";
+  #    options = nfs_opts;
+  #  };
+  #};
 
   # Persistance
   users.mutableUsers = false;
