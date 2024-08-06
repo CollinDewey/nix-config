@@ -24,6 +24,7 @@ in {
       simple-scan
       #obsidian
       vscode
+      nil
       tigervnc
       x11vnc
       barrier
