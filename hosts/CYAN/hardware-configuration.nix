@@ -70,6 +70,7 @@ in
     '';
   };
   environment.variables.__RM_NO_VERSION_CHECK = "1";
+  environment.variables.KWIN_DRM_DEVICES="/dev/dri/by-path/pci-0000:03:00.0-card";
 
   # Networking
   time.timeZone = "America/Louisville";
