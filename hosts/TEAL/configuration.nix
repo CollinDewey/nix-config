@@ -10,6 +10,13 @@ in
   # State
   system.stateVersion = "23.05";
 
+  # VGPU
+  hardware.nvidia.vgpu.fastapi-dls = {
+    enable = true;
+    dataDir = "/services/fastapi-dls";
+    port = 53492;
+  };
+
   services = {
     netdata.enable = true;
 

@@ -15,7 +15,7 @@
     initrd.availableKernelModules = [ "nvme" ];
     kernelModules = [ "kvm-intel" "vfio_pci" "vfio" ];
     kernelParams = [ "mitigations=off" "retbleed=off" "intel_iommu=on" "iommu=pt" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_6;
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
     # Boot
@@ -32,6 +32,17 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;
 
+  # Video
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.vgpu = {
+    enable = true;
+    profile_overrides = {
+      "GeForce RTX 2070-1".frameLimiter = false;
+      "GeForce RTX 2070-2".frameLimiter = false;
+      "GeForce RTX 2070-3".frameLimiter = false;
+      "GeForce RTX 2070-4".frameLimiter = false;
+    };
+  };
   # Networking
   time.timeZone = "America/Louisville";
   systemd.network = {
