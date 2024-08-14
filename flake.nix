@@ -63,7 +63,8 @@
     };
 
     nvidia-vgpu = {
-      url = "github:CollinDewey/nixos-nvidia-vgpu/16.5";
+      url = "github:CollinDewey/nixos-nvidia-vgpu";
+#      url = "git+file:/services/syncthing/Desktop/Git/CollinDewey/nixos-nvidia-vgpu";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
