@@ -64,8 +64,8 @@
   services.openvscode-server = {
     enable = true;
     host = "0.0.0.0";
+    user = "collin";
     withoutConnectionToken = true;
-    extraGroups = [ "collin" ];
   };
 
   # State
