@@ -15,18 +15,18 @@ in
     initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "ahci" "usbhid" "usb_storage" "sd_mod" ];
     initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
     kernelParams = lib.mkDefault [ "mitigations=off" "retbleed=off" "amd_pstate=active" "iommu=pt" "kvm.ignore_msrs=1" "report_ignored_msrs=0" ];
-    kernelModules = [ "kvmfr" "i2c-dev" ];
+    #kernelModules = [ "kvmfr" "i2c-dev" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelPatches = [ {
       name = "fix-nvidia-amdgpu-pat-mem";
       patch = null;
       extraConfig = "HSA_AMD_SVM n";
     } ]; # https://gitlab.freedesktop.org/drm/amd/-/issues/2794
-    extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (_: { patches = []; })) v4l2loopback ];
-    extraModprobeConfig = ''
-      options kvmfr static_size_mb=128
-      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-    '';
+    #extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (_: { patches = []; })) v4l2loopback ];
+    #extraModprobeConfig = ''
+    #  options kvmfr static_size_mb=128
+    #  options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    #'';
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
     # Filesystems
@@ -70,7 +70,7 @@ in
     '';
   };
   environment.variables.__RM_NO_VERSION_CHECK = "1";
-  environment.variables.KWIN_DRM_DEVICES="/dev/dri/by-path/pci-0000:03:00.0-card";
+  environment.variables.KWIN_DRM_DEVICES="/dev/dri/card1";
 
   # Networking
   time.timeZone = "America/Louisville";
@@ -164,48 +164,48 @@ in
   disko.devices = import ./disko.nix;
 
   # NFS
-  #fileSystems = {
-  #  "/mnt/TEAL" = {
-  #    device = "TEAL:/";
-  #    fsType = "nfs";
-  #    options = nfs_opts;
-  #  };
-  #  "/mnt/vm_storage" = {
-  #    device = "TEAL:/vm_storage";
-  #    fsType = "nfs";
-  #    options = nfs_opts;
-  #  };
-  #  "/mnt/snapshots" = {
-  #    device = "TEAL:/snapshots";
-  #    fsType = "nfs";
-  #    options = nfs_opts;
-  #  };
-  #  "/mnt/services" = {
-  #    device = "TEAL:/services";
-  #    fsType = "nfs";
-  #    options = nfs_opts;
-  #  };
-  #  "/mnt/cyber" = {
-  #    device = "TEAL:/cyber";
-  #    fsType = "nfs";
-  #    options = nfs_opts;
-  #  };
-  #  "/mnt/storage" = {
-  #    device = "TEAL:/storage";
-  #    fsType = "nfs";
-  #    options = nfs_opts;
-  #  };
-  #  "/mnt/global" = {
-  #    device = "TEAL:/network_share/Global";
-  #    fsType = "nfs";
-  #    options = nfs_opts;
-  #  };
-  #  "/mnt/cmd" = {
-  #    device = "TEAL:/network_share/CMD";
-  #    fsType = "nfs";
-  #    options = nfs_opts;
-  #  };
-  #};
+  fileSystems = {
+    #"/mnt/TEAL" = {
+    #  device = "TEAL:/";
+    #  fsType = "nfs";
+    #  options = nfs_opts;
+    #};
+    "/mnt/vm_storage" = {
+      device = "TEAL:/vm_storage";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    #"/mnt/snapshots" = {
+    #  device = "TEAL:/snapshots";
+    #  fsType = "nfs";
+    #  options = nfs_opts;
+    #};
+    "/mnt/services" = {
+      device = "TEAL:/services";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/cyber" = {
+      device = "TEAL:/cyber";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/storage" = {
+      device = "TEAL:/storage";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/global" = {
+      device = "TEAL:/network_share/Global";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+    "/mnt/cmd" = {
+      device = "TEAL:/network_share/CMD";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
+  };
 
   # Persistance
   users.mutableUsers = false;
