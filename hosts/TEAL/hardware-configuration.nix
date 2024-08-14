@@ -37,12 +37,14 @@
   hardware.nvidia.vgpu = {
     enable = true;
     profile_overrides = {
-      "GeForce RTX 2070-1".frameLimiter = false;
-      "GeForce RTX 2070-2".frameLimiter = false;
-      "GeForce RTX 2070-3".frameLimiter = false;
-      "GeForce RTX 2070-4".frameLimiter = false;
+      "GRID RTX6000-1Q".frameLimiter = false;
+      "GRID RTX6000-2Q".frameLimiter = false;
+      "GRID RTX6000-4Q".frameLimiter = false;
     };
   };
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport32Bit = true;
+
   # Networking
   time.timeZone = "America/Louisville";
   systemd.network = {
