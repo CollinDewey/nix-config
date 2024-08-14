@@ -61,6 +61,12 @@
 
   # Various Services
   services.preload.enable = true;
+  services.openvscode-server = {
+    enable = true;
+    host = "0.0.0.0";
+    withoutConnectionToken = true;
+    extraGroups = [ "collin" ];
+  };
 
   # State
   system.stateVersion = "23.11";
