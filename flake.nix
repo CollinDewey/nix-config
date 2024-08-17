@@ -578,6 +578,31 @@
       };
     };
 
+    homeConfigurations.CYBERL = home-manager-unstable.lib.homeManagerConfiguration {
+      pkgs = import nixpkgs-unstable {system = "x86_64-linux";};
+      extraSpecialArgs = { inherit inputs; };
+
+      modules = [
+        ./home
+        ./users/collin/home.nix
+        ./hosts/CYBERL/home.nix
+        plasma-manager.homeManagerModules.plasma-manager
+        nix-index-database.hmModules.nix-index
+        {
+          modules = {
+            communication.enable = true;
+            cyber.enable = true;
+            misc.enable = true;
+            multimedia.enable = true;
+            plasma.enable = true;
+            utilities.enable = true;
+            zsh.enable = true;
+          };
+          home.stateVersion = "24.05";
+        }
+      ];
+    };
+
     darwinConfigurations = {
       COPPER = darwin.lib.darwinSystem {
         system = "x86_64-darwin";
