@@ -32,15 +32,24 @@ in
       mode = "0555";
       text = "${pkgs.gamescope}/bin/gamescope -O HDMI-A-1 -- ${pkgs.moonlight-qt}/bin/moonlight";
     };
+    "greetd/Virt-Manager.sh" = {
+      mode = "0555";
+      text = "WLR_NO_HARDWARE_CURSORS=1 ${pkgs.labwc}/bin/labwc -s '${pkgs.virt-manager}/bin/virt-manager -c qemu:///system'";
+    };
     "greetd/zsh.desktop".text = ''
       [Desktop Entry]
-      Name=ZSH
+      Name=zsh
       Exec=zsh
     '';
     "greetd/Moonlight.desktop".text = ''
       [Desktop Entry]
       Name=Moonlight
       Exec=/etc/greetd/Moonlight.sh
+    '';
+    "greetd/Virt-Manager.desktop".text = ''
+      [Desktop Entry]
+      Name=Virt-Manager
+      Exec=/etc/greetd/Virt-Manager.sh
     '';
   };
 
