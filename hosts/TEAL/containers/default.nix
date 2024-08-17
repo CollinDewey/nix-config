@@ -12,7 +12,6 @@
 
   systemd.tmpfiles.rules = [
     "d /services/jellyfin/config 0755 1000 1000 -"
-    "d /services/jellyfin/media 0755 1000 1000 -"
     "d /services/syncthing 0755 1000 1000 -"
     "d /services/adguardhome 0755 0 0 -"
     "d /services/microbin 0755 0 0 -"
