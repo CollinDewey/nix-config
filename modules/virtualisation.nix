@@ -19,6 +19,7 @@ in {
         enable = true;
         flags = [ "--all" ];
       };
+      enableNvidia = cfg.nvidia;
     };
     virtualisation.podman = {
       enable = cfg.podman;
