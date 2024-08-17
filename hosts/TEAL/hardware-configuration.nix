@@ -19,7 +19,10 @@
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
     # Boot
-    loader.systemd-boot.enable = true;
+    loader.systemd-boot = {
+      enable = true;
+      consoleMode = "max";
+    };
     initrd.systemd.emergencyAccess = true;
     loader.efi.canTouchEfiVariables = true;
   };
@@ -170,13 +173,16 @@
     "/persist" = {
       hideMounts = true;
       files = [
-        #{ file = "/home/collin/.zsh_history"; parentDirectory = { user = "collin"; group = "collin"; }; } # Full tmpfs home
         { file = "/home/collin/.config/htop/htoprc"; parentDirectory = { user = "collin"; group = "collin"; }; } # Full tmpfs home
+        "/home/collin/.zsh_history"# Keep shell history
         "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
         "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
         "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
         "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
         "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
+      ];
+      directories = [
+         { directory = "/home/collin/.config/Moonlight Game Streaming Project"; user = "collin"; group = "collin"; }
       ];
     };
     "/clearable" = {
@@ -187,10 +193,12 @@
       ];
     };
   };
+  programs.zsh.histFile = "/persist/home/collin/.zsh_history";
   systemd.tmpfiles.rules = [ # bcache setup based on https://www.reddit.com/r/linux_gaming/tc3rkj
-    "L /persist/hiddenRoot - - - - /.hidden"
+    "L /.hidden - - - - /persist/hiddenRoot"
     "d /home/collin 0755 1000 1000 - -"
     "d /home/collin/.config 0755 1000 1000 - -"
+    "d /home/collin/.cache 0755 1000 1000 - -"
     "w /sys/block/bcache0/bcache/sequential_cutoff - - - - 3221225472" # 3GB
     "w /sys/block/bcache1/bcache/sequential_cutoff - - - - 3221225472" # 3GB
     "w /sys/block/bcache0/queue/read_ahead_kb - - - - 16384" # Read ahead 16K

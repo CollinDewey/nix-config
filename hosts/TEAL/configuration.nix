@@ -17,6 +17,33 @@ in
     port = 53492;
   };
 
+  # GUI
+  services.seatd.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --sessions /etc/greetd -d --cmd zsh";
+      };
+    };
+  };
+  environment.etc = {
+    "greetd/Moonlight.sh" = {
+      mode = "0555";
+      text = "${pkgs.gamescope}/bin/gamescope -O HDMI-A-1 -- ${pkgs.moonlight-qt}/bin/moonlight";
+    };
+    "greetd/zsh.desktop".text = ''
+      [Desktop Entry]
+      Name=ZSH
+      Exec=zsh
+    '';
+    "greetd/Moonlight.desktop".text = ''
+      [Desktop Entry]
+      Name=Moonlight
+      Exec=/etc/greetd/Moonlight.sh
+    '';
+  };
+
   services = {
     netdata.enable = true;
 
