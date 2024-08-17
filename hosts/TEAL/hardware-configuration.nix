@@ -193,7 +193,6 @@
       ];
     };
   };
-  programs.zsh.histFile = "/persist/home/collin/.zsh_history";
   systemd.tmpfiles.rules = [ # bcache setup based on https://www.reddit.com/r/linux_gaming/tc3rkj
     "L /.hidden - - - - /persist/hiddenRoot"
     "d /home/collin 0755 1000 1000 - -"
