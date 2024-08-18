@@ -56,6 +56,14 @@ in
   services = {
     netdata.enable = true;
 
+    traefik = {
+      enable = true;
+      group = "docker";
+      dataDir = "/services/traefik/data/";
+      staticConfigFile = "/services/traefik/traefik.toml";
+      environmentFiles = [ "/services/traefik/traefik.env" ];
+    };
+
     nfs.server = {
       enable = true;
       exports = ''
