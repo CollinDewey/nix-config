@@ -9,6 +9,7 @@ in {
     podman = mkEnableOption "podman";
     libvirt = mkEnableOption "libvirt";
     nvidia = mkEnableOption "nvidia";
+    ipv6 = mkEnableOption "ipv6";
   };
   config = {
     environment.systemPackages = mkIf cfg.docker [ pkgs.ctop ];
@@ -20,6 +21,10 @@ in {
         flags = [ "--all" ];
       };
       enableNvidia = cfg.nvidia;
+      daemon.settings = mkIf cfg.ipv6 {
+        ipv6 = true;
+        fixed-cidr-v6 = "2001:db8:1::/64";
+      };
     };
     virtualisation.podman = {
       enable = cfg.podman;

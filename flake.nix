@@ -367,6 +367,7 @@
                 docker = true;
                 libvirt = true;
                 nvidia = false;
+                ipv6 = true;
               };
               zsh.enable = true;
               server.enable = true;
