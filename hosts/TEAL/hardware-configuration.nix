@@ -172,6 +172,7 @@
   environment.persistence = {
     "/persist" = {
       hideMounts = true;
+      enableWarnings = false;
       files = [
         { file = "/home/collin/.config/htop/htoprc"; parentDirectory = { user = "collin"; group = "collin"; }; } # Full tmpfs home
         "/home/collin/.zsh_history"# Keep shell history
@@ -187,6 +188,7 @@
     };
     "/clearable" = {
       hideMounts = true;
+      enableWarnings = false;
       directories = [
         "/var/log" # Keep system logs
         "/var/lib/docker" # Keep Docker junk

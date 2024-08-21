@@ -153,24 +153,27 @@
   users.mutableUsers = false;
   systemd.coredump.extraConfig = "Storage=none";
   fileSystems."/persist".neededForBoot = true;
-  environment.persistence."/persist" = {
-    hideMounts = true;
-    directories = [
-      "/var/log" # Keep system logs
-      "/var/lib/docker" # Keep Docker junk
-      "/var/lib/libvirt" # Keep KVM junk
-      "/var/lib/iwd" # I like using WiFi
-      { directory = "/var/lib/syncthing"; user = "collin"; group = "collin"; }
-      "/var/lib/NetworkManager" # I like using WiFi
-      "/etc/NetworkManager/system-connections" # I like using WiFi
-    ];
-    files = [
-      "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
-      "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
-      "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
-      "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
-      "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
-    ];
+  environment.persistence = {
+    "/persist" = {
+      hideMounts = true;
+      enableWarnings = false;
+      directories = [
+        "/var/log" # Keep system logs
+        "/var/lib/docker" # Keep Docker junk
+        "/var/lib/libvirt" # Keep KVM junk
+        "/var/lib/iwd" # I like using WiFi
+        { directory = "/var/lib/syncthing"; user = "collin"; group = "collin"; }
+        "/var/lib/NetworkManager" # I like using WiFi
+        "/etc/NetworkManager/system-connections" # I like using WiFi
+      ];
+      files = [
+        "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
+        "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
+        "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
+        "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
+        "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
+      ];
+   };
   };
 
   # Sops Key File Location

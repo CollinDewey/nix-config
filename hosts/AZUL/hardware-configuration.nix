@@ -96,23 +96,26 @@ in
   users.mutableUsers = false;
   systemd.coredump.extraConfig = "Storage=none";
   fileSystems."/persist".neededForBoot = true;
-  environment.persistence."/persist" = {
-    hideMounts = true;
-    directories = [
-      "/var/log" # Keep system logs
-      { directory = "/var/lib/syncthing"; user = "collin"; group = "collin"; }
-      { directory = "/var/lib/klipper"; user = "klipper"; group = "klipper"; }
-      { directory = "/var/lib/moonraker"; user = "klipper"; group = "klipper"; }
-      { directory = "/var/lib/private/klipper"; user = "klipper"; group = "klipper"; }
-      { directory = "/var/lib/private/moonraker"; user = "klipper"; group = "klipper"; }
-    ];
-    files = [
-      "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
-      "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
-      "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
-      "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
-      "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
-    ];
+  environment.persistence = {
+    "/persist" = {
+      hideMounts = true;
+      enableWarnings = false;
+      directories = [
+        "/var/log" # Keep system logs
+        { directory = "/var/lib/syncthing"; user = "collin"; group = "collin"; }
+        { directory = "/var/lib/klipper"; user = "klipper"; group = "klipper"; }
+        { directory = "/var/lib/moonraker"; user = "klipper"; group = "klipper"; }
+        { directory = "/var/lib/private/klipper"; user = "klipper"; group = "klipper"; }
+        { directory = "/var/lib/private/moonraker"; user = "klipper"; group = "klipper"; }
+      ];
+      files = [
+        "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
+        "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
+        "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
+        "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
+        "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
+      ];
+   };
   };
   systemd.tmpfiles.rules = [
     "d /var/lib/private 0700 0000 0000 -"
