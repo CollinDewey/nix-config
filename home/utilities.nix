@@ -22,7 +22,7 @@ in {
       bitwarden-cli
       bitwarden-menu
       simple-scan
-      #obsidian
+      obsidian
       vscode
       nil
       tigervnc
