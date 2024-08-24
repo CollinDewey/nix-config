@@ -222,6 +222,7 @@ in
         { directory = "/var/lib/syncthing"; user = "collin"; group = "collin"; } # Syncthing
         "/var/lib/NetworkManager" # I like using WiFi
         "/etc/nixos" # Not nuke my configuration
+        { directory = "/var/lib/private/ollama"; user = "ollama"; group = "ollama"; } # Ollama
       ];
       files = [
         "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
