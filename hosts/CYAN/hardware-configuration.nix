@@ -69,6 +69,7 @@ in
     EndSection
     '';
   };
+  hardware.nvidia.open = false;
   environment.variables.__RM_NO_VERSION_CHECK = "1";
   environment.variables.KWIN_DRM_DEVICES="/dev/dri/card1";
 
