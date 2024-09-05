@@ -592,12 +592,8 @@
         nix-index-database.hmModules.nix-index
         {
           modules = {
-            communication.enable = true;
-            cyber.enable = true;
-            misc.enable = true;
-            multimedia.enable = true;
             plasma.enable = true;
-            utilities.enable = true;
+            plasma.packages = false;
             zsh.enable = true;
           };
           home.stateVersion = "24.05";

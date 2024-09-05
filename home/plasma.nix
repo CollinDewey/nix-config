@@ -18,22 +18,29 @@ let
     sha256 = "56ecbf09d94b32f944bc372b271dd370f4056a67062d3978b09ba294d06868b4";
   };
 in {
-  options.modules.plasma = { enable = mkEnableOption "plasma"; };
+  options.modules.plasma = { 
+    enable = mkEnableOption "plasma";
+    packages = mkOption {
+      type = types.bool;
+      default = true;
+    };
+  };
   config = mkIf cfg.enable {
     # Basic KDE Packages
     home.packages = with pkgs; [
-      kdePackages.kate
       papirus-icon-theme
+      kdePackages.qtstyleplugin-kvantum
+    ] ++ lib.optionals (cfg.packages) (with pkgs; [
+      kdePackages.kate
       lxqt.pavucontrol-qt
       guvcview
       kdePackages.gwenview
       kdePackages.ark
-      kdePackages.qtstyleplugin-kvantum
       kdePackages.kimageformats
       kdePackages.colord-kde
       kdePackages.krfb
       kdePackages.plasma-systemmonitor
-    ];
+    ]);
 
     # Default Settings
     home.file.".config/Kvantum/Bonny-Kvantum".source = config.lib.file.mkOutOfStoreSymlink "${bonny}/Bonny Kvantum Themes/Bonny-Kvantum";
