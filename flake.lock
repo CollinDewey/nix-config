@@ -475,11 +475,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1723630377,
-        "narHash": "sha256-Z+cZ1feBe5G9vI276iyleZzwW5AHKe1BI0z9zV3NG/0=",
+        "lastModified": 1725659487,
+        "narHash": "sha256-Ffm2Tph8DFAh2jwTqzHMgRZNvVxpJSDPTAo54vy5Gd4=",
         "owner": "CollinDewey",
         "repo": "nixos-nvidia-vgpu",
-        "rev": "f6d7818f09df1fffc5131ebaf70168aeb5d056c2",
+        "rev": "553a6785cd3a4dadcc829376325f9a23c2855836",
         "type": "github"
       },
       "original": {

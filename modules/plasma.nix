@@ -45,6 +45,7 @@ in {
     )];
 
     programs.kdeconnect.enable = true;
+    services.system76-scheduler.enable = true;
 
     # Audio
     security.rtkit.enable = true;
