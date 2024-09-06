@@ -18,4 +18,5 @@
     "modesetting"
     "fbdev"
   ];
+  hardware.nvidia.open = false;
 }
