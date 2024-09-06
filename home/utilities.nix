@@ -27,7 +27,7 @@ in {
       nil
       tigervnc
       x11vnc
-      barrier
+      input-leap
       imhex
       partition-manager
     ];
