@@ -2,8 +2,7 @@
   description = "Collin's Nix Configuration";
 
   inputs = {
-    #nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:cmm/nixpkgs/fix/bees-module-eval";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     impermanence.url = "github:nix-community/impermanence";
@@ -182,10 +181,10 @@
           ./config
           ./config/linux.nix
           ./overlays
+          ./overlays/linux-firmware.nix
           ./modules
           ./hosts/BURGUNDY/configuration.nix
-
-          # Specialized Hardware Configuration
+          ./hosts/BURGUNDY/disko.nix
           ./hosts/BURGUNDY/hardware-configuration.nix
 
           {
@@ -242,7 +241,7 @@
                 zsh.enable = true;
               };
 
-              home.stateVersion = "22.11";
+              home.stateVersion = "24.11";
             };
 
             home-manager.users.shimmer = {
@@ -269,7 +268,7 @@
                 zsh.enable = true;
               };
 
-              home.stateVersion = "23.05";
+              home.stateVersion = "24.11";
             };
           }
         ];

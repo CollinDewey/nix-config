@@ -10,12 +10,36 @@
   # Boot
   boot = {
     # Kernel
-    initrd.availableKernelModules = [ "xhci_pci" "nvme" "ahci" "usb_storage" "sd_mod" ];
-    extraModulePackages = [ config.boot.kernelPackages.kvmfr ];
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ "i915" ]; # Early KMS
+      systemd.enable = true;  
+      systemd.services.initrd-brightness = {
+        unitConfig.DefaultDependencies = false;
+        wantedBy = [ "initrd.target" ];
+        requires = [
+          ''sys-devices-pci0000:00-0000:00:02.0-drm-card1-card1\x2deDP\x2d1-intel_backlight.device''
+          ''sys-devices-pci0000:00-0000:00:02.0-drm-card1-card1\x2deDP\x2d2-card1\x2deDP\x2d2\x2dbacklight.device''
+        ];
+        before = [ "plymouth-start.service" ];
+        after = [
+          ''sys-devices-pci0000:00-0000:00:02.0-drm-card1-card1\x2deDP\x2d1-intel_backlight.device''
+          ''sys-devices-pci0000:00-0000:00:02.0-drm-card1-card1\x2deDP\x2d2-card1\x2deDP\x2d2\x2dbacklight.device''
+        ];
+        script = ''
+          echo 200 > '/sys/devices/pci0000:00/0000:00:02.0/drm/card1/card1-eDP-1/intel_backlight/brightness'
+          echo  0 > '/sys/devices/pci0000:00/0000:00:02.0/drm/card1/card1-eDP-2/card1-eDP-2-backlight/brightness'
+        '';
+      };  
+    };
+    extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (_: { patches = ( pkgs.fetchpatch { url = "https://github.com/gnif/LookingGlass/commit/7305ce36af211220419eeab302ff28793d515df2.patch"; hash = "sha256-97nZsIH+jKCvSIPf1XPf3i8Wbr24almFZzMOhjhLOYk="; stripLen = 1; }); })) v4l2loopback ];
     kernelModules = [ "kvm-amd" "uinput" "kvmfr" ];
-    extraModprobeConfig = ''options kvmfr static_size_mb=64'';
+    extraModprobeConfig = ''
+      options kvmfr static_size_mb=128
+      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    '';
     kernelParams = [ "mitigations=off" "retbleed=off" ];
-    kernelPackages = pkgs.linuxPackages_xanmod;
+    kernelPackages = pkgs.linuxPackages_testing;
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
     # Filesystems
@@ -29,21 +53,38 @@
   # Hardware
   hardware = {
     enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     bluetooth.enable = true;
-    nvidia.open = true;
-    nvidia.prime = {
-      amdgpuBusId = "PCI:6:0:0";
-      nvidiaBusId = "PCI:1:0:0";
+    bluetooth.powerOnBoot = true;
+    sensor.iio.enable = true;
+    opengl = {
+      enable = true;
+      extraPackages = with pkgs; [
+        intel-media-driver
+        vaapiIntel
+        vaapiVdpau
+        libvdpau-va-gl
+        vpl-gpu-rt
+      ];
     };
-    opengl.extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      rocmPackages.rocm-runtime
-      amdvlk
-    ];
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;
+  services.hardware.bolt.enable = true;
+  services.libinput = {
+    enable = true;
+    touchpad.naturalScrolling = true;
+  };
+  systemd.tmpfiles.rules = [
+    "w /sys/class/power_supply/BAT0/charge_control_end_threshold - - - - 80" # 80% Battery Limit Default
+  ];
+
+  # Second Screen Disable + KVMFR rule
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="input", ATTRS{name}=="Primax Electronics Ltd. ASUS Zenbook Duo Keyboard Touchpad", ATTRS{id/vendor}=="0b05", ATTRS{id/product}=="1b2c", ENV{WAYLAND_DISPLAY}="/run/user/1000/wayland-0", RUN+="${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-2.disable"
+    ACTION=="remove", SUBSYSTEM=="input", ATTRS{name}=="Primax Electronics Ltd. ASUS Zenbook Duo Keyboard Touchpad", ATTRS{id/vendor}=="0b05", ATTRS{id/product}=="1b2c", ENV{WAYLAND_DISPLAY}="/run/user/1000/wayland-0", RUN+="${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-2.enable output.eDP-2.position.0,900"
+    SUBSYSTEM=="kvmfr", OWNER="root", GROUP="libvirtd", MODE="0660"
+  '';
 
   # Networking
   time.timeZone = "America/Louisville";
@@ -62,50 +103,10 @@
     };
   };
 
-
-
   # Video
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" "displaylink" ];
-  #services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
-  powerManagement.cpuFreqGovernor = "powersave";
-  hardware.nvidia.prime.offload.enable = true;
   environment.variables.__RM_NO_VERSION_CHECK = "1";
-  services.power-profiles-daemon.enable = false;
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-    };
-  };
-
-  specialisation = {
-    dedicated.configuration = {
-      system.nixos.tags = [ "Dedicated" ];
-      powerManagement.cpuFreqGovernor = lib.mkForce "performance";
-      services.power-profiles-daemon.enable = lib.mkForce true;
-      services.tlp.enable = lib.mkForce false;
-      services.xserver.videoDrivers = lib.mkForce [ "nvidia" ];
-      hardware.nvidia.forceFullCompositionPipeline = true;
-      hardware.nvidia.prime = {
-        offload.enable = lib.mkForce false;
-        sync.enable = true;
-      };
-    };
-
-    reversePrime.configuration = {
-      system.nixos.tags = [ "ReversePrime" ];
-      hardware.nvidia = {
-        prime.reverseSync.enable = true;
-        modesetting.enable = true;
-      };
-    };
-  };
 
   # VFIO
-  services.udev.extraRules = ''
-    SUBSYSTEM=="kvmfr", OWNER="root", GROUP="libvirtd", MODE="0660"
-  '';
   environment.etc."looking-glass-client.ini".text = ''
     [app]
     shmFile=/dev/kvmfr0
@@ -141,14 +142,6 @@
     };
   };
 
-  # Partitioning
-  disko.devices = import ./disko.nix;
-
-  fileSystems."/mnt/Shared" = {
-    device = "/dev/disk/by-label/Shared";
-    fsType = "ntfs";
-  };
-
   # Persistance
   users.mutableUsers = false;
   systemd.coredump.extraConfig = "Storage=none";
@@ -162,6 +155,7 @@
         "/var/lib/docker" # Keep Docker junk
         "/var/lib/libvirt" # Keep KVM junk
         "/var/lib/iwd" # I like using WiFi
+        "/var/lib/bluetooth" # I like using my keyboard
         { directory = "/var/lib/syncthing"; user = "collin"; group = "collin"; }
         "/var/lib/NetworkManager" # I like using WiFi
         "/etc/NetworkManager/system-connections" # I like using WiFi
