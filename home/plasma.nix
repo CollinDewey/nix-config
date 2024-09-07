@@ -76,7 +76,10 @@ in {
           clickItemTo = "select";
           wallpaper = "${wallpaper}";
         };
-        kscreenlocker.appearance.wallpaper = "${wallpaper}";
+        kscreenlocker = {
+          appearance.wallpaper = lib.mkDefault "${wallpaper}";
+          passwordRequiredDelay = lib.mkDefault 600;
+        };
         windows.allowWindowsToRememberPositions = true;
         spectacle.shortcuts.captureRectangularRegion = "Print";
         kwin = {

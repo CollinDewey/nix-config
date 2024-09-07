@@ -26,4 +26,6 @@
       fi
     '';
   };
+  programs.plasma.kscreenlocker.appearance.wallpaperPlainColor = "0,0,0";
+  programs.plasma.kscreenlocker.appearance.wallpaper = null;
 }
