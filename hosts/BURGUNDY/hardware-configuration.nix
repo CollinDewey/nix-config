@@ -38,8 +38,35 @@
       options kvmfr static_size_mb=128
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
-    kernelParams = [ "mitigations=off" "retbleed=off" ];
+    kernelParams = [ "mitigations=off" "retbleed=off" "i915.modeset=1" ];
     kernelPackages = pkgs.linuxPackages_testing;
+    kernelPatches = [
+      {
+        name = "fan-profile-fix";
+        patch = pkgs.fetchpatch {
+          url = "https://lkml.org/lkml/diff/2024/6/9/155/1";
+          hash = "sha256-o2YWx1m4Fd4J8SSwKPRN8MH+TqnCSMJvzhRvDkRS1iI=";
+        };
+      }
+      {
+        name = "elan-battery-fix";
+        patch = pkgs.fetchpatch {
+          url = "https://git.kernel.org/pub/scm/linux/kernel/git/hid/hid.git/patch/?id=bcc31692a1d1e21f0d06c5f727c03ee299d2264e";
+          hash = "sha256-DLuyu2o7Hh0CmrA3Zx9VaxYtGdYlNZcWxTfjIPh4ilc=";
+        };
+      }
+      {
+        name = "keyboard-brightness-fix";
+        patch = pkgs.fetchpatch {
+          url = "https://marc.info/?l=linux-kernel&m=172085686420004&q=mbox";
+          hash = "sha256-9hik4PZqDld1m9F7tILmYqc3YbayvqE6peuSFQmrAOw=";
+        };
+      }
+      {
+        name = "keyboard-fix";
+        patch = ./keyboard-fix.patch;
+      }
+    ];
     kernel.sysctl = { "kernel.sysrq" = 1; };
 
     # Filesystems
@@ -79,12 +106,41 @@
     "w /sys/class/power_supply/BAT0/charge_control_end_threshold - - - - 80" # 80% Battery Limit Default
   ];
 
-  # Second Screen Disable + KVMFR rule
+#  # Second Screen Disable + KVMFR rule
   services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="input", ATTRS{name}=="Primax Electronics Ltd. ASUS Zenbook Duo Keyboard Touchpad", ATTRS{id/vendor}=="0b05", ATTRS{id/product}=="1b2c", ENV{WAYLAND_DISPLAY}="/run/user/1000/wayland-0", RUN+="${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-2.disable"
-    ACTION=="remove", SUBSYSTEM=="input", ATTRS{name}=="Primax Electronics Ltd. ASUS Zenbook Duo Keyboard Touchpad", ATTRS{id/vendor}=="0b05", ATTRS{id/product}=="1b2c", ENV{WAYLAND_DISPLAY}="/run/user/1000/wayland-0", RUN+="${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-2.enable output.eDP-2.position.0,900"
+    ACTION=="add", SUBSYSTEM=="input", ATTRS{name}=="Primax Electronics Ltd. ASUS Zenbook Duo Keyboard Touchpad", ATTRS{id/vendor}=="0b05", ATTRS{id/product}=="1b2c", RUN+="${pkgs.systemd}/bin/systemctl --no-block start zenbook-keyboard.service"
+    ACTION=="remove", SUBSYSTEM=="input", ATTRS{name}=="Primax Electronics Ltd. ASUS Zenbook Duo Keyboard Touchpad", ATTRS{id/vendor}=="0b05", ATTRS{id/product}=="1b2c", RUN+="${pkgs.systemd}/bin/systemctl --no-block start zenbook-keyboard.service"
     SUBSYSTEM=="kvmfr", OWNER="root", GROUP="libvirtd", MODE="0660"
   '';
+  systemd.services.zenbook-keyboard = {
+    description = "Sync displays with keyboard connect state";
+    wantedBy = [ "post-resume.target" ];
+    after = [ "post-resume.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 0.1"; # On disconnect, the script sometimes gets called before the device is removed
+      ExecStart = "${pkgs.bash}/bin/bash /etc/zenbook/zenbook-keyboard.sh";
+      TimeoutStartSec = "1s";
+    };
+    unitConfig = {
+      StartLimitIntervalSec = 0.2;
+      StartLimitBurst = 1;
+    };
+  };
+  services.xserver.displayManager.setupCommands = "${pkgs.bash}/bin/bash /etc/zenbook/zenbook-keyboard.sh";
+  environment.etc."zenbook/zenbook-keyboard.sh" = {
+    mode = "0555";
+    text = ''
+      #${pkgs.bash}/bin/bash
+      export WAYLAND_DISPLAY=$(find /run/user/*/wayland-0)
+
+      if ${pkgs.usbutils}/bin/lsusb | grep -q "0b05:1b2c"; then
+          ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-1.enable output.eDP-2.disable output.Unknown-1.disable
+      else
+          ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-1.enable output.eDP-1.position.0,0 output.eDP-2.enable output.eDP-2.position.0,900 output.Unknown-1.disable
+      fi
+    '';
+  };
 
   # Networking
   time.timeZone = "America/Louisville";
