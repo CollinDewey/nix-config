@@ -38,6 +38,7 @@ in {
       kdePackages.ark
       kdePackages.kimageformats
       kdePackages.colord-kde
+      kdePackages.qtsensors
       kdePackages.krfb
       kdePackages.plasma-systemmonitor
     ]);
