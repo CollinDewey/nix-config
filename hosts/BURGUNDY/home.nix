@@ -4,9 +4,9 @@
     signing.signByDefault = true;
     signing.key = "F5B2AFFCB4386C88";
   };
-  home.packages = [
-    pkgs.looking-glass-client
-    pkgs.distrobox
+  home.packages = with pkgs; [
+    looking-glass-client
+    distrobox
   ];
   home.file.".config/autostart/zenbook-keyboard.desktop".text = ''
     [Desktop Entry]

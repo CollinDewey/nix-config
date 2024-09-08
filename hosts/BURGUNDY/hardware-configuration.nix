@@ -38,7 +38,7 @@
       options kvmfr static_size_mb=128
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
-    kernelParams = [ "mitigations=off" "retbleed=off" "i915.modeset=1" ];
+    kernelParams = [ "mitigations=off" "retbleed=off" "i915.modeset=1" "initcall_blacklist=sysfb_init" ];
     kernelPackages = pkgs.linuxPackages_testing;
     kernelPatches = [
       {
@@ -127,17 +127,29 @@
       StartLimitBurst = 1;
     };
   };
-  services.xserver.displayManager.setupCommands = "${pkgs.bash}/bin/bash /etc/zenbook/zenbook-keyboard.sh";
+  systemd.services.display-manager-startup = {
+    description = "Sync display-manager with keyboard connect state";
+    wantedBy = [ "display-manager.service" ];
+    after = [ "display-manager.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStartPre = "${pkgs.coreutils}/bin/sleep 1"; # Can probably be lower, but a second doesn't matter to me
+      ExecStart = "${pkgs.bash}/bin/bash /etc/zenbook/zenbook-keyboard.sh";
+      TimeoutStartSec = "2s";
+    };
+  };
   environment.etc."zenbook/zenbook-keyboard.sh" = {
     mode = "0555";
     text = ''
       #${pkgs.bash}/bin/bash
       export WAYLAND_DISPLAY=$(find /run/user/*/wayland-0)
 
-      if ${pkgs.usbutils}/bin/lsusb | grep -q "0b05:1b2c"; then
-          ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-1.enable output.eDP-2.disable output.Unknown-1.disable
-      else
-          ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-1.enable output.eDP-1.position.0,0 output.eDP-2.enable output.eDP-2.position.0,900 output.Unknown-1.disable
+      if [ -n "$WAYLAND_DISPLAY" ]; then
+        if ${pkgs.usbutils}/bin/lsusb | grep -q "0b05:1b2c"; then
+            ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-1.enable output.eDP-2.disable
+        else
+            ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-1.enable output.eDP-1.position.0,0 output.eDP-2.enable output.eDP-2.position.0,900
+        fi
       fi
     '';
   };
