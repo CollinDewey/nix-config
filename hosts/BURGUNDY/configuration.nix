@@ -20,8 +20,11 @@
     user = "collin";
   };
 
-  # SDDM workaround for starting before drivers load
-  systemd.services.display-manager.preStart = ''${pkgs.coreutils}/bin/sleep 1'';
+  # Virtual Keyboard
+  environment.systemPackages = with pkgs; [
+    maliit-keyboard
+    maliit-framework
+  ];
 
   # Cross compilation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
