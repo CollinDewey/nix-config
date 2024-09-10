@@ -32,10 +32,7 @@
   # NFS
   services.nfs.server.enable = true;
 
-  # Testing if my audio issues are pipewire based
-  services.pipewire.enable = pkgs.lib.mkForce false;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
+  # Noisetorch
   programs.noisetorch.enable = true;
 
   # State
