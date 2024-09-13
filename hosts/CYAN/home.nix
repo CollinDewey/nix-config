@@ -8,5 +8,6 @@
     looking-glass-client
     uxplay
     distrobox
+    moonlight-qt
   ];
 }

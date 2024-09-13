@@ -5,7 +5,7 @@
     signing.key = "F5B2AFFCB4386C88";
   };
   home.packages = with pkgs; [
-    looking-glass-client
+    moonlight-qt
     distrobox
   ];
   home.file.".config/autostart/zenbook-keyboard.desktop".text = ''
