@@ -32,7 +32,7 @@
       capSysNice = true;
     };
   };
-  chaotic.steam.extraCompatPackages = with pkgs; [ proton-ge-custom ];
+  programs.steam.extraCompatPackages = with pkgs; [ proton-ge-custom ];
   programs.corectrl.enable = true;
   
   programs.dconf.enable = true; # Virt-manager keep config
