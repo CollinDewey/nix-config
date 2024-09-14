@@ -15,7 +15,6 @@ in {
       kdePackages.filelight
       lm_sensors
       pciutils
-      conky
       xdotool
       kdePackages.krdc
       bitwarden-desktop
