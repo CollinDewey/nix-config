@@ -44,6 +44,10 @@
       "GRID RTX6000-1Q".frameLimiter = false;
       "GRID RTX6000-2Q".frameLimiter = false;
       "GRID RTX6000-4Q".frameLimiter = false;
+      "GRID RTX6000-8Q" = {
+        frameLimiter = false;
+        vramMB = 3584;
+      };
     };
   };
   hardware.opengl.enable = true;
