@@ -39,13 +39,6 @@ in {
       "net.core.default_qdisc" = "fq";
       "net.ipv4.tcp_congestion_control" = "bbr";
     };
-
-    # Deprioritize Nix builds
-    systemd.services.nix-daemon.serviceConfig.OOMScoreAdjust = lib.mkDefault 250;
-    nix.daemonCPUSchedPolicy = lib.mkDefault "idle";
-    nix.daemonIOSchedClass = lib.mkDefault "idle";
-    nix.daemonIOSchedPriority = lib.mkDefault 7;
-    nix.settings.connect-timeout = 5;
   };
 }
 

@@ -32,4 +32,12 @@
   # Comma
   programs.nix-index-database.comma.enable = true;
   programs.command-not-found.enable = false;
+
+
+  # Deprioritize Nix builds
+  systemd.services.nix-daemon.serviceConfig.OOMScoreAdjust = lib.mkDefault 250;
+  nix.daemonCPUSchedPolicy = lib.mkDefault "idle";
+  nix.daemonIOSchedClass = lib.mkDefault "idle";
+  nix.daemonIOSchedPriority = lib.mkDefault 7;
+  nix.settings.connect-timeout = 5;
 }
