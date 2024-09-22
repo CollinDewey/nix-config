@@ -1,4 +1,7 @@
 { ... }:
+let
+  defaultOptsSSD = [ "compress-force=zstd:1" "noatime" "nodiratime" ];
+in
 {
   disko.devices = {
     disk = {
@@ -29,20 +32,20 @@
                 subvolumes = {
                   "/home" = {
                     mountpoint = "/home";
-                    mountOptions = [ "compress=zstd" ];
+                    mountOptions = defaultOptsSSD;
                   };
                   "/nix" = {
                     mountpoint = "/nix";
-                    mountOptions = [ "compress=zstd" "noatime" ];
+                    mountOptions = defaultOptsSSD;
                   };
                   "/persist" = {
                     mountpoint = "/persist";
-                    mountOptions = [ "compress=zstd" ];
+                    mountOptions = defaultOptsSSD;
                   };
                   "/tmp" = {
                     mountpoint = "/tmp";
                     # /tmp gets cleared on boot
-                    mountOptions = [ "noatime" ];
+                    mountOptions = defaultOptsSSD;
                   };
                 };
               };

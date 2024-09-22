@@ -1,6 +1,7 @@
 { ... }:
 let
-  defaultOpts = [ "compress=zstd" "noatime" "nodiratime" ];
+  defaultOptsSSD = [ "compress-force=zstd:1" "noatime" "nodiratime" ];
+  defaultOptsHDD = [ "compress-force=zstd" "noatime" "nodiratime" ];
 in
 {
   disko.devices = {
@@ -32,23 +33,23 @@ in
                 subvolumes = {
                   "/nix" = { # The one and only Nix
                     mountpoint = "/nix";
-                    mountOptions = defaultOpts;
+                    mountOptions = defaultOptsSSD;
                   };
                   "/persist" = { # Holds files and folders I want
                     mountpoint = "/persist";
-                    mountOptions = defaultOpts;
+                    mountOptions = defaultOptsSSD;
                   };
                   "/clearable" = { # This data can be wiped and is deemed not important
                     mountpoint = "/clearable";
-                    mountOptions = defaultOpts;
+                    mountOptions = defaultOptsSSD;
                   };
                   "/virtualization" = { # Virtual Machine images + configurations
                     mountpoint = "/var/lib/libvirt";
-                    mountOptions = defaultOpts;
+                    mountOptions = defaultOptsSSD;
                   };
                   "/services" = { # Storage for multiple services
                     mountpoint = "/services";
-                    mountOptions = defaultOpts;
+                    mountOptions = defaultOptsSSD;
                   };
                 };
               };
@@ -71,7 +72,7 @@ in
                 subvolumes = {
                   "/storage" = {
                     mountpoint = "/storage";
-                    mountOptions = defaultOpts;
+                    mountOptions = defaultOptsHDD;
                   };
                 };
               };

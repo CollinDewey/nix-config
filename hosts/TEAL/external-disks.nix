@@ -1,6 +1,6 @@
 { config, lib, ... }:
 let
-  defaultOpts = [ "compress=zstd" "noatime" "nodiratime" ];
+  defaultOptsHDD = [ "compress-force=zstd" "noatime" "nodiratime" ];
 in
 {
   config = lib.mkIf (config.specialisation != {}) {
@@ -8,22 +8,22 @@ in
       "/snapshots" = {
         device = "/dev/bcache0";
         fsType = "btrfs";
-        options = defaultOpts ++ [ "subvol=snapshots" ];
+        options = defaultOptsHDD ++ [ "subvol=snapshots" ];
       };
       "/cyber" = {
         device = "/dev/bcache0";
         fsType = "btrfs";
-        options = defaultOpts ++ [ "subvol=cyber" ];
+        options = defaultOptsHDD ++ [ "subvol=cyber" ];
       };
       "/vm_storage" = {
         device = "/dev/bcache0";
         fsType = "btrfs";
-        options = defaultOpts ++ [ "subvol=virtualization_hdd" ];
+        options = defaultOptsHDD ++ [ "subvol=virtualization_hdd" ];
       };
       "/network_share" = {
         device = "/dev/bcache0";
         fsType = "btrfs";
-        options = defaultOpts ++ [ "subvol=network_share" ];
+        options = defaultOptsHDD ++ [ "subvol=network_share" ];
       };
     };
   };
