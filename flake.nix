@@ -181,7 +181,6 @@
           ./config
           ./config/linux.nix
           ./overlays
-          ./overlays/linux-firmware.nix
           ./modules
           ./hosts/BURGUNDY/configuration.nix
           ./hosts/BURGUNDY/disko.nix
