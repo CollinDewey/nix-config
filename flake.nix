@@ -715,6 +715,11 @@
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.CYAN;
         };
 
+        BURGUNDY = {
+          hostname = "BURGUNDY.TERASCRIPTING";
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.BURGUNDY;
+        };
+
         TEAL = {
           hostname = "TEAL.TERASCRIPTING";
           profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.TEAL;
