@@ -10,28 +10,7 @@
   # Boot
   boot = {
     # Kernel
-    initrd = {
-      availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-      kernelModules = [ "i915" ]; # Early KMS
-      systemd.enable = true;  
-      systemd.services.initrd-brightness = {
-        unitConfig.DefaultDependencies = false;
-        wantedBy = [ "initrd.target" ];
-        requires = [
-          ''sys-devices-pci0000:00-0000:00:02.0-drm-card1-card1\x2deDP\x2d1-intel_backlight.device''
-          ''sys-devices-pci0000:00-0000:00:02.0-drm-card1-card1\x2deDP\x2d2-card1\x2deDP\x2d2\x2dbacklight.device''
-        ];
-        before = [ "plymouth-start.service" ];
-        after = [
-          ''sys-devices-pci0000:00-0000:00:02.0-drm-card1-card1\x2deDP\x2d1-intel_backlight.device''
-          ''sys-devices-pci0000:00-0000:00:02.0-drm-card1-card1\x2deDP\x2d2-card1\x2deDP\x2d2\x2dbacklight.device''
-        ];
-        script = ''
-          echo 200 > '/sys/devices/pci0000:00/0000:00:02.0/drm/card1/card1-eDP-1/intel_backlight/brightness'
-          echo  0 > '/sys/devices/pci0000:00/0000:00:02.0/drm/card1/card1-eDP-2/card1-eDP-2-backlight/brightness'
-        '';
-      };  
-    };
+    initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "sd_mod" ];
     extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (_: { patches = ( pkgs.fetchpatch { url = "https://github.com/gnif/LookingGlass/commit/7305ce36af211220419eeab302ff28793d515df2.patch"; hash = "sha256-97nZsIH+jKCvSIPf1XPf3i8Wbr24almFZzMOhjhLOYk="; stripLen = 1; }); })) v4l2loopback ];
     kernelModules = [ "kvm-amd" "uinput" "kvmfr" ];
     extraModprobeConfig = ''
@@ -39,7 +18,7 @@
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
     kernelParams = [ "mitigations=off" "retbleed=off" "initcall_blacklist=sysfb_init" ];
-    kernelPackages = pkgs.linuxPackages_testing;
+    kernelPackages = pkgs.linuxPackages_6_11;
     kernelPatches = [
       {
         name = "fan-profile-fix";
