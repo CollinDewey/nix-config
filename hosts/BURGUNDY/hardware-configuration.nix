@@ -46,7 +46,11 @@
         patch = ./keyboard-fix.patch;
       }
     ];
-    kernel.sysctl = { "kernel.sysrq" = 1; };
+    kernel.sysctl = { 
+      "kernel.sysrq" = 1; # Allow all sysrq
+      "kernel.nmi_watchdog" = 0; # Power Saving
+      "vm.dirty_writeback_centisecs" = 1500; # Power Saving
+    };  
 
     # Filesystems
     supportedFilesystems = [ "ntfs" ];
