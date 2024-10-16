@@ -94,6 +94,8 @@
     ACTION=="add", SUBSYSTEM=="input", ATTRS{name}=="Primax Electronics Ltd. ASUS Zenbook Duo Keyboard Touchpad", ATTRS{id/vendor}=="0b05", ATTRS{id/product}=="1b2c", RUN+="${pkgs.systemd}/bin/systemctl --no-block start zenbook-keyboard.service"
     ACTION=="remove", SUBSYSTEM=="input", ATTRS{name}=="Primax Electronics Ltd. ASUS Zenbook Duo Keyboard Touchpad", ATTRS{id/vendor}=="0b05", ATTRS{id/product}=="1b2c", RUN+="${pkgs.systemd}/bin/systemctl --no-block start zenbook-keyboard.service"
     SUBSYSTEM=="kvmfr", OWNER="root", GROUP="libvirtd", MODE="0660"
+    SUBSYSTEM=="power_supply", ACTION=="add", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl --no-block stop beesd@system.service"
+    SUBSYSTEM=="power_supply", ACTION=="remove", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl --no-block start beesd@system.service"
   '';
   systemd.services.zenbook-keyboard = {
     description = "Sync displays with keyboard connect state";
@@ -156,6 +158,8 @@
 
   # Video
   environment.variables.__RM_NO_VERSION_CHECK = "1";
+  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+  hardware.nvidia.open = false;
 
   # VFIO
   environment.etc."looking-glass-client.ini".text = ''
@@ -192,6 +196,7 @@
       extraOptions = [ "--thread-count" "2" "--loadavg-target" "5.0" ];
     };
   };
+  systemd.services."beesd@system".unitConfig.ConditionACPower = "true";
 
   # Persistance
   users.mutableUsers = false;
