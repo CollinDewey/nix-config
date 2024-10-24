@@ -9,5 +9,6 @@
     uxplay
     distrobox
     moonlight-qt
+    hashcat
   ];
 }
