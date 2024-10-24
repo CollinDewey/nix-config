@@ -18,34 +18,7 @@
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
     kernelParams = [ "mitigations=off" "retbleed=off" "initcall_blacklist=sysfb_init" ];
-    kernelPackages = pkgs.linuxPackages_6_11;
-    kernelPatches = [
-      {
-        name = "fan-profile-fix";
-        patch = pkgs.fetchpatch {
-          url = "https://lkml.org/lkml/diff/2024/6/9/155/1";
-          hash = "sha256-o2YWx1m4Fd4J8SSwKPRN8MH+TqnCSMJvzhRvDkRS1iI=";
-        };
-      }
-      {
-        name = "elan-battery-fix";
-        patch = pkgs.fetchpatch {
-          url = "https://git.kernel.org/pub/scm/linux/kernel/git/hid/hid.git/patch/?id=bcc31692a1d1e21f0d06c5f727c03ee299d2264e";
-          hash = "sha256-DLuyu2o7Hh0CmrA3Zx9VaxYtGdYlNZcWxTfjIPh4ilc=";
-        };
-      }
-      {
-        name = "keyboard-brightness-fix";
-        patch = pkgs.fetchpatch {
-          url = "https://marc.info/?l=linux-kernel&m=172085686420004&q=mbox";
-          hash = "sha256-9hik4PZqDld1m9F7tILmYqc3YbayvqE6peuSFQmrAOw=";
-        };
-      }
-      {
-        name = "keyboard-fix";
-        patch = ./keyboard-fix.patch;
-      }
-    ];
+    kernelPackages = pkgs.linuxPackages_testing;
     kernel.sysctl = { 
       "kernel.sysrq" = 1; # Allow all sysrq
       "kernel.nmi_watchdog" = 0; # Power Saving
@@ -158,7 +131,7 @@
 
   # Video
   environment.variables.__RM_NO_VERSION_CHECK = "1";
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+  #services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
   hardware.nvidia.open = false;
 
   # VFIO
