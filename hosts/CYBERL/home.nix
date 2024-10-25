@@ -34,9 +34,8 @@ in
     alias cdi="zi";
     alias ls="eza --icons"
     alias ll="eza -l"
-    alias update,=\"mkdir -p ~/.cache/nix-index; download https://github.com/Mic92/nix-index-database/releases/latest/download/index-x86_64-linux ~/.cache/nix-index/files; chown -R \"$UID\" ~/.cache/nix-index\"
-    alias ,="${pkgs.comma}/bin/comma"
     source "${agnoster-nix}"/agnoster-nix.zsh-theme;
   '';
+  programs.nix-index-database.comma.enable = true;
   programs.home-manager.enable = true;
 }
