@@ -10,7 +10,7 @@
     distrobox
     moonlight-qt
     (hashcat.override {
-      cudaSupport = lib.elem "nvidia" config.services.xserver.videoDrivers;
+      cudaSupport = true;
     })
   ];
 }
