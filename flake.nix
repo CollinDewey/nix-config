@@ -67,9 +67,19 @@
 #      url = "git+file:/services/syncthing/Desktop/Git/CollinDewey/nixos-nvidia-vgpu";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    system-manager = {
+      url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    nix-system-graphics = {
+      url = "github:soupglasses/nix-system-graphics";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, ... }@inputs: {
+  outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, system-manager, nix-system-graphics, ... }@inputs: {
 
     nixosConfigurations = {
       CYAN = nixpkgs-unstable.lib.nixosSystem {
@@ -574,6 +584,21 @@
           # User
           ./users
           ./users/collin
+        ];
+      };
+    };
+
+    systemConfigs = {
+      CYBERL = system-manager.lib.makeSystemConfig {
+        modules = [
+          nix-system-graphics.systemModules.default
+          {
+            config = {
+              nixpkgs.hostPlatform = "x86_64-linux";
+              system-manager.allowAnyDistro = true;
+              system-graphics.enable = true;
+            };
+          }
         ];
       };
     };
