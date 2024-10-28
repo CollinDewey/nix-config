@@ -9,6 +9,8 @@
     uxplay
     distrobox
     moonlight-qt
-    hashcat
+    (hashcat.override {
+      cudaSupport = lib.elem "nvidia" config.services.xserver.videoDrivers;
+    })
   ];
 }
