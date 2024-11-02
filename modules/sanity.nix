@@ -10,6 +10,8 @@ in {
       enable = true;
       libraries = (pkgs.steam-run.fhsenv.args.multiPkgs pkgs) ++ (with pkgs; [
         ncurses5
+        kdePackages.qtbase
+        libsForQt5.qt5.qtbase
       ]);
     };
     programs.appimage = {
