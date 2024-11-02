@@ -143,7 +143,7 @@
                 lock.enable = true;
                 misc.enable = true;
                 multimedia.enable = true;
-                #office.enable = true;
+                office.enable = true;
                 plasma.enable = true;
                 #plover.enable = true; # Plover 4.0.0.dev10 broke for no reason????
                 utilities.enable = true;
@@ -243,7 +243,7 @@
                 lock.enable = true;
                 misc.enable = true;
                 multimedia.enable = true;
-                #office.enable = true;
+                office.enable = true;
                 plasma.enable = true;
                 #plover.enable = true;
                 utilities.enable = true;
