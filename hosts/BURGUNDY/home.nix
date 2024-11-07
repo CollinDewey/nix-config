@@ -17,4 +17,5 @@
   '';
   programs.plasma.kscreenlocker.appearance.wallpaperPlainColor = "0,0,0";
   programs.plasma.kscreenlocker.appearance.wallpaper = null;
+  home.sessionVariables."_JAVA_OPTIONS" = "-Dsun.java2d.uiScale=2";
 }
