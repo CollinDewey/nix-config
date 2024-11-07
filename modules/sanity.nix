@@ -8,7 +8,7 @@ in {
   config = mkIf cfg.enable {
     programs.nix-ld = {
       enable = true;
-      libraries = (pkgs.steam-run.fhsenv.args.multiPkgs pkgs) ++ (with pkgs; [
+      libraries = (pkgs.steam-fhsenv-without-steam.args.multiPkgs pkgs) ++ (with pkgs; [
         ncurses5
         kdePackages.qtbase
         libsForQt5.qt5.qtbase
