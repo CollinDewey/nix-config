@@ -58,17 +58,22 @@
     enable = true;
     touchpad.naturalScrolling = true;
   };
+
+  # Power Settings
+  services.thermald.enable = true;
   systemd.tmpfiles.rules = [
+    "w /sys/module/snd_hda_intel/parameters/power_save - - - - 1" # snd_hda_intel Power Save
     "w /sys/class/power_supply/BAT0/charge_control_end_threshold - - - - 80" # 80% Battery Limit Default
   ];
 
-#  # Second Screen Disable + KVMFR rule
+  # Second Screen Disable + KVMFR rule
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="input", ATTRS{name}=="Primax Electronics Ltd. ASUS Zenbook Duo Keyboard Touchpad", ATTRS{id/vendor}=="0b05", ATTRS{id/product}=="1b2c", RUN+="${pkgs.systemd}/bin/systemctl --no-block start zenbook-keyboard.service"
     ACTION=="remove", SUBSYSTEM=="input", ATTRS{name}=="Primax Electronics Ltd. ASUS Zenbook Duo Keyboard Touchpad", ATTRS{id/vendor}=="0b05", ATTRS{id/product}=="1b2c", RUN+="${pkgs.systemd}/bin/systemctl --no-block start zenbook-keyboard.service"
     SUBSYSTEM=="kvmfr", OWNER="root", GROUP="libvirtd", MODE="0660"
-    SUBSYSTEM=="power_supply", ACTION=="add", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl --no-block stop beesd@system.service"
-    SUBSYSTEM=="power_supply", ACTION=="remove", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl --no-block start beesd@system.service"
+    SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl --no-block stop beesd@system.service"
+    SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl --no-block start beesd@system.service"
+    SUBSYSTEM=="pci", ATTR{power/control}="auto"
   '';
   systemd.services.zenbook-keyboard = {
     description = "Sync displays with keyboard connect state";
