@@ -42,14 +42,16 @@ in
     enableRedistributableFirmware = true;
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     bluetooth.enable = true;
-    opengl.extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      rocmPackages.rocm-runtime
-      amdvlk
-    ];
-    opengl.extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
+    graphics = {
+      extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+        rocmPackages.rocm-runtime
+        amdvlk
+      ];
+      extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk
+      ];
+    };
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   services.fstrim.enable = true;

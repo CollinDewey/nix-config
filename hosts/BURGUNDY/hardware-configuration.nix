@@ -40,7 +40,7 @@
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
     sensor.iio.enable = true;
-    opengl = {
+    graphics = {
       enable = true;
       extraPackages = with pkgs; [
         intel-media-driver

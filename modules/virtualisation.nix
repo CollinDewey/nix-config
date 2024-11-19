@@ -35,7 +35,7 @@ in {
       dockerCompat = true;
       dockerSocket.enable = true;
     };
-    hardware.opengl.driSupport32Bit = lib.mkOverride 999 cfg.nvidia;
+    hardware.graphics.enable32Bit = lib.mkOverride 999 cfg.nvidia;
     hardware.nvidia-container-toolkit.enable = cfg.nvidia;
 
     security.polkit.enable = lib.mkDefault cfg.libvirt; # Needed for libvirtd

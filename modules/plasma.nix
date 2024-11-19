@@ -25,8 +25,10 @@ in {
         };
       };
     };
-    hardware.opengl.enable = true;
-    hardware.opengl.driSupport32Bit = true;
+    hardware.graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
 
     # Extra Global Font Packages (https://nixos.wiki/wiki/Fonts)
     fonts.packages = with pkgs; [
