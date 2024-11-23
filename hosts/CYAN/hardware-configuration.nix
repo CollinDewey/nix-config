@@ -58,17 +58,37 @@ in
 
   # Video
   services.colord.enable = true;
+  specialisation = {
+    NoNVIDIA.configuration = {
+      system.nixos.tags = [ "NoNVIDIA" ];
+      services.xserver.videoDrivers = lib.mkForce [ "amdgpu" ];
+      boot = {
+        blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+        extraModprobeConfig = ''
+          blacklist nouveau
+          options nouveau modeset=0
+        '';
+      };
+      services.udev.extraRules = ''
+        # Remove NVIDIA USB xHCI Host Controller, NVIDIA USB Type-C UCSI, NVIDIA Audio, and NVIDIA VGA/3D controller devices
+        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c0330", ATTR{power/control}="auto", ATTR{remove}="1"
+        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x0c8000", ATTR{power/control}="auto", ATTR{remove}="1"
+        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x040300", ATTR{power/control}="auto", ATTR{remove}="1"
+        ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x10de", ATTR{class}=="0x03[0-9]*", ATTR{power/control}="auto", ATTR{remove}="1"
+      '';
+    };
+  };
   services.xserver = {
-    videoDrivers = [ "amdgpu" "nvidia" ];
+    videoDrivers = lib.mkDefault [ "amdgpu" "nvidia" ];
     extraConfig = ''
-    Section "Device"
-    	Identifier      "Radeon"
-		  Driver          "amdgpu"
-	    BusId           "PCI:3:0:0"
-    EndSection
-    Section "ServerFlags"
-      Option "AutoAddGPU" "off"
-    EndSection
+      Section "Device"
+      	Identifier      "Radeon"
+		    Driver          "amdgpu"
+	      BusId           "PCI:3:0:0"
+      EndSection
+      Section "ServerFlags"
+        Option "AutoAddGPU" "off"
+      EndSection
     '';
   };
   hardware.nvidia.open = false;
