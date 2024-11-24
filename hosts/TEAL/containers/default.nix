@@ -128,16 +128,6 @@
           "/clearable/lancache/logs:/data/logs"
         ];
       };
-      homeassistant = {
-        image = "ghcr.io/home-assistant/home-assistant:stable";
-        hostname = "homeassistant";
-        extraOptions = [ "--network=container_net" "--ip=10.111.111.4"];
-        autoStart = false;
-        environment.TZ = "America/Louisville";
-        volumes = [
-          "/services/homeassistant:/config"
-        ];
-      };  
     };
   };
 }
