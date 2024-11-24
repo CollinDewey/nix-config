@@ -61,73 +61,87 @@
     enable = true;
     wait-online.anyInterface = true;
     links = {
-      "10-lan" = {
+      "10-ten-unused" = {
         matchConfig.PermanentMACAddress = "a0:36:9f:54:a2:dc";
         linkConfig.Name = "ten0";
       };
-      "10-cyan" = {
+      "10-ten-lan" = {
         matchConfig.PermanentMACAddress = "a0:36:9f:54:a2:de";
         linkConfig.Name = "ten1";
+      };
+      "10-ten-opnsense" = {
+        matchConfig.Path = "pci-0000:05:10.1";
+        linkConfig.Name = "ten1v0";
+      };
+      "10-ten-blue" = {
+        matchConfig.Path = "pci-0000:05:10.3";
+        linkConfig.Name = "ten1v1";
+      };
+      "10-ten-winserver" = {
+        matchConfig.Path = "pci-0000:05:10.5";
+        linkConfig.Name = "ten1v2";
+      };
+      "10-ten-cerise" = {
+        matchConfig.Path = "pci-0000:05:10.7";
+        linkConfig.Name = "ten1v3";
+      };
+      "10-ten-cyberl" = {
+        matchConfig.Path = "pci-0000:05:11.1";
+        linkConfig.Name = "ten1v4";
+      };
+      "10-ten-cyberw" = {
+        matchConfig.Path = "pci-0000:05:11.3";
+        linkConfig.Name = "ten1v5";
+      };
+      "10-ten-spare0" = {
+        matchConfig.Path = "pci-0000:05:11.5";
+        linkConfig.Name = "ten1v6";
+      };
+      "10-ten-spare1" = {
+        matchConfig.Path = "pci-0000:05:11.7";
+        linkConfig.Name = "ten1v7";
       };
       "10-mobo" = {
         matchConfig.PermanentMACAddress = "0a:e0:af:ad:2a:57";
         linkConfig.Name = "mobo0";
       };
-      "10-quad0" = {
+      "10-one-wan" = {
         matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4c";
         linkConfig.Name = "quad0";
       };
-      "10-quad1" = {
+      "10-one-lan" = {
         matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4d";
         linkConfig.Name = "quad1";
       };
-      "10-quad2" = {
+      "10-one-lan-opnsense" = {
+        matchConfig.Path = "pci-0000:01:10.1";
+        linkConfig.Name = "quad1v0";
+      };
+      "10-one-lan-homeassistant" = {
+        matchConfig.Path = "pci-0000:01:10.5";
+        linkConfig.Name = "quad1v1";
+      };
+      "10-one-quad2" = {
         matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4e";
         linkConfig.Name = "quad2";
       };
-      "10-quad3" = {
+      "10-one-quad3" = {
         matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4f";
         linkConfig.Name = "quad3";
       };
     };
     networks = {
-      "10-lan" = {
-        matchConfig.Name = "ten0";
+      "10-one-lan" = {
+        matchConfig.Name = "quad1";
         networkConfig.DHCP = "ipv4";
       };
-      "10-cyan" = {
+      "10-ten-lan" = {
         matchConfig.Name = "ten1";
-        linkConfig.MTUBytes = "9000";
-        #address = [ "172.26.0.101/32" ];
-        #routes = [{ 
-        #  routeConfig = {
-        #    Gateway = "172.26.0.100";
-        #    Destination = "172.26.1.10/32";
-        #  };
-        #}];
-        macvlan = [
-          "macvlan0"
-        ];
-      };
-      "20-macvlan0" = { # This is not setup correctly. I'll fix it later.
-        matchConfig.Name = "macvlan0";
-        linkConfig.MTUBytes = "9000";
         address = [ "172.26.0.100/16" ];
         routes = [{ 
-          routeConfig = {
-            Gateway = "172.26.0.1";
-            Destination = "172.26.0.0/16";
-          };
+          Gateway = "172.26.0.1";
+          Destination = "172.26.0.0/16";
         }];
-      };
-    };
-    netdevs = {
-      "10-macvlan" = {
-        netdevConfig = {
-          Name = "macvlan0";
-          Kind = "macvlan";
-        };
-        macvlanConfig.Mode = "bridge";
       };
     };
   };
@@ -213,6 +227,8 @@
     "w /sys/block/bcache0/bcache/cache_mode - - - - writearound" # Read-only bcache
     "w /sys/block/bcache1/bcache/cache_mode - - - - writearound" # Read-only bcache
     "w /sys/fs/bcache/5864fdf7-afe2-454c-b694-903dc1899a02/congested_read_threshold_us - - - - 0" # No latency timeout
+    "w /sys/class/net/quad1/device/sriov_numvfs - - - - 2"
+    "w /sys/class/net/ten1/device/sriov_numvfs - - - - 8"
   ];
 
   # Sops Key File Location
