@@ -82,9 +82,9 @@ in
     videoDrivers = lib.mkDefault [ "amdgpu" "nvidia" ];
     extraConfig = ''
       Section "Device"
-      	Identifier      "Radeon"
-		    Driver          "amdgpu"
-	      BusId           "PCI:3:0:0"
+        Identifier      "Radeon"
+        Driver          "amdgpu"
+        BusId           "PCI:3:0:0"
       EndSection
       Section "ServerFlags"
         Option "AutoAddGPU" "off"
