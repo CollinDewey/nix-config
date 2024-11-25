@@ -98,26 +98,34 @@ in
 
   # Networking
   time.timeZone = "America/Louisville";
+    systemd.network = {
+    enable = true;
+    links = {
+      "10-gig-lan" = {
+        matchConfig.PermanentMACAddress = "08:bf:b8:13:96:f4";
+        linkConfig.Name = "lan0";
+      };
+      "10-ten-gig-lan" = {
+        matchConfig.PermanentMACAddress = "08:bf:b8:13:8f:fd";
+        linkConfig.Name = "ten0";
+      };
+    };
+    networks = {
+      "10-ten-lan" = {
+        matchConfig.Name = "ten0";
+        address = [ "172.26.1.10/16" ];
+        routes = [{ 
+          Gateway = "172.26.0.1";
+          Destination = "172.26.0.0/16";
+        }];
+      };
+    };
+  };
   networking = {
     hostName = "CYAN";
     networkmanager = {
       enable = true;
-      unmanaged = [ "interface-name:eno2" ];
-    };
-    interfaces.eno2 = {
-      ipv4 = {
-        addresses = [{
-          address = "172.26.1.10";
-          prefixLength = 16;
-        }];
-        #routes = [{ # Access container LAN through 10GbE link
-        #  address = "10.111.111.0";
-        #  prefixLength = 24;
-        #  via = "10.133.133.1";
-        #}];
-      };
-      mtu = 9000;
-      useDHCP = false;
+      unmanaged = [ "interface-name:ten0" ];
     };
     hosts = {
       "172.26.0.100" = [ "TEAL" ]; # 10 Gigabit Link
