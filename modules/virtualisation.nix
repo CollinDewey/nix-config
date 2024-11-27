@@ -41,7 +41,10 @@ in {
     security.polkit.enable = lib.mkDefault cfg.libvirt; # Needed for libvirtd
     virtualisation.libvirtd = {
       enable = cfg.libvirt;
-      qemu.swtpm.enable = true;
+      qemu = {
+        swtpm.enable = true;
+        vhostUserPackages = [ pkgs.virtiofsd ];
+      };
       parallelShutdown = 10;
     };
   };
