@@ -32,7 +32,7 @@ in {
 
     # Extra Global Font Packages (https://nixos.wiki/wiki/Fonts)
     fonts.packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Hack" ]; })
+      nerd-fonts.hack
     ];
 
     # Extra Packages

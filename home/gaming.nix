@@ -14,11 +14,11 @@ in {
       godot3
       heroic
       dolphin-emu
-      (retroarch.override {
-        cores = with libretro; [
+      (retroarch.withCores (
+        cores: with cores; [
           snes9x
-        ];
-      })
+        ]
+      ))
       prismlauncher
       clonehero
       ryujinx
