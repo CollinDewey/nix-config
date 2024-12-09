@@ -160,7 +160,7 @@
                 ./home
 
                 # Computer Specific Config
-                ./hosts/BURGUNDY/home.nix
+                ./hosts/CYAN/home.nix
 
                 # User Specific Config
                 ./users/shimmer/home.nix
