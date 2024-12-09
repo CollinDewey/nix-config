@@ -40,6 +40,7 @@
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.vgpu = {
     enable = true;
+    vgpu_driver_src.url = "https://teal.terascripting.com/internal/NVIDIA-GRID-Linux-KVM-550.90.05-550.90.07-552.55.zip";
     profile_overrides = {
       "GRID RTX6000-1Q".frameLimiter = false;
       "GRID RTX6000-2Q".frameLimiter = false;
