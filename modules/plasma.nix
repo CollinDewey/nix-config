@@ -36,15 +36,17 @@ in {
     ];
 
     # Extra Packages
-    environment.systemPackages = [(
-      pkgs.catppuccin-sddm.override {
-        flavor = "mocha";
-        font  = "Hack";
-        fontSize = "10";
-        #background = "${./wallpaper.png}";
-        #loginBackground = true;
-      }
-    )];
+    environment.systemPackages = [
+      (
+        pkgs.catppuccin-sddm.override {
+          flavor = "mocha";
+          font = "Hack";
+          fontSize = "10";
+          #background = "${./wallpaper.png}";
+          #loginBackground = true;
+        }
+      )
+    ];
 
     programs.kdeconnect.enable = true;
     services.system76-scheduler.enable = true;

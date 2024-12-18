@@ -9,6 +9,6 @@
     openDefaultPorts = true;
     guiAddress = "0.0.0.0:8384";
   };
-  
+
   system.stateVersion = "23.11";
 }  

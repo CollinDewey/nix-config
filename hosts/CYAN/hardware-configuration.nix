@@ -17,12 +17,12 @@ in
     kernelParams = lib.mkDefault [ "amd_pstate=active" "iommu=pt" "kvm.ignore_msrs=1" "report_ignored_msrs=0" ];
     #kernelModules = [ "kvmfr" "i2c-dev" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelPatches = [ {
+    kernelPatches = [{
       name = "fix-nvidia-amdgpu-pat-mem";
       patch = null;
       extraConfig = "HSA_AMD_SVM n";
-    } ]; # https://gitlab.freedesktop.org/drm/amd/-/issues/2794
-    extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (_: { patches = ( pkgs.fetchpatch { url = "https://github.com/gnif/LookingGlass/commit/7305ce36af211220419eeab302ff28793d515df2.patch"; hash = "sha256-97nZsIH+jKCvSIPf1XPf3i8Wbr24almFZzMOhjhLOYk="; stripLen = 1; }); })) v4l2loopback ];
+    }]; # https://gitlab.freedesktop.org/drm/amd/-/issues/2794
+    extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (_: { patches = (pkgs.fetchpatch { url = "https://github.com/gnif/LookingGlass/commit/7305ce36af211220419eeab302ff28793d515df2.patch"; hash = "sha256-97nZsIH+jKCvSIPf1XPf3i8Wbr24almFZzMOhjhLOYk="; stripLen = 1; }); })) v4l2loopback ];
     extraModprobeConfig = ''
       options kvmfr static_size_mb=128
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
@@ -87,11 +87,11 @@ in
   };
   hardware.nvidia.open = false;
   environment.variables.__RM_NO_VERSION_CHECK = "1";
-  environment.variables.KWIN_DRM_DEVICES="/dev/dri/card1";
+  environment.variables.KWIN_DRM_DEVICES = "/dev/dri/card1";
 
   # Networking
   time.timeZone = "America/Louisville";
-    systemd.network = {
+  systemd.network = {
     enable = true;
     links = {
       "10-gig-lan" = {
@@ -107,7 +107,7 @@ in
       "10-ten-lan" = {
         matchConfig.Name = "ten0";
         address = [ "172.26.1.10/16" ];
-        routes = [{ 
+        routes = [{
           Gateway = "172.26.0.1";
           Destination = "172.26.0.0/16";
         }];

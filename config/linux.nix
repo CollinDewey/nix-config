@@ -3,7 +3,7 @@
   # Modules
   imports = with inputs; [
     sops-nix.nixosModules.sops
-    nix-index-database.nixosModules.nix-index  
+    nix-index-database.nixosModules.nix-index
   ];
 
   # Secret configuration

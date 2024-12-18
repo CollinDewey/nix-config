@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   programs.git = {
     signing.signByDefault = true;

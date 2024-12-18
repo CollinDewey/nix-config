@@ -1,8 +1,8 @@
-{ config, lib, pkgs, inputs, ... }:
+{ lib, inputs, ... }:
 {
   services.openssh.settings.PasswordAuthentication = lib.mkForce true;
   imports = with inputs; [
-    nix-index-database.nixosModules.nix-index  
+    nix-index-database.nixosModules.nix-index
   ];
   programs.nix-index-database.comma.enable = true;
   programs.command-not-found.enable = false;

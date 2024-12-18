@@ -1,4 +1,4 @@
-{ plasma-manager, ... }:
+{ ... }:
 {
   programs.git.enable = true;
   programs.home-manager.enable = true;

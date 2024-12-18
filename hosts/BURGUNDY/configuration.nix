@@ -41,12 +41,12 @@
     wantedBy = [ "pipewire.service" ];
     description = "Noisetorch";
     serviceConfig = {
-        Type = "simple";
-        RemainAfterExit = "yes";
-        ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i -s alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Mic1__source -t 95";
-        ExecStop = "${pkgs.noisetorch}/bin/noisetorch -u";
-        Restart = "on-failure";
-        RestartSec = "3";
+      Type = "simple";
+      RemainAfterExit = "yes";
+      ExecStart = "${pkgs.noisetorch}/bin/noisetorch -i -s alsa_input.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Mic1__source -t 95";
+      ExecStop = "${pkgs.noisetorch}/bin/noisetorch -u";
+      Restart = "on-failure";
+      RestartSec = "3";
     };
   };
 

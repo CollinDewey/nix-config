@@ -145,7 +145,7 @@
       "10-ten-lan" = {
         matchConfig.Name = "ten1";
         address = [ "172.26.0.100/16" ];
-        routes = [{ 
+        routes = [{
           Gateway = "172.26.0.1";
           Destination = "172.26.0.0/16";
         }];
@@ -202,7 +202,7 @@
       enableWarnings = false;
       files = [
         { file = "/home/collin/.config/htop/htoprc"; parentDirectory = { user = "collin"; group = "collin"; }; } # Full tmpfs home
-        "/home/collin/.zsh_history"# Keep shell history
+        "/home/collin/.zsh_history" # Keep shell history
         "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
         "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
         "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
@@ -210,7 +210,7 @@
         "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
       ];
       directories = [
-         { directory = "/home/collin/.config/Moonlight Game Streaming Project"; user = "collin"; group = "collin"; }
+        { directory = "/home/collin/.config/Moonlight Game Streaming Project"; user = "collin"; group = "collin"; }
       ];
     };
     "/clearable" = {
@@ -222,7 +222,8 @@
       ];
     };
   };
-  systemd.tmpfiles.rules = [ # bcache setup based on https://www.reddit.com/r/linux_gaming/tc3rkj
+  systemd.tmpfiles.rules = [
+    # bcache setup based on https://www.reddit.com/r/linux_gaming/tc3rkj
     "L /.hidden - - - - /persist/hiddenRoot"
     "d /home/collin 0755 1000 1000 - -"
     "d /home/collin/.config 0755 1000 1000 - -"

@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let
   keys = builtins.fetchurl {
     url = "https://github.com/CollinDewey.keys";

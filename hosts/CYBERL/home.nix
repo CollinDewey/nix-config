@@ -1,4 +1,3 @@
-
 { pkgs, ... }:
 let
   agnoster-nix = pkgs.fetchgit {

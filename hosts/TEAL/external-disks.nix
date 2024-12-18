@@ -3,7 +3,7 @@ let
   defaultOptsHDD = [ "compress-force=zstd" "noatime" "nodiratime" ];
 in
 {
-  config = lib.mkIf (config.specialisation != {}) {
+  config = lib.mkIf (config.specialisation != { }) {
     fileSystems = {
       "/snapshots" = {
         device = "/dev/bcache0";

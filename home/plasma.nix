@@ -9,7 +9,8 @@ let
     rev = "678d8898f06ed6592b7f1486a7c849a14d496b59";
     sha256 = "sha256-S9s/RGMVdJKB6vAPDgO5gGZ5/G/drvmHtXWMH5ZKz5M=";
   };
-  icon = builtins.fetchurl { # Temporary
+  icon = builtins.fetchurl {
+    # Temporary
     url = "https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus-icon-theme/ad50c97a5208477cb0185d33b5bea661aef44c08/Papirus/24x24/panel/start-here-kde-plasma-symbolic.svg";
     sha256 = "sha256:1cq3iqgsn59ch1bgk1ncbrlgmhwpnfcnflzxdfra2pj0axwm6snr";
   };
@@ -17,8 +18,9 @@ let
     url = "https://derpicdn.net/img/view/2012/6/17/4901.png";
     sha256 = "56ecbf09d94b32f944bc372b271dd370f4056a67062d3978b09ba294d06868b4";
   };
-in {
-  options.modules.plasma = { 
+in
+{
+  options.modules.plasma = {
     enable = mkEnableOption "plasma";
     packages = mkOption {
       type = types.bool;
@@ -46,25 +48,25 @@ in {
     # Default Settings
     home.file.".config/Kvantum/Bonny-Kvantum".source = config.lib.file.mkOutOfStoreSymlink "${bonny}/Bonny Kvantum Themes/Bonny-Kvantum";
     home.file.".local/share/color-schemes/BonnyDarkColor.colors".source = "${bonny}/Bonny Dark Colorscheme/BonnyDarkColor.colors";
-#    home.file.".local/share/kservices5/ServiceMenus".source = ''
-#      [Desktop Entry]
-#      Type=Service
-#      X-KDE-ServiceTypes=KonqPopupMenu/Plugin
-#      Icon=media-mount
-#      MimeType=application/vnd.squashfs;application/octet-stream;
-#      Actions=mount;unmount;
+    #    home.file.".local/share/kservices5/ServiceMenus".source = ''
+    #      [Desktop Entry]
+    #      Type=Service
+    #      X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+    #      Icon=media-mount
+    #      MimeType=application/vnd.squashfs;application/octet-stream;
+    #      Actions=mount;unmount;
 
-#      [Desktop Action mount]
-#      Name=Mount SquashFS
-#      Icon=media-mount
-#      Exec=(mnt_file="$(basename "%f")" && mnt_dir="/tmp/${mnt_file}-$(echo -n "%f" | sha256sum | head -c 8)" && mkdir -p "$mnt_dir" && (squashfuse "%f" "$mnt_dir" && xdg-open "$mnt_dir") || kdialog --error "Cannot mount, you can try to mount it manually:\n\nsquashfuse \\""%f"\\" \\""$mnt_dir"\\"")
+    #      [Desktop Action mount]
+    #      Name=Mount SquashFS
+    #      Icon=media-mount
+    #      Exec=(mnt_file="$(basename "%f")" && mnt_dir="/tmp/${mnt_file}-$(echo -n "%f" | sha256sum | head -c 8)" && mkdir -p "$mnt_dir" && (squashfuse "%f" "$mnt_dir" && xdg-open "$mnt_dir") || kdialog --error "Cannot mount, you can try to mount it manually:\n\nsquashfuse \\""%f"\\" \\""$mnt_dir"\\"")
 
-#      [Desktop Action unmount]
-#      Name=Unmount SquashFS
-#      Icon=media-eject
-#      Exec=(mnt_file="$(basename "%f")" && mnt_dir="/tmp/${mnt_file}-$(echo -n "%f" | sha256sum | head -c 8)" && (fusermount -u "$mnt_dir" && rm -r "$mnt_dir") || kdialog --error "Cannot unmount, you can try to unmount it manually:\n\nfusermount -u \\""$mnt_dir"\\"")
-#    '';
-    xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
+    #      [Desktop Action unmount]
+    #      Name=Unmount SquashFS
+    #      Icon=media-eject
+    #      Exec=(mnt_file="$(basename "%f")" && mnt_dir="/tmp/${mnt_file}-$(echo -n "%f" | sha256sum | head -c 8)" && (fusermount -u "$mnt_dir" && rm -r "$mnt_dir") || kdialog --error "Cannot unmount, you can try to unmount it manually:\n\nfusermount -u \\""$mnt_dir"\\"")
+    #    '';
+    xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
       General.theme = "Bonny-Kvantum";
     };
     programs = {
@@ -86,7 +88,7 @@ in {
         kwin = {
           titlebarButtons = {
             left = [ ];
-            right = ["on-all-desktops" "keep-below-windows" "keep-above-windows" "minimize" "maximize" "close"];
+            right = [ "on-all-desktops" "keep-below-windows" "keep-above-windows" "minimize" "maximize" "close" ];
           };
           virtualDesktops = {
             rows = 2;
@@ -145,14 +147,14 @@ in {
                   useCustomButtonImage = "true";
                   #customButtonImage = "start-here-kde-plasma-symbolic";
                   customButtonImage = "${icon}";
-                  favoriteSystemActions = [];
+                  favoriteSystemActions = [ ];
                 };
               }
               "org.kde.plasma.appmenu"
               "org.kde.plasma.panelspacer"
               {
                 name = "org.kde.plasma.icontasks";
-                config.General.launchers = [];
+                config.General.launchers = [ ];
               }
               "org.kde.plasma.systemtray"
               {
@@ -171,14 +173,14 @@ in {
                   useCustomButtonImage = "true";
                   #customButtonImage = "start-here-kde-plasma-symbolic";
                   customButtonImage = "${icon}";
-                  favoriteSystemActions = [];
+                  favoriteSystemActions = [ ];
                 };
               }
               "org.kde.plasma.appmenu"
               "org.kde.plasma.panelspacer"
               {
                 name = "org.kde.plasma.icontasks";
-                config.General.launchers = [];
+                config.General.launchers = [ ];
               }
               "org.kde.plasma.systemtray"
               {
@@ -197,14 +199,14 @@ in {
                   useCustomButtonImage = "true";
                   #customButtonImage = "start-here-kde-plasma-symbolic";
                   customButtonImage = "${icon}";
-                  favoriteSystemActions = [];
+                  favoriteSystemActions = [ ];
                 };
               }
               "org.kde.plasma.appmenu"
               "org.kde.plasma.panelspacer"
               {
                 name = "org.kde.plasma.icontasks";
-                config.General.launchers = [];
+                config.General.launchers = [ ];
               }
               "org.kde.plasma.systemtray"
               {

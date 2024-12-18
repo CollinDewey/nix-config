@@ -14,17 +14,17 @@ in
     enable = true;
     swtpm.enable = true; # Win 11 TPM
     connections."qemu:///system" =
-    {
-      pools = [
-        {
-          definition = nixvirt.lib.pool.writeXML {
-            name = "default";
-            uuid = "5a2a41f9-a41d-407a-8762-cfc116a10398";
-            type = "dir";
-            target = { path = "${storage_dir}"; };
-          };
-        }
-      ];
-    };
+      {
+        pools = [
+          {
+            definition = nixvirt.lib.pool.writeXML {
+              name = "default";
+              uuid = "5a2a41f9-a41d-407a-8762-cfc116a10398";
+              type = "dir";
+              target = { path = "${storage_dir}"; };
+            };
+          }
+        ];
+      };
   };
 }

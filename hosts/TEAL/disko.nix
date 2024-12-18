@@ -31,23 +31,28 @@ in
                 type = "btrfs";
                 extraArgs = [ "-f" ]; # Override existing partition (probably dangerous?)
                 subvolumes = {
-                  "/nix" = { # The one and only Nix
+                  "/nix" = {
+                    # The one and only Nix
                     mountpoint = "/nix";
                     mountOptions = defaultOptsSSD;
                   };
-                  "/persist" = { # Holds files and folders I want
+                  "/persist" = {
+                    # Holds files and folders I want
                     mountpoint = "/persist";
                     mountOptions = defaultOptsSSD;
                   };
-                  "/clearable" = { # This data can be wiped and is deemed not important
+                  "/clearable" = {
+                    # This data can be wiped and is deemed not important
                     mountpoint = "/clearable";
                     mountOptions = defaultOptsSSD;
                   };
-                  "/virtualization" = { # Virtual Machine images + configurations
+                  "/virtualization" = {
+                    # Virtual Machine images + configurations
                     mountpoint = "/var/lib/libvirt";
                     mountOptions = defaultOptsSSD;
                   };
-                  "/services" = { # Storage for multiple services
+                  "/services" = {
+                    # Storage for multiple services
                     mountpoint = "/services";
                     mountOptions = defaultOptsSSD;
                   };

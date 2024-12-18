@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # Currently connecting a bridge (virbr2) to my OPNSense VM, created through virsh
   # Rebuilds will fail if the autostart fails. Figure out how to let it accept an error.
@@ -40,7 +40,7 @@
         };
       };
     };
-    
+
     syncthing = {
       ephemeral = true;
       autoStart = false;
@@ -113,7 +113,7 @@
       lancache = {
         image = "lancachenet/monolithic:latest";
         hostname = "lancache";
-        extraOptions = [ "--network=container_net" "--ip=10.111.111.2"];
+        extraOptions = [ "--network=container_net" "--ip=10.111.111.2" ];
         autoStart = false;
         environment = {
           USE_GENERIC_CACHE = "TRUE";

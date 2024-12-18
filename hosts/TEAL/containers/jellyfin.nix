@@ -4,8 +4,8 @@
   users.groups.jellyfin.gid = 1000;
 
   services.jellyfin = {
-      enable = true;
-      openFirewall = true;
+    enable = true;
+    openFirewall = true;
   };
 
   system.stateVersion = "23.11";

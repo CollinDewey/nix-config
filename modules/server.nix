@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: # Mostly stolen from nix-community/srvos
+{ lib, config, ... }: # Mostly stolen from nix-community/srvos
 
 with lib;
 let cfg = config.modules.server;
@@ -6,7 +6,7 @@ let cfg = config.modules.server;
 in {
   options.modules.server = { enable = mkEnableOption "server"; };
   config = mkIf cfg.enable {
-    
+
     # Drop /lib/ld-linux.so.2 and /lib/ld-linux-x86-64.so.2 stub
     environment.stub-ld.enable = lib.mkDefault false;
 

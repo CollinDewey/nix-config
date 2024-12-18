@@ -1,7 +1,4 @@
 { config, lib, pkgs, inputs, ... }:
-let
-  nfs_opts = [ "x-systemd.automount" "x-systemd.idle-timeout=3600" "noauto" "noatime" ];
-in
 {
   # Imports
   imports = [
@@ -115,7 +112,7 @@ in
         "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
         "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
       ];
-   };
+    };
   };
   systemd.tmpfiles.rules = [
     "d /var/lib/private 0700 0000 0000 -"

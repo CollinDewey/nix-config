@@ -13,7 +13,6 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     };
 
     nix-index-database = {
@@ -64,7 +63,7 @@
 
     nvidia-vgpu = {
       url = "github:CollinDewey/nixos-nvidia-vgpu";
-#      url = "git+file:/services/syncthing/Desktop/Git/CollinDewey/nixos-nvidia-vgpu";
+      #      url = "git+file:/services/syncthing/Desktop/Git/CollinDewey/nixos-nvidia-vgpu";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -604,7 +603,7 @@
     };
 
     homeConfigurations.CYBERL = home-manager-unstable.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs-unstable {system = "x86_64-linux";};
+      pkgs = import nixpkgs-unstable { system = "x86_64-linux"; };
       extraSpecialArgs = { inherit inputs; };
 
       modules = [
