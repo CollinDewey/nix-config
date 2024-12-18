@@ -50,6 +50,12 @@
         vramMB = 3584;
       };
     };
+    mdev = {
+      device = "0000:04:00.0";
+      vgpus = {
+        nvidia-261.uuid = [ "fbaf3b24-a228-4121-bdeb-906ce8bbfabc" "470cfb92-8a6e-438b-886d-bc29395e96fa" ];
+      };
+    };
   };
   hardware.graphics = {
     enable = true;
