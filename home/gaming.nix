@@ -22,6 +22,7 @@ in {
       prismlauncher
       clonehero
       ryujinx
+      lime3ds # Likely to be changed to azahar at some point
       gamescope
     ];
   };
