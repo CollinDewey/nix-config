@@ -83,10 +83,7 @@
 
     vaultwarden = {
       ephemeral = true;
-      autoStart = false;
-      privateNetwork = true;
-      hostAddress = "192.168.100.1";
-      localAddress = "192.168.100.4";
+      autoStart = true;
       config = ./vaultwarden.nix;
       bindMounts = {
         "/var/lib/bitwarden_rs" = {
