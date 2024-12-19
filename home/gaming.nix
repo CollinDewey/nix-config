@@ -17,6 +17,7 @@ in {
       (retroarch.withCores (
         cores: with cores; [
           snes9x
+          mupen64plus
         ]
       ))
       prismlauncher
