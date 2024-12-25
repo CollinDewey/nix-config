@@ -43,14 +43,16 @@ in
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     bluetooth.enable = true;
     graphics = {
+      enable = true;
+      enable32Bit = true;
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
         rocmPackages.rocm-runtime
-        amdvlk
       ];
-      extraPackages32 = with pkgs; [
-        driversi686Linux.amdvlk
-      ];
+    };
+    amdgpu.amdvlk = {
+      enable = true;
+      support32Bit.enable = true;
     };
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
