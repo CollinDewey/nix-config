@@ -53,6 +53,12 @@
   services.avahi.publish.enable = true;
   services.avahi.publish.userServices = true;
 
+  # Sunshine
+  services.sunshine = {
+    enable = true;
+    capSysAdmin = true;
+  };
+
   # Cross compilation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
