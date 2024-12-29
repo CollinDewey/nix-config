@@ -134,19 +134,24 @@ in
   # Performance
   powerManagement.cpuFreqGovernor = "performance";
 
-  # Power (Not working)
-  #power.ups = { # Based on https://github.com/Baughn/machine-config/blob/7934ea28473c6636112aacb38f138d2546687d23/tsugumi/configuration.nix#L232
-  #  enable = true;
-  #  maxStartDelay = 0;
-  #  ups.ups = {
-  #    port = "auto";
-  #    driver = "usbhid-ups";
-  #  };
-  #};
-  #systemd.services.upsd.preStart = "mkdir -p /var/lib/nut -m 0700";
-  #systemd.services.upsdrv.serviceConfig.User = "root";
-  #environment.etc."nut/upsd.conf".text = "";
-  #/etc/nut/upsd.users and /etc/nut/upsmon.conf in persist for now. Move to secrets eventually.
+  # Power
+  power.ups = {
+    enable = true;
+    upsmon.monitor."CP1500PFCLCDa".user = "upsmon";
+    users.upsmon = {
+      passwordFile = builtins.toString (pkgs.writeText "nut-password" "ShimmerIsTheBest");
+      upsmon = "primary";
+    };
+    ups.CP1500PFCLCDa = {
+      driver = "usbhid-ups";
+      description = "CyberPower CP1500PFCLCDa";
+      port = "auto";
+      directives = [
+        "vendorid = 0764"
+        "productid = 0601"
+      ];
+    };
+  };
 
   # VFIO
   services.udev.extraRules = ''
@@ -248,7 +253,6 @@ in
         "/var/lib/libvirt" # Keep KVM junk
         { directory = "/var/lib/syncthing"; user = "collin"; group = "collin"; } # Syncthing
         "/var/lib/NetworkManager" # I like using WiFi
-        "/etc/nixos" # Not nuke my configuration
         { directory = "/var/lib/private/ollama"; user = "ollama"; group = "ollama"; } # Ollama
       ];
       files = [
@@ -257,8 +261,6 @@ in
         "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
         "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
         "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
-        #"/etc/nut/upsd.users"
-        #"/etc/nut/upsmon.conf"
       ];
     };
   };
