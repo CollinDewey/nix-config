@@ -93,6 +93,7 @@
   users.mutableUsers = false;
   systemd.coredump.extraConfig = "Storage=none";
   fileSystems."/persist".neededForBoot = true;
+  environment.etc."machine-id".text = builtins.hashString "md5" config.networking.hostName; # The machine-id is supposed to be secret, but we don't care. 
   environment.persistence = {
     "/persist" = {
       hideMounts = true;
@@ -106,7 +107,6 @@
         { directory = "/var/lib/private/moonraker"; user = "klipper"; group = "klipper"; }
       ];
       files = [
-        "/etc/machine-id" # Honestly no idea why we need this to be the same between boots
         "/etc/ssh/ssh_host_ed25519_key" # Not reset my host keys
         "/etc/ssh/ssh_host_ed25519_key.pub" # Not reset my host keys
         "/etc/ssh/ssh_host_rsa_key" # Not reset my host keys
