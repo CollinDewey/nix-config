@@ -14,7 +14,6 @@
     "amdgpu"
     "radeon"
     "nvidia"
-    "nouveau"
     "modesetting"
     "fbdev"
   ];
