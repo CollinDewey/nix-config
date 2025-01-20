@@ -81,7 +81,7 @@
   outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, system-manager, nix-system-graphics, ... }@inputs: {
 
     nixosConfigurations = {
-      CYAN = nixpkgs-unstable.lib.nixosSystem {
+      CYAN = nixpkgs-unstable-small.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -182,7 +182,7 @@
         ];
       };
 
-      BURGUNDY = nixpkgs-unstable.lib.nixosSystem {
+      BURGUNDY = nixpkgs-unstable-small.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -282,7 +282,7 @@
         ];
       };
 
-      VM = nixpkgs-unstable.lib.nixosSystem {
+      VM = nixpkgs-unstable-small.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
@@ -443,7 +443,7 @@
         ];
       };
 
-      AZUL = nixpkgs-unstable.lib.nixosSystem {
+      AZUL = nixpkgs-unstable-small.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
