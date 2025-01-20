@@ -56,7 +56,6 @@ in
     };
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  services.fstrim.enable = true;
 
   # Video
   services.colord.enable = true;

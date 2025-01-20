@@ -25,7 +25,6 @@
 
   # Hardware
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-  services.fstrim.enable = true;
 
   # Networking
   time.timeZone = "America/Louisville";

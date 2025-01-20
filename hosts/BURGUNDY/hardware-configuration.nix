@@ -52,7 +52,6 @@
     };
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  services.fstrim.enable = true;
   services.hardware.bolt.enable = true;
   services.libinput = {
     enable = true;

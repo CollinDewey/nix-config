@@ -28,16 +28,13 @@ in {
     # Print the URL instead on servers
     environment.variables.BROWSER = "echo";
 
+    # irqbalance can have performance consequences. Use for servers and not desktops.
+    services.irqbalance.enable = true;
+
     # Watchdog
     systemd.watchdog = {
       runtimeTime = "60s";
       rebootTime = "240s";
-    };
-
-    # TCP BBR (Why not use this on all machines?)
-    boot.kernel.sysctl = {
-      "net.core.default_qdisc" = "fq";
-      "net.ipv4.tcp_congestion_control" = "bbr";
     };
   };
 }

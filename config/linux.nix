@@ -29,6 +29,19 @@
     services.NetworkManager-wait-online.wantedBy = lib.mkForce [ ];
   };
 
+  # Stuff that should be default, but isn't
+  services = {
+    smartd.enable = true;
+    fstrim.enable = true;
+  };
+
+  # Sysctl Tuning
+  boot.kernel.sysctl = {
+    # Networking
+    "net.core.default_qdisc" = "cake";
+    "net.ipv4.tcp_congestion_control" = "bbr";
+  };
+
   # Comma
   programs.nix-index-database.comma.enable = true;
   programs.command-not-found.enable = false;
