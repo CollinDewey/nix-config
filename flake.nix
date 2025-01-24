@@ -94,7 +94,7 @@
         system = "aarch64-linux";
         overlays = [
           deploy-rs.overlay
-          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+          (self: super: { deploy-rs = { inherit (pkgsARM) deploy-rs; lib = super.deploy-rs.lib; }; })
         ];
       };
     in
