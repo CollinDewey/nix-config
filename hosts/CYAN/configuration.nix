@@ -77,8 +77,8 @@
   programs.noisetorch.enable = true;
   systemd.user.services.noisetorch = {
     enable = true;
-    requires = [ "sys-devices-pci0000:00-0000:00:02.1-0000:06:00.0-0000:07:08.0-0000:09:00.0-0000:0a:0c.0-0000:6a:00.0-usb5-5\x2d9-5\x2d9:1.0-sound-card7-controlC7.device" ];
-    after = [ "pipewire.service" "sys-devices-pci0000:00-0000:00:02.1-0000:06:00.0-0000:07:08.0-0000:09:00.0-0000:0a:0c.0-0000:6a:00.0-usb5-5\x2d9-5\x2d9:1.0-sound-card7-controlC7.device" ];
+    #requires = [ "sys-devices-pci0000:00-0000:00:02.1-0000:06:00.0-0000:07:08.0-0000:09:00.0-0000:0a:0c.0-0000:6a:00.0-usb5-5\x2d9-5\x2d9:1.0-sound-card7-controlC7.device" ];
+    after = [ "pipewire.service" ]; #"sys-devices-pci0000:00-0000:00:02.1-0000:06:00.0-0000:07:08.0-0000:09:00.0-0000:0a:0c.0-0000:6a:00.0-usb5-5\x2d9-5\x2d9:1.0-sound-card7-controlC7.device" ];
     wantedBy = [ "pipewire.service" ];
     description = "Noisetorch";
     serviceConfig = {
