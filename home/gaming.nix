@@ -1,8 +1,8 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, inputs, ... }:
 
 with lib;
 let cfg = config.modules.gaming;
-
+stable = import inputs.nixpkgs-stable { system = pkgs.system; };
 in {
   options.modules.gaming = { enable = mkEnableOption "gaming"; };
   config = mkIf cfg.enable {
@@ -23,7 +23,7 @@ in {
       prismlauncher
       clonehero
       ryujinx
-      lime3ds # Likely to be changed to azahar at some point
+      stable.lime3ds # Likely to be changed to azahar at some point
       gamescope
     ];
   };
