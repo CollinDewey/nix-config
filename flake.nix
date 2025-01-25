@@ -139,6 +139,7 @@
 
             {
 
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.collin = {
 
                 imports = [
@@ -239,6 +240,7 @@
 
             {
 
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.collin = {
 
                 imports = [
@@ -338,6 +340,7 @@
 
             {
 
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.dummy = {
 
                 imports = [
@@ -409,6 +412,7 @@
 
             {
 
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.collin = {
 
                 imports = [
@@ -493,6 +497,7 @@
 
             {
 
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.collin = {
 
                 imports = [
@@ -656,6 +661,7 @@
             }
             home-manager-unstable.darwinModules.home-manager
             {
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.collin = {
                 imports = [
                   ./home
@@ -694,6 +700,7 @@
                 zsh.enable = true;
               };
 
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.nixos = {
                 imports = [
                   plasma-manager.homeManagerModules.plasma-manager
