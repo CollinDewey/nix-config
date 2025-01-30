@@ -648,13 +648,13 @@
       };
 
       darwinConfigurations = {
-        COPPER = darwin.lib.darwinSystem {
-          system = "x86_64-darwin";
+        MAUVE = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
           specialArgs = { inherit inputs; };
           modules = [
             ./config
             ./config/home.nix
-            ./hosts/COPPER/configuration.nix
+            ./hosts/MAUVE/configuration.nix
             ./modules/zsh.nix
             {
               modules.zsh.enable = true;
@@ -666,7 +666,6 @@
                 imports = [
                   ./home
                   ./users/collin/home.nix
-                  ./hosts/COPPER/home.nix
                   plasma-manager.homeManagerModules.plasma-manager
                   nix-index-database.hmModules.nix-index
                 ];
