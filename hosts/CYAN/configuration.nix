@@ -97,13 +97,13 @@
     enable = true;
     user = "ollama";
     host = "0.0.0.0";
-    acceleration = "cuda";
+    acceleration = "rocm";
     environmentVariables = {
       HSA_OVERRIDE_GFX_VERSION = "10.3.0";
       OLLAMA_SCHED_SPREAD = "1";
     };
   };
-  #nixpkgs.config.rocmSupport = true;
+  nixpkgs.config.rocmSupport = true;
 
   # State
   system.stateVersion = "23.11";
