@@ -64,6 +64,14 @@ in
       environmentFiles = [ "/services/traefik/traefik.env" ];
     };
 
+    tor = {
+      enable = true;
+      relay.onionServices."blog" = {
+        secretKey = "/services/tor/blog/hs_ed25519_secret_key";
+        map = [ 80 ];
+      };
+    };
+
     nfs.server = {
       enable = true;
       exports = ''
