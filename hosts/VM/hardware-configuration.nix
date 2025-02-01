@@ -8,6 +8,7 @@
 
   boot.loader.systemd-boot.enable = true; # Make eval not complain about a lack of bootloader
   fileSystems."/".device = "/dev/disk/by-label/nixos";
+  services.smartd.enable = false;
 
   time.timeZone = "America/Kentucky/Louisville";
   networking.hostName = "VM";

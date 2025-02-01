@@ -38,6 +38,7 @@
 
   # Disks
   boot.tmp.cleanOnBoot = true;
+  services.smartd.enable = false;
   swapDevices = [{ device = "/swapfile"; size = 4096; }];
   fileSystems = {
     "/" = {

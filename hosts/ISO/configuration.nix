@@ -10,6 +10,7 @@
   hardware.bluetooth.enable = true;
   networking.networkmanager.enable = true;
   networking.wireless.enable = false;
+  services.smartd.enable = false;
   services.xserver.videoDrivers = [
     "amdgpu"
     "radeon"

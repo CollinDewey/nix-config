@@ -31,8 +31,8 @@
 
   # Stuff that should be default, but isn't
   services = {
-    smartd.enable = true;
-    fstrim.enable = true;
+    smartd.enable = lib.mkDefault true;
+    fstrim.enable = lib.mkDefault true;
   };
 
   # Sysctl Tuning
