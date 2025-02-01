@@ -11,14 +11,14 @@
   boot = {
     # Kernel
     initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-    extraModulePackages = with config.boot.kernelPackages; [ (kvmfr.overrideAttrs (_: { patches = (pkgs.fetchpatch { url = "https://github.com/gnif/LookingGlass/commit/7305ce36af211220419eeab302ff28793d515df2.patch"; hash = "sha256-97nZsIH+jKCvSIPf1XPf3i8Wbr24almFZzMOhjhLOYk="; stripLen = 1; }); })) v4l2loopback ];
+    extraModulePackages = with config.boot.kernelPackages; [ kvmfr v4l2loopback ];
     kernelModules = [ "kvm-amd" "uinput" "kvmfr" ];
     extraModprobeConfig = ''
       options kvmfr static_size_mb=128
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
     '';
     kernelParams = [ "mitigations=off" "retbleed=off" "initcall_blacklist=sysfb_init" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernel.sysctl = {
       "kernel.sysrq" = 1; # Allow all sysrq
       "kernel.nmi_watchdog" = 0; # Power Saving
