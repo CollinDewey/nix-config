@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 let
   nfs_opts_rw = "rw,nohide,insecure,no_subtree_check,no_root_squash,async";
   nfs_opts_ro = "ro,nohide,insecure,no_subtree_check,no_root_squash,async";
@@ -51,6 +51,20 @@ in
       Name=Virt-Manager
       Exec=/etc/greetd/Virt-Manager.sh
     '';
+  };
+
+  systemd.services.novnc = {
+    enable = true;
+    description = "noVNC";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.procps ];
+
+    serviceConfig = {
+      ExecStart = "${lib.getExe pkgs.novnc} --vnc 172.16.1.80:5900";
+      DynamicUser = true;
+      Restart = "on-failure";
+    };
   };
 
   services = {
