@@ -6,6 +6,6 @@
   programs.git = {
     userName = "CollinDewey";
     userEmail = "collin@dewey.net";
+    lfs.enable = true;
   };
-
 }
