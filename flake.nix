@@ -784,6 +784,12 @@
             profiles.system.path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.AZUL;
           };
 
+          MAUVE = {
+            hostname = "MAUVE.TERASCRIPTING";
+            profiles.system.path = deploy-rs.lib.x86_64-darwin.activate.darwin self.darwinConfigurations.MAUVE;
+            remoteBuild = true;
+          };
+
           BROWN = {
             hostname = "BROWN.TERASCRIPTING.COM";
             profiles.system.path = deployPkgsARM.deploy-rs.lib.activate.nixos self.nixosConfigurations.BROWN;
