@@ -13,12 +13,14 @@
     onActivation.cleanup = "zap";
     taps = [
       "LizardByte/homebrew"
+      "homebrew/services"
     ];
     brews = [
       "mpv"
       "aria2"
       "yt-dlp"
       "lizardbyte/homebrew/sunshine-beta"
+      "ollama"
     ];
     casks = [
       "firefox"
