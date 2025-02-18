@@ -1,4 +1,4 @@
-{ lib, inputs, ... }:
+{ lib, inputs, pkgs, config, ... }:
 {
   # Modules
   imports = with inputs; [
@@ -46,6 +46,14 @@
   programs.nix-index-database.comma.enable = true;
   programs.command-not-found.enable = false;
 
+  # NVD for activation diff
+  system.activationScripts.preActivation = ''
+    if [[ -e /run/current-system ]]; then
+      echo "--- diff to current-system"
+      ${pkgs.nvd}/bin/nvd --nix-bin-dir=${config.nix.package}/bin diff /run/current-system "$systemConfig"
+      echo "---"
+    fi
+  '';
 
   # Deprioritize Nix builds
   systemd.services.nix-daemon.serviceConfig.OOMScoreAdjust = lib.mkDefault 250;
