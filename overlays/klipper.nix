@@ -13,6 +13,19 @@
           });
         }
     )
+    # NixOS/nixpkgs#279552
+    (
+      final: prev: 
+        {
+          klipper-firmware = prev.klipper-firmware.overrideAttrs (old: {
+            installPhase = ''
+              mkdir -p $out
+              cp ./.config $out/config
+              cp -r out/* $out
+            '';
+          });
+        }
+    )
   ];
 }
 
