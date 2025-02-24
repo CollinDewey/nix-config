@@ -47,7 +47,6 @@
     };
   };
 
-  services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
   # Read changelog before changing (darwin-rebuild changelog)

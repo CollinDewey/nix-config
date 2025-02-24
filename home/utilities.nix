@@ -28,7 +28,7 @@ in {
       x11vnc
       input-leap
       imhex
-      partition-manager
+      kdePackages.partitionmanager
     ];
   };
 }

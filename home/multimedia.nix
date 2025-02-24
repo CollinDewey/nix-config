@@ -10,7 +10,7 @@ in {
       krita
       mpv
       obs-studio
-      kdenlive
+      kdePackages.kdenlive
       clementine
       audacity
       ffmpeg-full
