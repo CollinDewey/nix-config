@@ -30,7 +30,7 @@
     aria2
     htop
     git
-    ncdu
+    dua
     fastfetch
     arp-scan
     killall

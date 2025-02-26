@@ -33,6 +33,7 @@ in
         alias aria64="aria2c -x 64 -s 64 --file-allocation=none";
         alias cd="z"; # Using an alias instead of "zoxide init zsh --cmd cd", so I can easily unalias
         alias cdi="zi";
+        alias ncdu="dua i";
       '';
       promptInit = ''
         alias ls="eza --icons"
