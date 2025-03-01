@@ -43,10 +43,13 @@
     profile_overrides = {
       "GRID RTX6000-1Q".frameLimiter = false;
       "GRID RTX6000-2Q".frameLimiter = false;
-      "GRID RTX6000-4Q".frameLimiter = false;
-      "GRID RTX6000-8Q" = {
+      "GRID RTX6000-4Q" = {
         frameLimiter = false;
         vramMB = 3584;
+      };
+      "GRID RTX6000-8Q" = {
+        frameLimiter = false;
+        vramMB = 7680;
       };
     };
     mdev = {
@@ -60,6 +63,9 @@
     enable = true;
     enable32Bit = true;
   };
+
+  # Virtualisation
+  virtualisation.spiceUSBRedirection.enable = true;
 
   # Networking
   time.timeZone = "America/Louisville";
@@ -168,20 +174,21 @@
   };
 
   # BTRFS De-duplicating
-  services.beesd.filesystems = {
-    ssd = {
-      spec = "/persist";
-      hashTableSizeMB = 512;
-      verbosity = "crit";
-      extraOptions = [ "--thread-count" "2" "--loadavg-target" "5.0" ];
-    };
-    raid = {
-      spec = "/snapshots";
-      hashTableSizeMB = 4096;
-      verbosity = "crit";
-      extraOptions = [ "--thread-count" "4" "--loadavg-target" "5.0" ];
-    };
-  };
+  # Bees is more of an IO hastle than it's worth
+  #services.beesd.filesystems = {
+  #  ssd = {
+  #    spec = "/persist";
+  #    hashTableSizeMB = 512;
+  #    verbosity = "crit";
+  #    extraOptions = [ "--thread-count" "2" "--loadavg-target" "5.0" ];
+  #  };
+  #  raid = {
+  #    spec = "/snapshots";
+  #    hashTableSizeMB = 4096;
+  #    verbosity = "crit";
+  #    extraOptions = [ "--thread-count" "4" "--loadavg-target" "5.0" ];
+  #  };
+  #};
 
   # Specialisation
   specialisation = {
@@ -236,6 +243,7 @@
     "w /sys/fs/bcache/5864fdf7-afe2-454c-b694-903dc1899a02/congested_read_threshold_us - - - - 0" # No latency timeout
     "w /sys/class/net/quad1/device/sriov_numvfs - - - - 2"
     "w /sys/class/net/ten1/device/sriov_numvfs - - - - 8"
+    "f /dev/shm/looking-glass 0660 root libvirtd -"
   ];
 
   # Sops Key File Location

@@ -36,6 +36,10 @@ in
       mode = "0555";
       text = "WLR_NO_HARDWARE_CURSORS=1 ${pkgs.labwc}/bin/labwc -s '${pkgs.virt-manager}/bin/virt-manager -c qemu:///system'";
     };
+    "greetd/Looking-Glass.sh" = {
+      mode = "0555";
+      text = "${pkgs.gamescope}/bin/gamescope -O HDMI-A-1 -- ${pkgs.looking-glass-client}/bin/looking-glass-client -F -d";
+    };
     "greetd/zsh.desktop".text = ''
       [Desktop Entry]
       Name=zsh
@@ -50,6 +54,11 @@ in
       [Desktop Entry]
       Name=Virt-Manager
       Exec=/etc/greetd/Virt-Manager.sh
+    '';
+    "greetd/Looking-Glass.desktop".text = ''
+      [Desktop Entry]
+      Name=Looking-Glass
+      Exec=/etc/greetd/Looking-Glass.sh
     '';
   };
 
