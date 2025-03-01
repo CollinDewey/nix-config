@@ -53,14 +53,14 @@
   };
 
   # BTRFS De-duplicating
-  services.beesd.filesystems = {
-    system = {
-      spec = "/home";
-      hashTableSizeMB = 16;
-      verbosity = "crit";
-      extraOptions = [ "--thread-count" "1" "--loadavg-target" "5.0" ];
-    };
-  };
+  #services.beesd.filesystems = {
+  #  system = {
+  #    spec = "/home";
+  #    hashTableSizeMB = 16;
+  #    verbosity = "crit";
+  #    extraOptions = [ "--thread-count" "1" "--loadavg-target" "5.0" ];
+  #  };
+  #};
 
   # Partitioning
   disko.devices = import ./disko.nix;

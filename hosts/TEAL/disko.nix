@@ -1,6 +1,6 @@
 { ... }:
 let
-  defaultOptsSSD = [ "compress-force=zstd:1" "noatime" "nodiratime" ];
+  defaultOptsSSD = [ "compress-force=zstd:2" "noatime" "nodiratime" ];
   defaultOptsHDD = [ "compress-force=zstd" "noatime" "nodiratime" ];
 in
 {
