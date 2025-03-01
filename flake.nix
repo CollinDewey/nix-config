@@ -774,10 +774,10 @@
             profiles.system.path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.TEAL;
           };
 
-          VIRIDIAN = {
-            hostname = "VIRIDIAN.TERASCRIPTING";
-            profiles.system.path = deployPkgsARM.deploy-rs.lib.activate.nixos self.nixosConfigurations.VIRIDIAN;
-          };
+          #VIRIDIAN = {
+          #  hostname = "VIRIDIAN.TERASCRIPTING";
+          #  profiles.system.path = deployPkgsARM.deploy-rs.lib.activate.nixos self.nixosConfigurations.VIRIDIAN;
+          #};
 
           AZUL = {
             hostname = "AZUL.TERASCRIPTING";
