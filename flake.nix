@@ -76,9 +76,14 @@
       url = "github:soupglasses/nix-system-graphics";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    nixpkgs-xr = {
+      url = "github:nix-community/nixpkgs-xr";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, system-manager, nix-system-graphics, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, system-manager, nix-system-graphics, nixpkgs-xr, ... }@inputs:
     let
       pkgs = import nixpkgs-stable { system = "x86_64-linux"; };
       deployPkgs = import nixpkgs-stable {
@@ -134,6 +139,7 @@
             ./users/collin
             ./users/shimmer
             chaotic.nixosModules.default
+            nixpkgs-xr.nixosModules.nixpkgs-xr
             home-manager-unstable.nixosModules.home-manager
             ./config/home.nix
 
@@ -235,6 +241,7 @@
             ./users/collin
             ./users/shimmer
             chaotic.nixosModules.default
+            nixpkgs-xr.nixosModules.nixpkgs-xr
             home-manager-unstable.nixosModules.home-manager
             ./config/home.nix
 
