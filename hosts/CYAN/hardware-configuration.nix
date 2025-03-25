@@ -17,11 +17,21 @@ in
     kernelParams = lib.mkDefault [ "amd_pstate=active" "iommu=pt" "kvm.ignore_msrs=1" "report_ignored_msrs=0" ];
     #kernelModules = [ "kvmfr" "i2c-dev" ];
     kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelPatches = [{
-      name = "fix-nvidia-amdgpu-pat-mem";
-      patch = null;
-      extraConfig = "HSA_AMD_SVM n";
-    }]; # https://gitlab.freedesktop.org/drm/amd/-/issues/2794
+    kernelPatches = [
+      {
+        name = "fix-nvidia-amdgpu-pat-mem";
+        patch = null;
+        extraConfig = "HSA_AMD_SVM n";
+      } # https://gitlab.freedesktop.org/drm/amd/-/issues/2794
+      {
+        name = "amdgpu-ignore-ctx-privileges";
+        patch = pkgs.fetchpatch {
+          name = "cap_sys_nice_begone.patch";
+          url = "https://github.com/Frogging-Family/community-patches/raw/master/linux61-tkg/cap_sys_nice_begone.mypatch";
+          hash = "sha256-Y3a0+x2xvHsfLax/uwycdJf3xLxvVfkfDVqjkxNaYEo=";
+        };
+      } # https://github.com/NixOS/nixpkgs/issues/217119
+    ];
     extraModulePackages = with config.boot.kernelPackages; [ kvmfr v4l2loopback ];
     extraModprobeConfig = ''
       options kvmfr static_size_mb=128
