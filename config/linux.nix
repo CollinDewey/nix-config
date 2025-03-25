@@ -40,6 +40,8 @@
     # Networking
     "net.core.default_qdisc" = "cake";
     "net.ipv4.tcp_congestion_control" = "bbr";
+    "vm.max_map_count" = 2147483642;
+    "kernel.split_lock_mitigate" = 0;
   };
 
   # Comma
