@@ -13,7 +13,6 @@
     onActivation.cleanup = "zap";
     taps = [
       "LizardByte/homebrew"
-      "homebrew/services"
     ];
     brews = [
       "mpv"

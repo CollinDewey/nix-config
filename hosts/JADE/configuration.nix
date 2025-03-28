@@ -11,9 +11,6 @@
     enable = true;
     onActivation.autoUpdate = true;
     onActivation.cleanup = "zap";
-    taps = [
-      "homebrew/services"
-    ];
     brews = [
       "mpv"
       "aria2"
