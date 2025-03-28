@@ -18,5 +18,6 @@ in {
       enable = true;
       binfmt = true;
     };
+    services.envfs.enable = true;
   };
 }
