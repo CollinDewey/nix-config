@@ -1,13 +1,9 @@
 { ... }:
 {
-  # Currently connecting a bridge (virbr2) to my OPNSense VM, created through virsh
-  # Rebuilds will fail if the autostart fails. Figure out how to let it accept an error.
-  # I want to know if it breaks, but it's very hard to debug when the container keeps going up and down.
-
   networking.nat = {
     enable = true;
-    #internalInterfaces = [""];
-    #externalInterface = "enp5s0f0";
+    internalInterfaces = ["ve-changede2KnI"];
+    externalInterface = "quad1";
   };
 
   systemd.tmpfiles.rules = [
@@ -15,6 +11,7 @@
     "d /services/syncthing 0755 1000 1000 -"
     "d /services/adguardhome 0755 0 0 -"
     "d /services/microbin 0755 0 0 -"
+    "d /services/changedetection 0755 0 0 -"
     "d /services/vaultwarden 0755 0 0 -"
     "d /services/vaultwarden/vaultwarden 0755 0 0 -"
     "d /storage/vaultwarden_backup 0755 0 0 -"
@@ -76,6 +73,21 @@
       bindMounts = {
         "/var/lib/private/microbin" = {
           hostPath = "/services/microbin";
+          isReadOnly = false;
+        };
+      };
+    };
+
+    changedetection = {
+      ephemeral = true;
+      autoStart = false;
+      privateNetwork = true;
+      hostAddress = "192.168.100.1";
+      localAddress = "192.168.100.4";
+      config = ./changedetection.nix;
+      bindMounts = {
+        "/var/lib/changedetection-io" = {
+          hostPath = "/services/changedetection";
           isReadOnly = false;
         };
       };
