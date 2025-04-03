@@ -795,6 +795,7 @@
         user = "root";
         interactiveSudo = true;
         fastConnection = true;
+        remoteBuild = true;
 
         nodes = {
           CYAN = {
@@ -820,12 +821,12 @@
           AZUL = {
             hostname = "AZUL.TERASCRIPTING";
             profiles.system.path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.AZUL;
+            remoteBuild = false;
           };
 
           MAUVE = {
             hostname = "MAUVE.TERASCRIPTING";
             profiles.system.path = deploy-rs.lib.x86_64-darwin.activate.darwin self.darwinConfigurations.MAUVE;
-            remoteBuild = true;
           };
 
           BROWN = {
