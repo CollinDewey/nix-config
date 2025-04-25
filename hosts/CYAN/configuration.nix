@@ -68,12 +68,12 @@
   # Various Services
   services.preload.enable = true;
   services.netdata.enable = true;
-  services.openvscode-server = {
-    enable = true;
-    host = "0.0.0.0";
-    user = "collin";
-    withoutConnectionToken = true;
-  };
+  #services.openvscode-server = {
+  #  enable = true;
+  #  host = "0.0.0.0";
+  #  user = "collin";
+  #  withoutConnectionToken = true;
+  #};
   programs.noisetorch.enable = true;
   systemd.user.services.noisetorch = {
     enable = true;

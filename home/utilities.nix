@@ -26,7 +26,7 @@ in {
       nil
       tigervnc
       x11vnc
-      input-leap
+      #input-leap
       imhex
       kdePackages.partitionmanager
     ];
