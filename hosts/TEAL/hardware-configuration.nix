@@ -225,6 +225,7 @@
       directories = [
         "/var/log" # Keep system logs
         "/var/lib/docker" # Keep Docker junk
+        "/var/lib/cups" # Keep CUPS config
       ];
     };
   };

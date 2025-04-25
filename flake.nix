@@ -399,6 +399,7 @@
 
             {
               modules = {
+                printing.enable = true;
                 ssh.enable = true;
                 virtualisation = {
                   docker = true;
