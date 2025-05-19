@@ -2,8 +2,8 @@
   description = "Collin's Nix Configuration";
 
   inputs = {
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-unstable-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-25.05";
+    nixpkgs-unstable-small.url = "github:nixos/nixpkgs/nixos-25.05-small";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11-small";
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
@@ -31,7 +31,7 @@
     };
 
     home-manager-unstable = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 

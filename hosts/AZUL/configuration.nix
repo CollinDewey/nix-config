@@ -64,21 +64,22 @@ in
           path:${config.services.moonraker.stateDir}/gcodes
       '';
 
-      firmwares = {
-        skr = {
-          enable = true;
-          enableKlipperFlash = true;
-          configFile = ./skr.cfg;
-          serial = "/dev/serial/by-id/usb-Klipper_stm32g0b1xx_1F0026001150415833323520-if00";
-        };
+      # This is broken (again) -_-
+      #firmwares = {
+      #  skr = {
+      #    enable = true;
+      #    enableKlipperFlash = true;
+      #    configFile = ./skr.cfg;
+      #    serial = "/dev/serial/by-id/usb-Klipper_stm32g0b1xx_1F0026001150415833323520-if00";
+      #  };
 
-        pico = {
-          enable = true;
-          enableKlipperFlash = true;
-          configFile = ./pico.cfg;
-          serial = "/dev/serial/by-id/usb-Klipper_rp2040_4547415053881A8A-if00";
-        };
-      };
+      #  pico = {
+      #    enable = true;
+      #    enableKlipperFlash = true;
+      #    configFile = ./pico.cfg;
+      #    serial = "/dev/serial/by-id/usb-Klipper_rp2040_4547415053881A8A-if00";
+      #  };
+      #};
     };
 
     moonraker = {
