@@ -23,7 +23,7 @@ in {
       prismlauncher
       clonehero
       ryujinx
-      stable.lime3ds # Likely to be changed to azahar at some point
+      azahar
       gamescope
       r2modman
     ];
