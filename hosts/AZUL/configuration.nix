@@ -82,6 +82,12 @@ in
       #};
     };
 
+    # Sunshine
+    sunshine = {
+      enable = true;
+      capSysAdmin = true;
+    };
+
     moonraker = {
       enable = true;
       address = "0.0.0.0";
