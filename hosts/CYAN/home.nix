@@ -13,5 +13,6 @@
     (hashcat.override {
       cudaSupport = true;
     })
+    vagrant
   ];
 }
