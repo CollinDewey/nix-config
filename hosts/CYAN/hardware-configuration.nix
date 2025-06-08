@@ -262,6 +262,7 @@ in
         "/var/log" # Keep system logs
         "/var/lib/docker" # Keep Docker junk
         "/var/lib/libvirt" # Keep KVM junk
+        "/var/lib/upower" # Keep UPower junk
         { directory = "/var/lib/syncthing"; user = "collin"; group = "collin"; } # Syncthing
         "/var/lib/NetworkManager" # I like using WiFi
         { directory = "/var/lib/private/ollama"; user = "ollama"; group = "ollama"; } # Ollama
