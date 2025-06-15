@@ -73,7 +73,7 @@
     enable = true;
     wait-online.anyInterface = true;
     links = {
-      "10-ten-unused" = {
+      "10-ten-wan" = {
         matchConfig.PermanentMACAddress = "a0:36:9f:54:a2:dc";
         linkConfig.Name = "ten0";
       };
@@ -105,7 +105,7 @@
         matchConfig.Path = "pci-0000:05:11.3";
         linkConfig.Name = "ten1v5";
       };
-      "10-ten-spare0" = {
+      "10-ten-assist" = {
         matchConfig.Path = "pci-0000:05:11.5";
         linkConfig.Name = "ten1v6";
       };
@@ -117,21 +117,13 @@
         matchConfig.PermanentMACAddress = "0a:e0:af:ad:2a:57";
         linkConfig.Name = "mobo0";
       };
-      "10-one-wan" = {
+      "10-one-quad0" = {
         matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4c";
         linkConfig.Name = "quad0";
       };
-      "10-one-lan" = {
+      "10-one-quad1" = {
         matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4d";
         linkConfig.Name = "quad1";
-      };
-      "10-one-lan-opnsense" = {
-        matchConfig.Path = "pci-0000:01:10.1";
-        linkConfig.Name = "quad1v0";
-      };
-      "10-one-lan-homeassistant" = {
-        matchConfig.Path = "pci-0000:01:10.5";
-        linkConfig.Name = "quad1v1";
       };
       "10-one-quad2" = {
         matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4e";
@@ -143,16 +135,12 @@
       };
     };
     networks = {
-      "10-one-lan" = {
-        matchConfig.Name = "quad1";
-        networkConfig.DHCP = "ipv4";
-      };
       "10-ten-lan" = {
         matchConfig.Name = "ten1";
-        address = [ "172.26.0.100/16" ];
+        address = [ "172.16.0.100/16" ];
         routes = [{
-          Gateway = "172.26.0.1";
-          Destination = "172.26.0.0/16";
+          Gateway = "172.16.0.1";
+          Destination = "0.0.0.0/0";
         }];
       };
     };
@@ -242,7 +230,7 @@
     "w /sys/block/bcache0/bcache/cache_mode - - - - writearound" # Read-only bcache
     "w /sys/block/bcache1/bcache/cache_mode - - - - writearound" # Read-only bcache
     "w /sys/fs/bcache/5864fdf7-afe2-454c-b694-903dc1899a02/congested_read_threshold_us - - - - 0" # No latency timeout
-    "w /sys/class/net/quad1/device/sriov_numvfs - - - - 2"
+    #"w /sys/class/net/quad1/device/sriov_numvfs - - - - 2"
     "w /sys/class/net/ten1/device/sriov_numvfs - - - - 8"
     "f /dev/shm/looking-glass 0660 root libvirtd -"
   ];

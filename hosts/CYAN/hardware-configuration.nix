@@ -117,10 +117,10 @@ in
     networks = {
       "10-ten-lan" = {
         matchConfig.Name = "ten0";
-        address = [ "172.26.1.10/16" ];
+        address = [ "172.16.1.10/16" ];
         routes = [{
-          Gateway = "172.26.0.1";
-          Destination = "172.26.0.0/16";
+          Gateway = "172.16.0.1";
+          Destination = "0.0.0.0/0";
         }];
       };
     };
@@ -132,7 +132,7 @@ in
       unmanaged = [ "interface-name:ten0" ];
     };
     hosts = {
-      "172.26.0.100" = [ "TEAL" ]; # 10 Gigabit Link
+      "172.16.0.100" = [ "TEAL" ]; # 10 Gigabit Link
     };
     firewall = {
       enable = false;
