@@ -7,6 +7,7 @@
 
   programs.zsh.enable = true;
 
+  system.primaryUser = "collin";
   homebrew = {
     enable = true;
     onActivation.autoUpdate = true;

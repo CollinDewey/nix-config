@@ -89,7 +89,7 @@
       deployPkgs = import nixpkgs-stable {
         system = "x86_64-linux";
         overlays = [
-          deploy-rs.overlay
+          deploy-rs.overlays.default
           (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
         ];
       };
@@ -98,7 +98,7 @@
       deployPkgsARM = import nixpkgs-stable {
         system = "aarch64-linux";
         overlays = [
-          deploy-rs.overlay
+          deploy-rs.overlays.default
           (self: super: { deploy-rs = { inherit (pkgsARM) deploy-rs; lib = super.deploy-rs.lib; }; })
         ];
       };
