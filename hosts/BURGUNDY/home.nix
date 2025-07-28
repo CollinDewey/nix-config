@@ -8,7 +8,6 @@
   home.packages = with pkgs; [
     moonlight-qt
     distrobox
-    vagrant
   ];
   home.file.".config/autostart/zenbook-keyboard.desktop".text = ''
     [Desktop Entry]
