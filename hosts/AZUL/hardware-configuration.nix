@@ -69,9 +69,9 @@
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
+      vpl-gpu-rt
       intel-vaapi-driver # VAAPI
       libvdpau-va-gl # No idea if this is needed
-      intel-media-sdk # QSV
     ];
   };
   environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; };

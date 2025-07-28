@@ -643,7 +643,7 @@
           ./users/collin/home.nix
           ./hosts/CYBERL/home.nix
           plasma-manager.homeManagerModules.plasma-manager
-          nix-index-database.hmModules.nix-index
+          nix-index-database.homeModules.nix-index
           {
             modules = {
               plasma.enable = true;
@@ -675,7 +675,7 @@
                   ./home
                   ./users/collin/home.nix
                   plasma-manager.homeManagerModules.plasma-manager
-                  nix-index-database.hmModules.nix-index
+                  nix-index-database.homeModules.nix-index
                 ];
 
                 modules = {
@@ -706,7 +706,7 @@
                   ./home
                   ./users/collin/home.nix
                   plasma-manager.homeManagerModules.plasma-manager
-                  nix-index-database.hmModules.nix-index
+                  nix-index-database.homeModules.nix-index
                 ];
 
                 modules = {
