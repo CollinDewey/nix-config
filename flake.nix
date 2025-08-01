@@ -474,7 +474,7 @@
           ];
         };
 
-        AZUL = nixpkgs-unstable.lib.nixosSystem {
+        AZUL = nixpkgs-unstable-small.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
