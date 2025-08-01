@@ -31,11 +31,11 @@
       "bitwarden"
       "utm"
     ];
-    masApps = {
-      Xcode = 497799835;
-      #Testflight = 899247664;
-      Wireguard = 1451685025;
-    };
+    #masApps = {
+    #  Xcode = 497799835;
+    #  Testflight = 899247664;
+    #  Wireguard = 1451685025;
+    #};
   };
 
   nix.package = pkgs.nix;
