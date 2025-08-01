@@ -42,7 +42,7 @@
     ];
     masApps = {
       Xcode = 497799835;
-      Testflight = 899247664;
+      #Testflight = 899247664;
       Wireguard = 1451685025;
     };
   };
