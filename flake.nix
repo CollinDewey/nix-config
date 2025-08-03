@@ -9,6 +9,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    copyparty.url = "github:9001/copyparty";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -83,7 +84,7 @@
     };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, system-manager, nix-system-graphics, nixpkgs-xr, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, copyparty, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, system-manager, nix-system-graphics, nixpkgs-xr, ... }@inputs:
     let
       pkgs = import nixpkgs-stable { system = "x86_64-linux"; };
       deployPkgs = import nixpkgs-stable {
@@ -397,7 +398,9 @@
             # Specialized Hardware Configuration
             ./hosts/TEAL/hardware-configuration.nix
 
+            copyparty.nixosModules.default
             {
+              nixpkgs.overlays = [ copyparty.overlays.default ];
               modules = {
                 printing.enable = true;
                 ssh.enable = true;

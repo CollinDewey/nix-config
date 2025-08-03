@@ -95,6 +95,48 @@ in
       };
     };
 
+    copyparty = {
+     enable = true;
+
+      user = "collin";
+      group = "collin";
+
+      settings = {
+        i = "0.0.0.0";
+        theme = 2;
+      };
+      
+
+      accounts = {
+        "collin".passwordFile = "/services/copyparty/collin_pass";
+      };
+
+      volumes = {
+        "/" = {
+          path = "/network_share/Global";
+          access = {
+            rwmd = "*";
+            rwmda = "collin";
+          };
+          flags = {
+            e2dsa = true;
+            daw = true;
+          };
+        };
+        "/collin" = {
+          path = "/network_share/Collin";
+          access = {
+            rwmda = "collin";
+          };
+          flags = {
+            e2dsa = true;
+            daw = true;
+          };
+        };
+      };
+      openFilesLimit = 8192;
+    };
+
     nfs.server = {
       enable = true;
       exports = ''

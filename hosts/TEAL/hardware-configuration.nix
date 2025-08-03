@@ -204,6 +204,7 @@
         "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
       ];
       directories = [
+        { directory = "/var/lib/copyparty"; user = "collin"; group = "collin"; }
         { directory = "/home/collin/.config/Moonlight Game Streaming Project"; user = "collin"; group = "collin"; }
       ];
     };
@@ -214,6 +215,7 @@
         "/var/log" # Keep system logs
         "/var/lib/docker" # Keep Docker junk
         "/var/lib/cups" # Keep CUPS config
+        "/var/cache/copyparty"
       ];
     };
   };
