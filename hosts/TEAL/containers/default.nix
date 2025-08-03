@@ -2,8 +2,8 @@
 {
   networking.nat = {
     enable = true;
-    internalInterfaces = ["ve-changede2KnI"];
-    externalInterface = "quad1";
+    internalInterfaces = [ "ve-changede2KnI" "ve-jellyfin" ];
+    externalInterface = "ten1";
   };
 
   systemd.tmpfiles.rules = [
@@ -45,34 +45,6 @@
       bindMounts = {
         "/var/lib/syncthing" = {
           hostPath = "/services/syncthing";
-          isReadOnly = false;
-        };
-      };
-    };
-
-    adguardhome = {
-      ephemeral = true;
-      autoStart = false;
-      macvlans = [ "virbr2" ];
-      config = ./adguardhome.nix;
-      bindMounts = {
-        "/var/lib/private/AdGuardHome" = {
-          hostPath = "/services/adguardhome";
-          isReadOnly = false;
-        };
-      };
-    };
-
-    microbin = {
-      ephemeral = true;
-      autoStart = false;
-      privateNetwork = true;
-      hostAddress = "192.168.100.1";
-      localAddress = "192.168.100.3";
-      config = ./microbin.nix;
-      bindMounts = {
-        "/var/lib/private/microbin" = {
-          hostPath = "/services/microbin";
           isReadOnly = false;
         };
       };
