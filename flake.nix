@@ -407,7 +407,7 @@
                 virtualisation = {
                   docker = true;
                   libvirt = true;
-                  nvidia = false;
+                  nvidia = true;
                   ipv6 = true;
                 };
                 zsh.enable = true;

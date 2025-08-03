@@ -25,6 +25,11 @@ in
         fsType = "btrfs";
         options = defaultOptsHDD ++ [ "subvol=network_share" ];
       };
+      "/photos" = {
+        device = "/dev/bcache0";
+        fsType = "btrfs";
+        options = defaultOptsHDD ++ [ "subvol=photos" ];
+      };
     };
   };
 }

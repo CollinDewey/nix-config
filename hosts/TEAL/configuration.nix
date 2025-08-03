@@ -8,7 +8,7 @@ in
   imports = [ ./libvirt.nix ];
 
   # State
-  system.stateVersion = "23.05";
+  system.stateVersion = "25.05";
 
   # VGPU
   hardware.nvidia.vgpu.fastapi-dls = {
@@ -93,6 +93,14 @@ in
         secretKey = "/services/tor/blog/hs_ed25519_secret_key";
         map = [ 80 ];
       };
+    };
+
+    postgresql.dataDir = "/photos/Immich/postgres"; # Surely I won't need to use postgresql for anything else
+    immich = {
+      enable = true;
+      host = "0.0.0.0";
+      mediaLocation = "/photos/Immich/library";
+      accelerationDevices = [ "/dev/dri/renderD128" ];
     };
 
     copyparty = {
