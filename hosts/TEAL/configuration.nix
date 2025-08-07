@@ -76,6 +76,7 @@ in
     };
   };
 
+  users.users.immich.extraGroups = [ "video" "render" ];
   services = {
     netdata.enable = true;
 
