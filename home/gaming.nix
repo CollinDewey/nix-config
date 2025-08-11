@@ -22,7 +22,7 @@ in {
       ))
       prismlauncher
       clonehero
-      ryujinx
+      ryubing
       azahar
       gamescope
       r2modman
