@@ -98,7 +98,7 @@ in
   };
   hardware.nvidia.open = false;
   environment.variables.__RM_NO_VERSION_CHECK = "1";
-  environment.variables.KWIN_DRM_DEVICES = "/dev/dri/card1";
+  environment.variables.KWIN_DRM_DEVICES = "/dev/amdgpu-card";
 
   # Networking
   time.timeZone = "America/Louisville";
@@ -165,6 +165,8 @@ in
   # VFIO
   services.udev.extraRules = ''
     SUBSYSTEM=="kvmfr", OWNER="root", GROUP="libvirtd", MODE="0660"
+    SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="0337", MODE="0666"
+    SUBSYSTEM=="drm", KERNEL=="card*", KERNELS=="0000:03:00.0", SYMLINK+="amdgpu-card"
   '';
   environment.etc."looking-glass-client.ini".text = ''
     [app]
