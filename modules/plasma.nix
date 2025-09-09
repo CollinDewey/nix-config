@@ -18,7 +18,7 @@ in {
       desktopManager.plasma6.enable = true;
       displayManager.sddm = {
         enable = true;
-        theme = "catppuccin-mocha";
+        theme = "catppuccin-mocha-mauve";
         wayland = {
           enable = true;
           compositor = "kwin";
