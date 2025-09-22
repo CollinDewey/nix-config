@@ -151,7 +151,7 @@
 
                 imports = [
                   # Modules
-                  plasma-manager.homeManagerModules.plasma-manager
+                  plasma-manager.homeModules.plasma-manager
                   ./home
 
                   # Computer Specific Config
@@ -182,7 +182,7 @@
               home-manager.users.shimmer = {
                 imports = [
                   # Modules
-                  plasma-manager.homeManagerModules.plasma-manager
+                  plasma-manager.homeModules.plasma-manager
                   ./home
 
                   # Computer Specific Config
@@ -253,7 +253,7 @@
 
                 imports = [
                   # Modules
-                  plasma-manager.homeManagerModules.plasma-manager
+                  plasma-manager.homeModules.plasma-manager
                   ./home
 
                   # Computer Specific Config
@@ -284,7 +284,7 @@
               home-manager.users.shimmer = {
                 imports = [
                   # Modules
-                  plasma-manager.homeManagerModules.plasma-manager
+                  plasma-manager.homeModules.plasma-manager
                   ./home
 
                   # Computer Specific Config
@@ -353,7 +353,7 @@
 
                 imports = [
                   # Modules
-                  plasma-manager.homeManagerModules.plasma-manager
+                  plasma-manager.homeModules.plasma-manager
                   ./home
 
                   # User Specific Config
@@ -428,7 +428,7 @@
 
                 imports = [
                   # Modules
-                  plasma-manager.homeManagerModules.plasma-manager
+                  plasma-manager.homeModules.plasma-manager
                   ./home
 
                   # Computer Specific Config
@@ -513,7 +513,7 @@
 
                 imports = [
                   # Modules
-                  plasma-manager.homeManagerModules.plasma-manager
+                  plasma-manager.homeModules.plasma-manager
                   ./home
 
                   # Computer Specific Config
@@ -645,7 +645,7 @@
           ./home
           ./users/collin/home.nix
           ./hosts/CYBERL/home.nix
-          plasma-manager.homeManagerModules.plasma-manager
+          plasma-manager.homeModules.plasma-manager
           nix-index-database.homeModules.nix-index
           {
             modules = {
@@ -677,7 +677,7 @@
                 imports = [
                   ./home
                   ./users/collin/home.nix
-                  plasma-manager.homeManagerModules.plasma-manager
+                  plasma-manager.homeModules.plasma-manager
                   nix-index-database.homeModules.nix-index
                 ];
 
@@ -708,7 +708,7 @@
                 imports = [
                   ./home
                   ./users/collin/home.nix
-                  plasma-manager.homeManagerModules.plasma-manager
+                  plasma-manager.homeModules.plasma-manager
                   nix-index-database.homeModules.nix-index
                 ];
 
@@ -744,7 +744,7 @@
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.users.nixos = {
                 imports = [
-                  plasma-manager.homeManagerModules.plasma-manager
+                  plasma-manager.homeModules.plasma-manager
                   ./home
                 ];
                 modules = {
