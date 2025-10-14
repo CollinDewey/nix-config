@@ -11,7 +11,6 @@ in {
       mpv
       obs-studio
       kdePackages.kdenlive
-      clementine
       audacity
       ffmpeg-full
       yt-dlp

@@ -44,14 +44,6 @@ in {
       qemu = {
         swtpm.enable = true;
         vhostUserPackages = [ pkgs.virtiofsd ];
-        ovmf = {
-          packages = [
-            (pkgs.OVMF.override {
-              secureBoot = true;
-              tpmSupport = true;
-            }).fd
-          ];
-        };
       };
       parallelShutdown = 10;
     };
