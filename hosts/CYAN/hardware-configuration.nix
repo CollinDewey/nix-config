@@ -60,10 +60,6 @@ in
         rocmPackages.rocm-runtime
       ];
     };
-    amdgpu.amdvlk = {
-      enable = true;
-      support32Bit.enable = true;
-    };
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
