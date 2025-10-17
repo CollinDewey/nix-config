@@ -92,17 +92,17 @@
   };
 
   # Ollama
-  users.users.ollama.uid = 734;
-  services.ollama = {
-    enable = true;
-    user = "ollama";
-    host = "0.0.0.0";
-    acceleration = "rocm";
-    environmentVariables = {
-      HSA_OVERRIDE_GFX_VERSION = "10.3.0";
-      OLLAMA_SCHED_SPREAD = "1";
-    };
-  };
+  #users.users.ollama.uid = 734;
+  #services.ollama = {
+  #  enable = true;
+  #  user = "ollama";
+  #  host = "0.0.0.0";
+  #  acceleration = "rocm";
+  #  environmentVariables = {
+  #    HSA_OVERRIDE_GFX_VERSION = "10.3.0";
+  #    OLLAMA_SCHED_SPREAD = "1";
+  #  };
+  #};
   nixpkgs.config.rocmSupport = true;
 
   # State
