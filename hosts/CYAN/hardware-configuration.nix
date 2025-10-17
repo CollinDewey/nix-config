@@ -7,6 +7,7 @@ in
   imports = [
     inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModules.impermanence
+    inputs.nvidia-vgpu.nixosModules.nvidia-vgpu
   ];
 
   # Boot
@@ -16,7 +17,8 @@ in
     initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
     kernelParams = lib.mkDefault [ "amd_pstate=active" "iommu=pt" "kvm.ignore_msrs=1" "report_ignored_msrs=0" ];
     #kernelModules = [ "kvmfr" "i2c-dev" ];
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    #kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_6_6; # Lol
     kernelPatches = [
       {
         name = "fix-nvidia-amdgpu-pat-mem";
@@ -77,6 +79,7 @@ in
         '';
       };
       modules.virtualisation.nvidia = lib.mkForce false;
+      hardware.nvidia.vgpu.enable = lib.mkForce false;
     };
   };
   services.xserver = {
@@ -92,7 +95,70 @@ in
       EndSection
     '';
   };
-  hardware.nvidia.open = false;
+  hardware.nvidia = {
+    open = false;
+    modesetting.enable = false;
+    vgpu = {
+      enable = true;
+      copyVGPUProfiles = {
+        "1E82:0000" = "1E30:12BA"; # 2080
+      };
+      vgpu_driver_src.url = "https://teal.terascripting.com/internal/NVIDIA-GRID-Linux-KVM-550.90.05-550.90.07-552.55.zip";
+      profile_overrides = {
+        "GRID RTX6000-1Q" = {
+          frameLimiter = false;
+          vramMB = 768;
+        };
+        "GRID RTX6000-2Q" = {
+          frameLimiter = false;
+          vramMB = 1536;
+        };
+        "GRID RTX6000-4Q" = {
+          frameLimiter = false;
+          vramMB = 3584;
+        };
+        "GRID RTX6000-6Q" = {
+          frameLimiter = false;
+          vramMB = 5632;
+        };
+        "GRID RTX6000-8Q" = {
+          frameLimiter = false;
+          vramMB = 7680;
+        };
+      };
+      mdev = {
+        device = "0000:05:00.0";
+        vgpus = {
+          nvidia-256.uuid = [ # 768MB (1Q)
+            "b55a97d1-0235-4cd5-9107-14ef3e276817"
+            "7a041175-dc01-4ab7-aad3-29de1962987f"
+            "d094de44-9450-4e06-b89b-9faef4ac5d99"
+            "790e93fc-b2cf-4911-8c85-7652f64816ec"
+            "062a1895-11e8-4fc8-a811-f613157b1030"
+            "e7da33a4-5214-45b4-b1b8-73d9d80b12c3"
+            "e6362a4e-6fb5-441d-877f-4f2d025681d1"
+            "926447eb-6fb0-44de-af03-e5de8d5cb1e9"
+          ];
+          nvidia-257.uuid = [ # 1536MB (2Q)
+            "c18abdad-6052-426e-b5fe-575e49be3942"
+            "adf982df-aa62-4b67-88c3-7b72227e6b44"
+            "14587a10-f278-42bb-80a4-616d46877215"
+            "60d4161e-ab0b-4404-8d6c-092fcff5f5bc"
+          ];
+          nvidia-259.uuid = [ # 3584MB (4Q)
+            "0082a0e0-16b2-40c0-a44f-eb93b4b4e5ac"
+            "6b556be7-54de-43ce-804a-64313b2a3ae9"
+          ];
+          nvidia-260.uuid = [ # 5632MB (6Q)
+            "9ff52e10-a771-4a03-b25f-bce2633f8380"
+          ];
+          nvidia-261.uuid = [ # 7680MB (8Q)
+            "0cc09914-633b-4977-be20-ab567a9dc62e"
+          ];
+        };
+      };
+    };
+  };
   environment.variables.__RM_NO_VERSION_CHECK = "1";
   environment.variables.KWIN_DRM_DEVICES = "/dev/amdgpu-card";
 
