@@ -46,6 +46,7 @@ in {
           #loginBackground = true;
         }
       )
+      pkgs.unrar
     ];
 
     programs.kdeconnect.enable = true;
