@@ -4,7 +4,6 @@
   services.udev.packages = [
     pkgs.logitech-udev-rules
     pkgs.teensy-udev-rules
-    pkgs.android-udev-rules
   ];
 
   # Programs
