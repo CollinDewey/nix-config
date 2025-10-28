@@ -1,7 +1,4 @@
-{ pkgs, inputs, ... }:
-let
-  pkgs-stable = import inputs.nixpkgs-stable { system = "x86_64-linux"; };
-in
+{ pkgs, ... }:
 {
   # udev rules
   services.udev.packages = [
@@ -49,7 +46,6 @@ in
   environment.systemPackages = with pkgs; [
     libimobiledevice
     ifuse
-    (pkgs-stable.julia.withPackages [ "Primes" "Mods" "GeneralizedCRT" "ClassicalCiphers" "MD5" ]) # Globally install this because VS:Code has a fit with the devenv for some reason
   ];
 
   # Avahi
