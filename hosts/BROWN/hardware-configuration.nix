@@ -33,14 +33,17 @@
     nameservers = [ "8.8.8.8" "1.1.1.1" ];
     useDHCP = false;
     interfaces.enp0s3.useDHCP = true;
-    firewall.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 80 443 ];
+    };
   };
 
   # Performance
   powerManagement.cpuFreqGovernor = "performance";
 
   # State
-  system.stateVersion = "21.11";
+  system.stateVersion = "25.05";
 
   # Disks
   boot.tmp.cleanOnBoot = true;

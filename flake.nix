@@ -546,6 +546,7 @@
             ./config/linux.nix
             ./overlays
             ./modules
+            ./hosts/BROWN/configuration.nix
 
             # Specialized Hardware Configuration
             ./hosts/BROWN/hardware-configuration.nix
