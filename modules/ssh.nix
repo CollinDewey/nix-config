@@ -27,7 +27,15 @@ in
       PermitRootLogin = lib.mkForce "no";
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
+      LogLevel = "VERBOSE";
     };
-
+    services.fail2ban = {
+      enable = true;
+      bantime-increment.enable = true;
+      ignoreIP = [
+        "172.16.0.0/12"
+        "108.211.36.57/32"
+      ];
+    };
   };
 }
