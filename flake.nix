@@ -49,7 +49,7 @@
 
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     deploy-rs = {
@@ -729,7 +729,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            home-manager-unstable.nixosModules.home-manager
+            home-manager-stable.nixosModules.home-manager
             ./config
             ./config/home.nix
             ./hosts/ISO/configuration.nix
