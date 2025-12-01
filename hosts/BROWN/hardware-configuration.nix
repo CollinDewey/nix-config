@@ -35,7 +35,11 @@
     interfaces.enp0s3.useDHCP = true;
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 443 ];
+      allowedTCPPorts = [ 
+        22 # SSH
+        80 # Traefik
+        443 # Traefik
+      ];
     };
   };
 

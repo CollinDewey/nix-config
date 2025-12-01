@@ -20,7 +20,6 @@ in {
         enable = true;
         flags = [ "--all" ];
       };
-      enableNvidia = cfg.nvidia;
       daemon.settings = mkIf cfg.ipv6 {
         ipv6 = true;
         fixed-cidr-v6 = "2001:db8:1::/64";

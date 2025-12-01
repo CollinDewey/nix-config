@@ -2,7 +2,7 @@
 
 with lib;
 let cfg = config.modules.klipper;
-stable = import inputs.nixpkgs-stable { system = pkgs.system; };
+stable = import inputs.nixpkgs-stable { system = pkgs.stdenv.hostPlatform.system; };
 in {
   options.modules.klipper = { enable = mkEnableOption "klipper"; };
   config = mkIf cfg.enable {

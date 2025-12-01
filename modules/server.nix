@@ -32,9 +32,9 @@ in {
     services.irqbalance.enable = true;
 
     # Watchdog
-    systemd.watchdog = {
-      runtimeTime = "60s";
-      rebootTime = "240s";
+    systemd.settings.Manager = {
+      RuntimeWatchdogSec = "60s";
+      RebootWatchdogSec = "240s";
     };
   };
 }

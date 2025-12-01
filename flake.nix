@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable-small.url = "github:nixos/nixpkgs/nixos-unstable-small";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05-small";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11-small";
     impermanence.url = "github:nix-community/impermanence";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
@@ -37,7 +37,7 @@
     };
 
     home-manager-stable = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
@@ -788,11 +788,6 @@
             hostname = "TEAL.TERASCRIPTING";
             profiles.system.path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.TEAL;
           };
-
-          #VIRIDIAN = {
-          #  hostname = "VIRIDIAN.TERASCRIPTING";
-          #  profiles.system.path = deployPkgsARM.deploy-rs.lib.activate.nixos self.nixosConfigurations.VIRIDIAN;
-          #};
 
           AZUL = {
             hostname = "AZUL.TERASCRIPTING";

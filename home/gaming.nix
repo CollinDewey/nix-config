@@ -2,7 +2,7 @@
 
 with lib;
 let cfg = config.modules.gaming;
-stable = import inputs.nixpkgs-stable { system = pkgs.system; };
+stable = import inputs.nixpkgs-stable { system = pkgs.stdenv.hostPlatform.system; };
 in {
   options.modules.gaming = { enable = mkEnableOption "gaming"; };
   config = mkIf cfg.enable {

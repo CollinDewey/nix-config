@@ -65,7 +65,6 @@
   services.nfs.server.enable = true;
 
   # Various Services
-  services.preload.enable = true;
   services.netdata.enable = true;
   #services.openvscode-server = {
   #  enable = true;

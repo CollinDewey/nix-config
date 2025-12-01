@@ -4,8 +4,8 @@
   home.homeDirectory = if pkgs.stdenv.isDarwin then lib.mkForce "/Users/collin" else "/home/collin";
 
   programs.git = {
-    userName = "CollinDewey";
-    userEmail = "collin@dewey.net";
+    settings.user.name = "CollinDewey";
+    settings.user.email = "collin@dewey.net";
     lfs.enable = true;
   };
 }

@@ -29,7 +29,12 @@
     nameservers = [ "8.8.8.8" "1.1.1.1" ];
     useDHCP = false;
     interfaces.enp0s3.useDHCP = true;
-    firewall.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 
+        22 # SSH
+      ];
+    };
   };
 
   # Performance

@@ -39,7 +39,25 @@
   networking = {
     hostName = "AZUL";
     networkmanager.enable = true;
-    firewall.enable = false;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 
+        22 # SSH
+        80 # Mainsail
+        7125 # Moonraker
+        8080 # uStreamer
+        47984 # Sunshine
+        47989 # Sunshine
+        48010 # Sunshine
+      ];
+      allowedUDPPorts = [ 
+        47998 # Sunshine
+        47999 # Sunshine
+        48000 # Sunshine
+        48002 # Sunshine
+        48010 # Sunshine
+      ];
+    };
   };
 
   # Disks
