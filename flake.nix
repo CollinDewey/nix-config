@@ -448,35 +448,6 @@
           ];
         };
 
-        VIRIDIAN = nixpkgs-unstable-small.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            # Global Config + Modules
-            ./config
-            ./config/linux.nix
-            ./overlays
-            ./modules
-            ./hosts/VIRIDIAN/configuration.nix
-
-            # Specialized Hardware Configuration
-            ./hosts/VIRIDIAN/hardware-configuration.nix
-
-            {
-              modules = {
-                ssh.enable = true;
-                virtualisation.docker = true;
-                zsh.enable = true;
-                server.enable = true;
-              };
-            }
-
-            # User
-            ./users
-            ./users/collin
-          ];
-        };
-
         AZUL = nixpkgs-unstable-small.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
