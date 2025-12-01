@@ -13,7 +13,7 @@
   boot = {
     # Kernel
     initrd.availableKernelModules = [ "nvme" ];
-    kernelModules = [ "kvm-intel" "vfio_pci" "vfio" ];
+    kernelModules = [ "kvm-intel" "vfio_pci" "vfio" "md_mod" ];
     kernelParams = [ "mitigations=off" "retbleed=off" "intel_iommu=on" "iommu=pt" ];
     kernelPackages = pkgs.linuxPackages_6_6;
     kernel.sysctl = { "kernel.sysrq" = 1; };
