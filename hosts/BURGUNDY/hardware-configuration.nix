@@ -40,12 +40,14 @@
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
     sensor.iio.enable = true;
+    firmware = [ pkgs.intel-npu-driver.firmware ];
     graphics = {
       enable = true;
       extraPackages = with pkgs; [
         intel-media-driver
         intel-vaapi-driver
         libva-vdpau-driver
+        intel-npu-driver
         libvdpau-va-gl
         vpl-gpu-rt
       ];
@@ -57,6 +59,10 @@
     enable = true;
     touchpad.naturalScrolling = true;
   };
+  environment.systemPackages = with pkgs; [
+    intel-npu-driver.validation
+    level-zero
+  ];
 
   # Power Settings
   services.thermald.enable = true;
