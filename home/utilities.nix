@@ -15,19 +15,19 @@ in {
       kdePackages.filelight
       lm_sensors
       pciutils
-      xdotool
+      #xdotool
       kdePackages.krdc
       bitwarden-desktop
       bitwarden-cli
       bitwarden-menu
-      simple-scan
+      #simple-scan
       obsidian
       vscode
       nil
-      tigervnc
-      x11vnc
+      #tigervnc
+      #x11vnc
       #input-leap
-      imhex
+      #imhex
       kdePackages.partitionmanager
     ];
   };

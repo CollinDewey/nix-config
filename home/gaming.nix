@@ -9,21 +9,21 @@ in {
     home.packages = with pkgs; [
       #steam # Enable via programs.steam.enable for now in the global config
       #gamemode # Enable via programs.gamemode.enable = true;
-      mangohud
-      lutris
-      godot3
-      heroic
-      dolphin-emu
-      (retroarch.withCores (
-        cores: with cores; [
-          snes9x
-          mupen64plus
-        ]
-      ))
+      #mangohud
+      #lutris
+      #godot3
+      #heroic
+      #dolphin-emu
+      #(retroarch.withCores (
+      #  cores: with cores; [
+      #    snes9x
+      #    mupen64plus
+      #  ]
+      #))
       prismlauncher
       clonehero
-      ryubing
-      azahar
+      #ryubing
+      #azahar
       gamescope
       r2modman
     ];

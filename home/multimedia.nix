@@ -10,7 +10,7 @@ in {
       krita
       mpv
       (pkgs.obs-studio.override { cudaSupport = true; })
-      kdePackages.kdenlive
+      #kdePackages.kdenlive
       audacity
       ffmpeg-full
       yt-dlp
