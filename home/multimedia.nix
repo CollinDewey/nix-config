@@ -9,7 +9,7 @@ in {
     home.packages = with pkgs; [
       krita
       mpv
-      obs-studio
+      (pkgs.obs-studio.override { cudaSupport = true; })
       kdePackages.kdenlive
       audacity
       ffmpeg-full
