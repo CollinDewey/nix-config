@@ -96,10 +96,10 @@ in
     '';
   };
   hardware.nvidia = {
-    open = false;
+    open = true;
     modesetting.enable = false;
     vgpu = {
-      enable = true;
+      enable = false;
       copyVGPUProfiles = {
         "1E82:0000" = "1E30:12BA"; # 2080
       };
