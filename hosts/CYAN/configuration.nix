@@ -31,7 +31,7 @@
       capSysNice = true;
     };
   };
-  programs.steam.extraCompatPackages = with pkgs; [ proton-ge-custom proton-ge-rtsp-bin ];
+  programs.steam.extraCompatPackages = with pkgs; [ proton-ge-bin proton-ge-rtsp-bin ];
   programs.corectrl.enable = true;
 
   programs.dconf.enable = true; # Virt-manager keep config
