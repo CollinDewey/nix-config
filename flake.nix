@@ -82,9 +82,14 @@
       url = "github:nix-community/nixpkgs-xr";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    pwndbg = {
+      url = "github:pwndbg/pwndbg";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, copyparty, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, system-manager, nix-system-graphics, nixpkgs-xr, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, copyparty, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, system-manager, nix-system-graphics, nixpkgs-xr, pwndbg, ... }@inputs:
     let
       pkgs = import nixpkgs-stable { system = "x86_64-linux"; };
       deployPkgs = import nixpkgs-stable {
@@ -458,6 +463,7 @@
             ./overlays
             ./modules
             ./hosts/AZUL/configuration.nix
+            ./hosts/AZUL/project.nix
 
             # Specialized Hardware Configuration
             ./hosts/AZUL/hardware-configuration.nix
