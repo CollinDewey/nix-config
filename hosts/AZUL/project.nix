@@ -40,10 +40,11 @@ in
           protocol = "tcp";
         }
       ];
-      config = { pkgs, ... }: {
+      config = { pkgs, lib, config, ... }: {
         imports = [
           ../../modules/zsh.nix
-          ../../modules/sanity.nix  
+          ../../modules/sanity.nix
+          inputs.nix-index-database.nixosModules.nix-index
         ];
         
         modules = {
@@ -61,7 +62,17 @@ in
           };
         };
 
-        nix.settings.experimental-features = [ "nix-command" "flakes" ];
+        programs.nix-index-database.comma.enable = true;
+        programs.command-not-found.enable = false;
+
+        nix = {
+          settings = {
+            experimental-features = "nix-command flakes";
+            trusted-users = [ "@wheel" ];
+          };
+          registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
+          nixPath = (lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry) ++ [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
+        };
 
         environment.systemPackages = with pkgs; [
           zoxide
