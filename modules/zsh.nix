@@ -5,8 +5,8 @@ let
   cfg = config.modules.zsh;
   agnoster-nix = pkgs.fetchgit {
     url = "https://gist.github.com/CollinDewey/2e6b6c5b257d2f6895603ddb160e6f1d";
-    rev = "804f5d1bd9cb37c18cba252ff4eebf62dadc5c7f";
-    sha256 = "sha256-iwFVyG3Np+vLJMhbW8b00mnCXSMY+f69lUGzl8rqfhU=";
+    rev = "20c6165b37c6b75e31a613771cb0aea39e3c6870";
+    sha256 = "sha256-Ug9gyJDcbCpZOda7dagiWwMX+AGlGWKlqPW8ib0zp4U=";
   };
 in
 {
