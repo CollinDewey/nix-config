@@ -57,11 +57,12 @@ in
         };
         services.envfs.enable = lib.mkForce false; # This would cause systemd to throw "[!!!!!!] Refusing to run in unsupported environment where /usr/ is not populated."
         
-        systemd.services.create-device-symlinks = {
+        systemd.services.create-device-symlinks = { # Stupid
           wantedBy = [ "multi-user.target" ];
           script = ''
             ln -sf /dev/hsm /dev/ttyACM0
             ln -sf /dev/debugger /dev/ttyACM1
+            chmod 666 /dev/bus/usb/003/008
           '';
           serviceConfig = {
             Type = "oneshot";
@@ -137,6 +138,10 @@ in
           node = "/dev/debugger";
           modifier = "rwm";
         }
+        {
+          node = "/dev/bus/usb/003/008";
+          modifier = "rwm";
+        }
       ];
       bindMounts = {
         "/home/ectf" = {
@@ -149,6 +154,10 @@ in
         };
         "/dev/debugger" = {
           hostPath = "/dev/debugger";
+          isReadOnly = false;
+        };
+        "/dev/bus/usb/003/008" = {
+          hostPath = "/dev/bus/usb/003/008";
           isReadOnly = false;
         };
       };
