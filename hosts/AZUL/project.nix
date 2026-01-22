@@ -91,7 +91,10 @@ in
           extraGroups = [ "dialout" "docker" ];
         };
 
-        programs.zsh.shellAliases.ectf = "uvx ectf";
+        programs.zsh.shellAliases = {
+          ectf = "uvx ectf";
+          gdb = "pwndbg";
+        };
 
         virtualisation.docker.enable = true;
 
@@ -166,6 +169,10 @@ in
         };
         "/dev/hsm" = {
           hostPath = "/dev/hsm";
+          isReadOnly = false;
+        };
+        "/var/lib/docker" = {
+          hostPath = "/home/collin/ctfdocker";
           isReadOnly = false;
         };
         "/dev/debugger" = {
