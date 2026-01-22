@@ -62,7 +62,7 @@ in
           script = ''
             ln -sf /dev/hsm /dev/ttyACM0
             ln -sf /dev/debugger /dev/ttyACM1
-            chmod 666 /dev/bus/usb/003/008
+            chmod 666 /dev/bus/usb/003/*
           '';
           serviceConfig = {
             Type = "oneshot";
@@ -138,10 +138,26 @@ in
           node = "/dev/debugger";
           modifier = "rwm";
         }
-        {
-          node = "/dev/bus/usb/003/008";
-          modifier = "rwm";
-        }
+        { node = "/dev/bus/usb/003/001"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/002"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/003"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/004"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/005"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/006"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/007"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/008"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/009"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/010"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/011"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/012"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/013"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/014"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/015"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/016"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/017"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/018"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/019"; modifier = "rwm"; }
+        { node = "/dev/bus/usb/003/020"; modifier = "rwm"; }
       ];
       bindMounts = {
         "/home/ectf" = {
@@ -156,8 +172,8 @@ in
           hostPath = "/dev/debugger";
           isReadOnly = false;
         };
-        "/dev/bus/usb/003/008" = {
-          hostPath = "/dev/bus/usb/003/008";
+        "/dev/bus/usb/003" = {
+          hostPath = "/dev/bus/usb/003";
           isReadOnly = false;
         };
       };
