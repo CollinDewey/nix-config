@@ -25,6 +25,8 @@ in
   services.udev.extraRules = ''
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="bef3", ATTRS{serial}=="M4321005", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="hsmA", MODE="0666"
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="0451", ATTRS{idProduct}=="bef3", ATTRS{serial}=="M4324322", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="hsmB", MODE="0666"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="80c2", ENV{ID_USB_INTERFACE_NUM}=="00", SYMLINK+="toA", MODE="0666"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="303a", ATTRS{idProduct}=="80c2", ENV{ID_USB_INTERFACE_NUM}=="02", SYMLINK+="toB", MODE="0666"
   '';
 
   containers = {
@@ -84,6 +86,8 @@ in
           script = ''
             ln -sf /dev/hsmA /dev/ttyACM0
             ln -sf /dev/hsmB /dev/ttyACM1
+            ln -sf /dev/toA /dev/ttyACM2
+            ln -sf /dev/toB /dev/ttyACM3
             chmod 666 /dev/bus/usb/003/*
           '';
           serviceConfig = {
@@ -117,9 +121,7 @@ in
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM+WbC25zpb/rFy3FZdcLSr6QrwUaxhu+RPDW13wrIWF"
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFIr0tnR5LODmw5dEiKNouYB0ajeFHT3TdbF5XxR+Lfq"
             "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG7ln0qNr1GVq+LjfdIMeu4aJQiH8EUIN1dHq/cIM2sq"
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH0UYpqtDBYHGEXo62VsBS8lk4uYQGlxaHv+eco1rY7A"
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOrzYAb1wxLnOOWzVvS8Mzkc/J5UBF1plp7UuGADkexZ"
-            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDQvw+wsKLIXiNJ6xbsMkm8bMwHgthqYLJd5pD0StJsjUxzM3NDLPfeUiqNhrvcNThpNfXfBYZJ650RqXoUNq5krwo/T84Md7uQLqPNG2ka4tnvG0nqJjv1A0t2E6ceSARXqjl15/UGqUY6anBoe0yUL3cd8TD+DUS/uPexJlzuSbQPkvnO8dwomL717QV8u+2O+/L4wIzmlhOBflOWhv5fi+sdDsrb9e12bSU0gMIYEiZCL9oArI2xdcR2pEYEZ8WV6qYi+metFl7oFR3+JokvLK1s54s5TCWeAXCr5yPdfsIFDsnGcACIQ5fiWhxX6hEsEmI1aNCk78OwdT5W/xwPK+810u0eVUYkZ2PLi7uO+XltzOSCdGSl/sg0KQ+9WSNaoiyzcSpI8nDb5q1lBOUzf3ZBg2YjctLeeIUKRat6xuEfateXglAf5SKAt7sHarnUHTK/fBdMz8cSEnMWvpDX5DoCMwYCn70fXDZhlZFu1vWLMF67yJg2kO3PWVDoZGKTKityBBWoCl/ovlcDoxQZ4CbkZ35Z5/JfC3N++BQI+8wfBxNs9CESHFzmoTTiNNovZOwMJ+lLkXF6QW6wOB3yG1fronpQHXNRtYwk4ehfO+TT6w6dFR9wqkffqPOF4doeozVgtpz+TU1yUZLF3V7N9L/D+xOskkxVhJWm3sQHoQ=="
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICwt3w++zPw6kN1EmoSMJyVNTdhzybJ3956/AWWI4n2B"
           ];
         };
 
@@ -178,6 +180,14 @@ in
           node = "/dev/hsmB";
           modifier = "rwm";
         }
+        {
+          node = "/dev/toA";
+          modifier = "rwm";
+        }
+        {
+          node = "/dev/toB";
+          modifier = "rwm";
+        }
         
       ] ++ builtins.genList (i: { node = "/dev/bus/usb/003/${lib.fixedWidthString 3 "0" (toString (i + 1))}"; modifier = "rwm"; }) 99;
       bindMounts = {
@@ -193,6 +203,14 @@ in
           hostPath = "/dev/hsmB";
           isReadOnly = false;
         };
+        "/dev/toA" = {
+          hostPath = "/dev/toA";
+          isReadOnly = false;
+        };
+        "/dev/toB" = {
+          hostPath = "/dev/toB";
+          isReadOnly = false;
+        };
         "/var/lib/docker" = {
           hostPath = "/home/collin/ctfdocker";
           isReadOnly = false;
@@ -200,6 +218,22 @@ in
         "/dev/bus/usb/003" = {
           hostPath = "/dev/bus/usb/003";
           isReadOnly = false;
+        };
+        "/etc/ssh/ssh_host_ed25519_key" = {
+          hostPath = "/etc/ssh/ssh_host_ed25519_key";
+          isReadOnly = true;
+        };
+        "/etc/ssh/ssh_host_ed25519_key.pub" = {
+          hostPath = "/etc/ssh/ssh_host_ed25519_key.pub";
+          isReadOnly = true;
+        };
+        "/etc/ssh/ssh_host_rsa_key" = {
+          hostPath = "/etc/ssh/ssh_host_rsa_key";
+          isReadOnly = true;
+        };
+        "/etc/ssh/ssh_host_rsa_key.pub" = {
+          hostPath = "/etc/ssh/ssh_host_rsa_key.pub";
+          isReadOnly = true;
         };
       };
     };
