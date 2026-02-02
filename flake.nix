@@ -618,27 +618,63 @@
             ./hosts/CYBERL/system.nix
           ];
         };
+        
+        VIRIDIAN = system-manager.lib.makeSystemConfig {
+          extraSpecialArgs.pkgs = import nixpkgs-unstable {
+            system = "aarch64-linux";
+            config = {
+              allowUnfree = true;
+            };
+          };
+          modules = [
+            nix-system-graphics.systemModules.default
+            ./hosts/VIRIDIAN/system.nix
+          ];
+        };
       };
 
-      homeConfigurations.CYBERL = home-manager-unstable.lib.homeManagerConfiguration {
-        pkgs = import nixpkgs-unstable { system = "x86_64-linux"; };
-        extraSpecialArgs = { inherit inputs; };
+      homeConfigurations = {
+        CYBERL = home-manager-unstable.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs-unstable { system = "x86_64-linux"; };
+          extraSpecialArgs = { inherit inputs; };
 
-        modules = [
-          ./home
-          ./users/collin/home.nix
-          ./hosts/CYBERL/home.nix
-          plasma-manager.homeModules.plasma-manager
-          nix-index-database.homeModules.nix-index
-          {
-            modules = {
-              plasma.enable = true;
-              plasma.packages = false;
-              zsh.enable = true;
-            };
-            home.stateVersion = "24.05";
-          }
-        ];
+          modules = [
+            ./home
+            ./users/collin/home.nix
+            ./hosts/CYBERL/home.nix
+            plasma-manager.homeModules.plasma-manager
+            nix-index-database.homeModules.nix-index
+            {
+              modules = {
+                plasma.enable = true;
+                plasma.packages = false;
+                zsh.enable = true;
+              };
+              home.stateVersion = "24.05";
+            }
+          ];
+        };
+
+        VIRIDIAN = home-manager-unstable.lib.homeManagerConfiguration {
+          pkgs = import nixpkgs-unstable { system = "aarch64-linux"; };
+          extraSpecialArgs = { inherit inputs; };
+
+          modules = [
+            ./home
+            ./users/collin/home.nix
+            ./hosts/VIRIDIAN/home.nix
+            plasma-manager.homeModules.plasma-manager
+            nix-index-database.homeModules.nix-index
+            {
+              modules = {
+                plasma.enable = true;
+                plasma.packages = false;
+                zsh.enable = true;
+              };
+              home.stateVersion = "25.05";
+            }
+          ];
+        };
       };
 
       darwinConfigurations = {

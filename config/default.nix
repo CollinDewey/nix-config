@@ -9,8 +9,8 @@
       trusted-users = [ "@wheel" ];
       substituters = [ "https://cache.nixos-cuda.org" ];
       trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
-      extra-substituters = [ "https://pwndbg.cachix.org" ];
-      extra-trusted-public-keys = [ "pwndbg.cachix.org-1:HhtIpP7j73SnuzLgobqqa8LVTng5Qi36sQtNt79cD3k=" ];
+      extra-substituters = [ "https://pwndbg.cachix.org" "https://cache.numtide.com" ];
+      extra-trusted-public-keys = [ "pwndbg.cachix.org-1:HhtIpP7j73SnuzLgobqqa8LVTng5Qi36sQtNt79cD3k=" "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=" ];
     };
     registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     nixPath = (lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry) ++ [ "nixpkgs=${inputs.nixpkgs-unstable}" ];
