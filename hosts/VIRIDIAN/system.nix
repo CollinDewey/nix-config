@@ -10,7 +10,7 @@ let
   }).override { libsOnly = true; kernel = null; };
 in
 {
-  nixpkgs.hostPlatform = "x86_64-linux";
+  nixpkgs.hostPlatform = "aarch64-linux";
   system-manager.allowAnyDistro = true;
   system-graphics = {
     enable = true;
@@ -24,7 +24,9 @@ in
     require-sigs = false
     build-users-group = nixbld
     trusted-users = root @wheel
-    substituters = https://cache.nixos.org/ https://cache.nixos-cuda.org https://pwndbg.cachix.org https://cache.numtide.com
-    trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M= pwndbg.cachix.org-1:HhtIpP7j73SnuzLgobqqa8LVTng5Qi36sQtNt79cD3k= niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
+    substituters = https://cache.nixos.org/
+    trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+    extra-substituters = https://cache.nixos-cuda.org https://pwndbg.cachix.org https://cache.numtide.com
+    extra-trusted-public-keys = cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M= pwndbg.cachix.org-1:HhtIpP7j73SnuzLgobqqa8LVTng5Qi36sQtNt79cD3k= niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
   '';
 }
