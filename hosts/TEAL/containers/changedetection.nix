@@ -1,5 +1,6 @@
 { lib, ... }:
 {
+  nixpkgs.config.allowUnfree = true;
   services.changedetection-io = {
     enable = true;
     behindProxy = true;

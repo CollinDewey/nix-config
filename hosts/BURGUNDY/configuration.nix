@@ -9,7 +9,7 @@
   # Programs
   programs.steam.enable = true;
   programs.gamemode.enable = true;
-  programs.steam.extraCompatPackages = with pkgs; [ proton-ge-custom proton-ge-rtsp-bin ];
+  #programs.steam.extraCompatPackages = with pkgs; [ proton-ge-custom proton-ge-rtsp-bin ];
   programs.dconf.enable = true; # Virt-manager keep config
   programs.kdeconnect.enable = true;
 
