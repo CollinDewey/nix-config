@@ -1,5 +1,6 @@
 { config, pkgs, ... }:
 let
+  nfs_opts_rw = "rw,nohide,insecure,no_subtree_check,no_root_squash,async";
   camera-dev = "/dev/v4l/by-id/usb-046d_0994_9CDF88E2-video-index0";
   camera-mover = pkgs.writeTextFile {
     name = "camera-mover.py";
@@ -121,6 +122,13 @@ in
 
     mainsail.enable = true;
     nginx.clientMaxBodySize = "1000m";
+
+    nfs.server = {
+      enable = true;
+      exports = ''
+        /home/collin/ectf 172.16.0.0/16(${nfs_opts_rw})
+      '';
+    };
   };
 
   systemd.services = {

@@ -280,6 +280,11 @@ in
       fsType = "nfs";
       options = nfs_opts;
     };
+    "/mnt/ectf" = {
+      device = "AZUL:/home/collin/ectf";
+      fsType = "nfs";
+      options = nfs_opts;
+    };
   };
 
   # Persistance

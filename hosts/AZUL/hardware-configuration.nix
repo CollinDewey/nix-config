@@ -41,9 +41,10 @@
     networkmanager.enable = true;
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 
+      allowedTCPPorts = [
         22 # SSH
         80 # Mainsail
+        2049 # NFS
         7125 # Moonraker
         8080 # uStreamer
         47984 # Sunshine
