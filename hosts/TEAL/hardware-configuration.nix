@@ -17,6 +17,7 @@
     kernelParams = [ "mitigations=off" "retbleed=off" "intel_iommu=on" "iommu=pt" ];
     kernelPackages = pkgs.linuxPackages_6_6;
     kernel.sysctl = { "kernel.sysrq" = 1; };
+    swraid.enable = true;
 
     # Boot
     loader.systemd-boot = {
