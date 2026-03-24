@@ -113,6 +113,9 @@ in
       settings = {
         i = "0.0.0.0";
         theme = 2;
+        xff-hdr = "x-forwarded-for";
+        xff-src = "172.16.0.100";
+        rproxy = 1;
       };
       
 
