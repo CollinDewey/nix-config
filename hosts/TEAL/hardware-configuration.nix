@@ -233,7 +233,7 @@
     "w /sys/block/bcache0/bcache/cache_mode - - - - writearound" # Read-only bcache
     "w /sys/block/bcache1/bcache/cache_mode - - - - writearound" # Read-only bcache
     "w /sys/fs/bcache/5864fdf7-afe2-454c-b694-903dc1899a02/congested_read_threshold_us - - - - 0" # No latency timeout
-    #"w /sys/class/net/quad1/device/sriov_numvfs - - - - 2"
+    "w /sys/class/net/ten0/device/sriov_numvfs - - - - 1"
     "w /sys/class/net/ten1/device/sriov_numvfs - - - - 8"
     "f /dev/shm/looking-glass 0660 root libvirtd -"
   ];
