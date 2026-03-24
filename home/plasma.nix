@@ -18,6 +18,7 @@ let
     url = "https://derpicdn.net/img/view/2012/6/17/4901.png";
     sha256 = "56ecbf09d94b32f944bc372b271dd370f4056a67062d3978b09ba294d06868b4";
   };
+  unstable = lib.versionAtLeast lib.version "26.05";
 in
 {
   options.modules.plasma = {
@@ -66,9 +67,16 @@ in
     #      Icon=media-eject
     #      Exec=(mnt_file="$(basename "%f")" && mnt_dir="/tmp/${mnt_file}-$(echo -n "%f" | sha256sum | head -c 8)" && (fusermount -u "$mnt_dir" && rm -r "$mnt_dir") || kdialog --error "Cannot unmount, you can try to unmount it manually:\n\nfusermount -u \\""$mnt_dir"\\"")
     #    '';
-    xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-      General.theme = "Bonny-Kvantum";
+    qt = lib.optionalAttrs unstable {
+      kvantum.settings.General.theme = "Bonny-Kvantum";
     };
+
+    xdg.configFile."Kvantum/kvantum.kvconfig" = lib.mkIf (!unstable) {
+      source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
+        General.theme = "Bonny-Kvantum";
+      };
+    };
+
     programs = {
       plasma = {
         enable = true;
