@@ -101,6 +101,7 @@ in
           user = "ectf";
           host = "0.0.0.0";
           port = 4566;
+          package = inputs.code-server-pr.legacyPackages.x86_64-linux.code-server;
           disableTelemetry = true;
           disableWorkspaceTrust = true;
           disableUpdateCheck = true;

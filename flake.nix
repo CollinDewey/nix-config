@@ -92,6 +92,8 @@
       url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    code-server-pr.url = "github:NixOS/nixpkgs/4c227bb1c8dbbd62e5017f201b67f8a042db6911";
   };
 
   outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, copyparty, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, system-manager, nix-system-graphics, nixpkgs-xr, pwndbg, vscode-server, ... }@inputs:

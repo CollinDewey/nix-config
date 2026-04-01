@@ -23,6 +23,22 @@
         "type": "github"
       }
     },
+    "code-server-pr": {
+      "locked": {
+        "lastModified": 1771899337,
+        "narHash": "sha256-+G46BMrdBj2kOkmamhoAxYtfg922ZQw45lx6jfFB3uY=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4c227bb1c8dbbd62e5017f201b67f8a042db6911",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4c227bb1c8dbbd62e5017f201b67f8a042db6911",
+        "type": "github"
+      }
+    },
     "copyparty": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -855,6 +871,7 @@
     "root": {
       "inputs": {
         "chaotic": "chaotic",
+        "code-server-pr": "code-server-pr",
         "copyparty": "copyparty",
         "darwin": "darwin",
         "deploy-rs": "deploy-rs",
