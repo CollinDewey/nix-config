@@ -3,6 +3,7 @@
   # udev rules
   services.udev.packages = [
     pkgs.logitech-udev-rules
+    pkgs.keychron-udev-rules
   ];
   services.udev.extraRules = ''
     SUBSYSTEM=="i2c-dev", KERNEL=="i2c-[0-9]*", ATTRS{class}=="0x030000", TAG+="uaccess"

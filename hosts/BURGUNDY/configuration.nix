@@ -4,6 +4,7 @@
   services.udev.packages = [
     pkgs.logitech-udev-rules
     pkgs.teensy-udev-rules
+    pkgs.keychron-udev-rules
   ];
 
   # Programs
