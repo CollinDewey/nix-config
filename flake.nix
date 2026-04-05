@@ -711,37 +711,6 @@
             }
           ];
         };
-        JADE = darwin.lib.darwinSystem {
-          system = "x86_64-darwin";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./config
-            ./config/home.nix
-            ./hosts/JADE/configuration.nix
-            ./modules/zsh.nix
-            {
-              modules.zsh.enable = true;
-            }
-            home-manager-unstable.darwinModules.home-manager
-            {
-              home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.users.collin = {
-                imports = [
-                  ./home
-                  ./users/collin/home.nix
-                  plasma-manager.homeModules.plasma-manager
-                  nix-index-database.homeModules.nix-index
-                ];
-
-                modules = {
-                  zsh.enable = true;
-                };
-
-                home.stateVersion = "22.11";
-              };
-            }
-          ];
-        };
       };
 
       packages.x86_64-linux = {
