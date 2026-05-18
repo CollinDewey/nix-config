@@ -57,11 +57,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    nixvirt = {
-      url = "github:AshleyYakeley/NixVirt/0785bd6350e81ffd009c87d6fcedc35018ac5444";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
-
     nvidia-vgpu = {
       url = "github:CollinDewey/nixos-nvidia-vgpu";
       #      url = "git+file:/services/syncthing/Desktop/Git/CollinDewey/nixos-nvidia-vgpu";
@@ -96,7 +91,7 @@
     code-server-pr.url = "github:NixOS/nixpkgs/4c227bb1c8dbbd62e5017f201b67f8a042db6911";
   };
 
-  outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, copyparty, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nixvirt, nvidia-vgpu, system-manager, nix-system-graphics, nixpkgs-xr, pwndbg, vscode-server, ... }@inputs:
+  outputs = { self, nixpkgs-unstable, nixpkgs-unstable-small, nixpkgs-stable, impermanence, nixos-hardware, chaotic, flake-utils, copyparty, sops-nix, nix-index-database, darwin, disko, home-manager-unstable, home-manager-stable, plasma-manager, nixos-generators, deploy-rs, nvidia-vgpu, system-manager, nix-system-graphics, nixpkgs-xr, pwndbg, vscode-server, ... }@inputs:
     let
       pkgs = import nixpkgs-stable { system = "x86_64-linux"; };
       deployPkgs = import nixpkgs-stable {
@@ -470,7 +465,6 @@
             ./overlays
             ./modules
             ./hosts/AZUL/configuration.nix
-            ./hosts/AZUL/project.nix
 
             # Specialized Hardware Configuration
             ./hosts/AZUL/hardware-configuration.nix

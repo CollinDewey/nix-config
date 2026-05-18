@@ -10,8 +10,8 @@
     uxplay
     distrobox
     moonlight-qt
-    (hashcat.override {
-      cudaSupport = true;
-    })
+    #(hashcat.override {
+    #  cudaSupport = true;
+    #})
   ];
 }

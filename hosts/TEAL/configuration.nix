@@ -5,8 +5,6 @@ let
 in
 {
 
-  imports = [ ./libvirt.nix ];
-
   # State
   system.stateVersion = "25.05";
 

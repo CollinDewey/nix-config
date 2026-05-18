@@ -122,13 +122,6 @@ in
 
     mainsail.enable = true;
     nginx.clientMaxBodySize = "1000m";
-
-    nfs.server = {
-      enable = true;
-      exports = ''
-        /home/collin/ectf 172.16.0.0/16(${nfs_opts_rw})
-      '';
-    };
   };
 
   systemd.services = {

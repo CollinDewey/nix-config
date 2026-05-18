@@ -7,8 +7,8 @@ in {
   options.modules.communication = { enable = mkEnableOption "communication"; };
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      discord
-      discord-ptb
+      #discord
+      #discord-ptb
       vesktop
       #teams-for-linux
     ];

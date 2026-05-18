@@ -17,8 +17,8 @@ in
     initrd.kernelModules = [ "vfio_pci" "vfio" "vfio_iommu_type1" ];
     kernelParams = lib.mkDefault [ "amd_pstate=active" "iommu=pt" "kvm.ignore_msrs=1" "report_ignored_msrs=0" ];
     #kernelModules = [ "kvmfr" "i2c-dev" ];
-    #kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelPackages = pkgs.linuxPackages_6_6; # Lol
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    #kernelPackages = pkgs.linuxPackages_6_6; # Lol
     #kernelPatches = [
     #  {
     #    name = "fix-nvidia-amdgpu-pat-mem";
@@ -280,16 +280,11 @@ in
       fsType = "nfs";
       options = nfs_opts;
     };
-    "/mnt/ectf" = {
-      device = "AZUL:/home/collin/ectf";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
   };
 
   # Persistance
   users.mutableUsers = false;
-  systemd.coredump.extraConfig = "Storage=none";
+  systemd.coredump.settings.Coredump.Storage = "none";
   fileSystems."/persist".neededForBoot = true;
   environment.etc."machine-id".text = builtins.hashString "md5" config.networking.hostName; # The machine-id is supposed to be secret, but we don't care. 
   environment.persistence = {
@@ -312,6 +307,14 @@ in
         "/etc/ssh/ssh_host_rsa_key.pub" # Not reset my host keys
       ];
     };
+  };
+  systemd.services.sshd = {
+    requires = [
+      "persist-persist-etc-ssh-ssh_host_ed25519_key.pub.service"
+      "persist-persist-etc-ssh-ssh_host_ed25519_key.service"
+      "persist-persist-etc-ssh-ssh_host_rsa_key.pub.service"
+      "persist-persist-etc-ssh-ssh_host_rsa_key.service"
+    ];
   };
 
   # Sops Key File Location

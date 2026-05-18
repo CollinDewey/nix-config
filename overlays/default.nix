@@ -5,6 +5,6 @@
     ./jmusicbot.nix
     ./klipper.nix
     ./moonraker.nix
-    ./ovmf-logo.nix
+    #./ovmf-logo.nix
   ];
 }

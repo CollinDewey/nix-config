@@ -87,6 +87,8 @@
       ExecStop = "${pkgs.noisetorch}/bin/noisetorch -u";
       Restart = "on-failure";
       RestartSec = "3";
+      StartLimitBurst = "3";
+      StartLimitIntervalSec = "60";
     };
   };
 
@@ -102,7 +104,7 @@
   #    OLLAMA_SCHED_SPREAD = "1";
   #  };
   #};
-  nixpkgs.config.rocmSupport = true;
+  #nixpkgs.config.rocmSupport = true;
 
   # State
   system.stateVersion = "23.11";

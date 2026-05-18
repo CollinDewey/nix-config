@@ -184,7 +184,7 @@
 
   # Persistance
   users.mutableUsers = false;
-  systemd.coredump.extraConfig = "Storage=none";
+  systemd.coredump.settings.Coredump.Storage = "none";
   fileSystems."/persist".neededForBoot = true;
   environment.etc."machine-id".text = builtins.hashString "md5" config.networking.hostName; # The machine-id is supposed to be secret, but we don't care. 
   environment.persistence = {

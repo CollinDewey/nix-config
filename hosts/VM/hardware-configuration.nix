@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   virtualisation.vmVariant.virtualisation = {
     diskSize = 16384;
@@ -7,7 +7,10 @@
   };
 
   boot.loader.systemd-boot.enable = true; # Make eval not complain about a lack of bootloader
-  fileSystems."/".device = "/dev/disk/by-label/nixos";
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "auto";
+  };
   services.smartd.enable = false;
 
   time.timeZone = "America/Kentucky/Louisville";
