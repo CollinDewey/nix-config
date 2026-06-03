@@ -33,6 +33,8 @@ in {
     # Extra Global Font Packages (https://nixos.wiki/wiki/Fonts)
     fonts.packages = with pkgs; [
       nerd-fonts.hack
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
     ];
 
     # Extra Packages
