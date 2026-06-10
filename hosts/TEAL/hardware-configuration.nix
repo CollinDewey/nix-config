@@ -15,7 +15,7 @@
     initrd.availableKernelModules = [ "nvme" ];
     kernelModules = [ "kvm-intel" "vfio_pci" "vfio" "md_mod" ];
     kernelParams = [ "mitigations=off" "retbleed=off" "intel_iommu=on" "iommu=pt" ];
-    kernelPackages = pkgs.linuxPackages_6_6;
+    #kernelPackages = pkgs.linuxPackages_6_6;
     kernel.sysctl = { "kernel.sysrq" = 1; };
     swraid.enable = true;
 
@@ -37,29 +37,30 @@
 
   # Video
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.vgpu = {
-    enable = true;
-    vgpu_driver_src.url = "https://teal.terascripting.com/internal/NVIDIA-GRID-Linux-KVM-550.90.05-550.90.07-552.55.zip";
-    profile_overrides = {
-      "GRID RTX6000-1Q".frameLimiter = false;
-      "GRID RTX6000-2Q".frameLimiter = false;
-      "GRID RTX6000-4Q" = {
-        frameLimiter = false;
-        vramMB = 3584;
-      };
-      "GRID RTX6000-8Q" = {
-        frameLimiter = false;
-        vramMB = 7680;
-      };
-    };
-    mdev = {
-      device = "0000:04:00.0";
-      vgpus = {
-        nvidia-259.uuid = [ "fbaf3b24-a228-4121-bdeb-906ce8bbfabc" "470cfb92-8a6e-438b-886d-bc29395e96fa" ];
-      };
-    };
-  };
+  hardware.nvidia.open = true;
+  #hardware.nvidia.modesetting.enable = true;
+  #hardware.nvidia.vgpu = {
+  #  enable = true;
+  #  vgpu_driver_src.url = "https://teal.terascripting.com/internal/NVIDIA-GRID-Linux-KVM-550.90.05-550.90.07-552.55.zip";
+  #  profile_overrides = {
+  #    "GRID RTX6000-1Q".frameLimiter = false;
+  #    "GRID RTX6000-2Q".frameLimiter = false;
+  #    "GRID RTX6000-4Q" = {
+  #      frameLimiter = false;
+  #      vramMB = 3584;
+  #    };
+  #    "GRID RTX6000-8Q" = {
+  #      frameLimiter = false;
+  #      vramMB = 7680;
+  #    };
+  #  };
+  #  mdev = {
+  #    device = "0000:04:00.0";
+  #    vgpus = {
+  #      nvidia-259.uuid = [ "fbaf3b24-a228-4121-bdeb-906ce8bbfabc" "470cfb92-8a6e-438b-886d-bc29395e96fa" ];
+  #    };
+  #  };
+  #};
   hardware.graphics = {
     enable = true;
     enable32Bit = true;

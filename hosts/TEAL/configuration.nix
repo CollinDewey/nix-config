@@ -13,7 +13,7 @@ in
 
   # VGPU
   hardware.nvidia.vgpu.fastapi-dls = {
-    enable = true;
+    enable = false;
     dataDir = "/services/fastapi-dls";
     port = 53492;
   };
