@@ -26,6 +26,7 @@ in
       KbdInteractiveAuthentication = false;
       LogLevel = "VERBOSE";
     };
+    systemd.services.sshd.serviceConfig.StartLimitIntervalSec = 0;
     services.fail2ban = {
       enable = true;
       bantime-increment.enable = true;
