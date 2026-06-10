@@ -571,34 +571,6 @@
             ./users/collin
           ];
         };
-
-        RUBY = nixpkgs-stable.lib.nixosSystem {
-          system = "aarch64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            # Global Config + Modules
-            ./config
-            ./config/linux.nix
-            ./overlays
-            ./modules
-
-            # Specialized Hardware Configuration
-            ./hosts/RUBY/hardware-configuration.nix
-
-            {
-              modules = {
-                ssh.enable = true;
-                virtualisation.docker = true;
-                zsh.enable = true;
-                server.enable = true;
-              };
-            }
-
-            # User
-            ./users
-            ./users/collin
-          ];
-        };
       };
 
       systemConfigs = {
@@ -820,11 +792,6 @@
           SCARLET = {
             hostname = "SCARLET.TERASCRIPTING.COM";
             profiles.system.path = deployPkgsARM.deploy-rs.lib.activate.nixos self.nixosConfigurations.SCARLET;
-          };
-
-          RUBY = {
-            hostname = "RUBY.TERASCRIPTING.COM";
-            profiles.system.path = deployPkgsARM.deploy-rs.lib.activate.nixos self.nixosConfigurations.RUBY;
           };
         };
       };
