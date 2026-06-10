@@ -11,7 +11,7 @@ in {
       libraries = (pkgs.steam-run.args.multiPkgs pkgs) ++ (with pkgs; [
         ncurses5
         kdePackages.qtbase
-        libsForQt5.qt5.qtbase
+        qt5.qtbase
       ]);
     };
     programs.appimage = {
