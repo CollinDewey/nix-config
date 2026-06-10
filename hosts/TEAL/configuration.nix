@@ -8,6 +8,9 @@ in
   # State
   system.stateVersion = "25.05";
 
+  # RAID
+  boot.swraid.mdadmConf = lib.mkDefault "MAILADDR root";
+
   # VGPU
   hardware.nvidia.vgpu.fastapi-dls = {
     enable = true;

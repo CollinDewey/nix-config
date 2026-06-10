@@ -6,10 +6,10 @@
   ];
   programs.nix-index-database.comma.enable = true;
   programs.command-not-found.enable = false;
-  boot.swraid.mdadmConf = "MAILADDR root";
+  boot.swraid.mdadmConf = lib.mkDefault "MAILADDR root";
   hardware.bluetooth.enable = true;
   networking.networkmanager.enable = true;
-  networking.wireless.enable = false;
+  networking.wireless.enable = lib.mkForce false;
   services.smartd.enable = false;
   services.xserver.videoDrivers = [
     "amdgpu"

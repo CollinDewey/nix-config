@@ -1,6 +1,10 @@
 { pkgs, lib, config, inputs, ... }:
 
 {
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-39.8.10" # Bitwarden-desktop NixOS/nixpkgs#526914
+  ];
+
   # Nix
   nix = {
     optimise.automatic = true;
