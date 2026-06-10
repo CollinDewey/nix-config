@@ -10,6 +10,7 @@
     uxplay
     distrobox
     moonlight-qt
+    opencode
     #(hashcat.override {
     #  cudaSupport = true;
     #})
