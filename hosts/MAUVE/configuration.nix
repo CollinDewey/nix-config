@@ -10,16 +10,21 @@
   system.primaryUser = "collin";
   homebrew = {
     enable = true;
-    onActivation.autoUpdate = true;
-    onActivation.cleanup = "zap";
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      extraFlags = [ "--force-cleanup" ];
+    };
     taps = [
       "LizardByte/homebrew"
+      "jundot/omlx"
     ];
     brews = [
       "mpv"
       "aria2"
       "yt-dlp"
       "lizardbyte/homebrew/sunshine-beta"
+      "omlx"
     ];
     casks = [
       "firefox"
