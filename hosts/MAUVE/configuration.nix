@@ -20,7 +20,6 @@
       "aria2"
       "yt-dlp"
       "lizardbyte/homebrew/sunshine-beta"
-      "ollama"
     ];
     casks = [
       "firefox"
