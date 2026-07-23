@@ -220,6 +220,7 @@ in
         defaultProfile = "default";
         profiles.default = {
           name = "default";
+          font.name = "Hack";
           colorScheme = "Solarized";
         };
       };
