@@ -25,6 +25,7 @@
       "yt-dlp"
       "lizardbyte/homebrew/sunshine-beta"
       "omlx"
+      "syncthing"
     ];
     casks = [
       "firefox"
