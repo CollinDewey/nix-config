@@ -5,6 +5,7 @@
   imports = [
     inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModules.impermanence
+    inputs.zenbook-duo-daemon.nixosModules.default
   ];
 
   # Boot
@@ -80,46 +81,52 @@
   '';
   #  SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="${pkgs.systemd}/bin/systemctl --no-block start beesd@system.service"
   #  SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="${pkgs.systemd}/bin/systemctl --no-block stop beesd@system.service"
-  systemd.services.zenbook-keyboard = {
-    description = "Sync displays with keyboard connect state";
-    wantedBy = [ "post-resume.target" ];
-    after = [ "post-resume.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 0.1"; # On disconnect, the script sometimes gets called before the device is removed
-      ExecStart = "${pkgs.bash}/bin/bash /etc/zenbook/zenbook-keyboard.sh";
-      TimeoutStartSec = "1s";
-    };
-    unitConfig = {
-      StartLimitIntervalSec = 0.2;
-      StartLimitBurst = 1;
-    };
-  };
-  systemd.services.display-manager-startup = {
-    description = "Sync display-manager with keyboard connect state";
-    wantedBy = [ "display-manager.service" ];
-    after = [ "display-manager.service" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStartPre = "${pkgs.coreutils}/bin/sleep 1"; # Can probably be lower, but a second doesn't matter to me
-      ExecStart = "${pkgs.bash}/bin/bash /etc/zenbook/zenbook-keyboard.sh";
-      TimeoutStartSec = "2s";
-    };
-  };
-  environment.etc."zenbook/zenbook-keyboard.sh" = {
-    mode = "0555";
-    text = ''
-      #${pkgs.bash}/bin/bash
-      export WAYLAND_DISPLAY=$(find /run/user/*/wayland-0)
-
-      if [ -n "$WAYLAND_DISPLAY" ]; then
-        if ${pkgs.usbutils}/bin/lsusb | grep -q "0b05:1b2c"; then
-            ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-1.enable output.eDP-2.disable
-        else
-            ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-1.enable output.eDP-1.position.0,0 output.eDP-2.enable output.eDP-2.position.0,900
-        fi
-      fi
-    '';
+  #systemd.services.zenbook-keyboard = {
+  #  description = "Sync displays with keyboard connect state";
+  #  wantedBy = [ "post-resume.target" ];
+  #  after = [ "post-resume.target" ];
+  #  serviceConfig = {
+  #    Type = "oneshot";
+  #    ExecStartPre = "${pkgs.coreutils}/bin/sleep 0.1"; # On disconnect, the script sometimes gets called before the device is removed
+  #    ExecStart = "${pkgs.bash}/bin/bash /etc/zenbook/zenbook-keyboard.sh";
+  #    TimeoutStartSec = "1s";
+  #  };
+  #  unitConfig = {
+  #    StartLimitIntervalSec = 0.2;
+  #    StartLimitBurst = 1;
+  #  };
+  #};
+  #systemd.services.display-manager-startup = {
+  #  description = "Sync display-manager with keyboard connect state";
+  #  wantedBy = [ "display-manager.service" ];
+  #  after = [ "display-manager.service" ];
+  #  serviceConfig = {
+  #    Type = "oneshot";
+  #    ExecStartPre = "${pkgs.coreutils}/bin/sleep 1"; # Can probably be lower, but a second doesn't matter to me
+  #    ExecStart = "${pkgs.bash}/bin/bash /etc/zenbook/zenbook-keyboard.sh";
+  #    TimeoutStartSec = "2s";
+  #  };
+  #};
+  #environment.etc."zenbook/zenbook-keyboard.sh" = {
+  #  mode = "0555";
+  #  text = ''
+  #    #${pkgs.bash}/bin/bash
+  #    export WAYLAND_DISPLAY=$(find /run/user/*/wayland-0)
+#
+  #    if [ -n "$WAYLAND_DISPLAY" ]; then
+  #      if ${pkgs.usbutils}/bin/lsusb | grep -q "0b05:1b2c"; then
+  #          ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-1.enable output.eDP-2.disable
+  #      else
+  #          ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-1.enable output.eDP-1.position.0,0 output.eDP-2.enable output.eDP-2.position.0,900
+  #      fi
+  #    fi
+  #  '';
+  #};
+  services.zenbook-duo-daemon = {
+    enable = true;
+    package = inputs.zenbook-duo-daemon.packages.x86_64-linux.default;
+    secondaryDisplayStatusPath = "/sys/class/drm/card0-eDP-2/status";
+    secondaryBacklightPath = "/sys/class/backlight/card0-eDP-2-backlight/brightness";
   };
 
   # Networking
