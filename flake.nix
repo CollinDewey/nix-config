@@ -683,46 +683,46 @@
         };
       };
 
-      packages.x86_64-linux = {
-        ISO = nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            home-manager-stable.nixosModules.home-manager
-            ./config
-            ./config/home.nix
-            ./hosts/ISO/configuration.nix
-            ./overlays
-            ./modules
-            {
-              modules = {
-                plasma.enable = true;
-                ssh.enable = true;
-                zsh.enable = true;
-              };
-
-              home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.users.nixos = {
-                imports = [
-                  plasma-manager.homeModules.plasma-manager
-                  ./home
-                ];
-                modules = {
-                  communication.enable = true;
-                  lock.enable = true;
-                  multimedia.enable = true;
-                  plasma.enable = true;
-                  utilities.enable = true;
-                  zsh.enable = true;
-                };
-                home.stateVersion = "23.11";
-              };
-              system.stateVersion = "23.11";
-            }
-          ];
-          format = "install-iso";
-        };
-      };
+      #packages.x86_64-linux = {
+      #  ISO = nixos-generators.nixosGenerate {
+      #    system = "x86_64-linux";
+      #    specialArgs = { inherit inputs; };
+      #    modules = [
+      #      home-manager-stable.nixosModules.home-manager
+      #      ./config
+      #      ./config/home.nix
+      #      ./hosts/ISO/configuration.nix
+      #      ./overlays
+      #      ./modules
+      #      {
+      #        modules = {
+      #          plasma.enable = true;
+      #          ssh.enable = true;
+      #          zsh.enable = true;
+      #        };
+      #
+      #        home-manager.extraSpecialArgs = { inherit inputs; };
+      #        home-manager.users.nixos = {
+      #          imports = [
+      #            plasma-manager.homeModules.plasma-manager
+      #            ./home
+      #          ];
+      #          modules = {
+      #            communication.enable = true;
+      #            lock.enable = true;
+      #            multimedia.enable = true;
+      #            plasma.enable = true;
+      #            utilities.enable = true;
+      #            zsh.enable = true;
+      #          };
+      #          home.stateVersion = "23.11";
+      #        };
+      #        system.stateVersion = "23.11";
+      #      }
+      #    ];
+      #    format = "install-iso";
+      #  };
+      #};
 
       packages.aarch64-linux = {
         VIRIDIAN_IMAGE = nixos-generators.nixosGenerate {
