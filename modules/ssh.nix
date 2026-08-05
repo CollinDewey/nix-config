@@ -14,7 +14,7 @@ in
       ssh = {
         enable = true;
         authorizedKeyFiles = [ keys ];
-        ignoreEmptyHostKeys = true;
+        hostKeys = [ "/etc/ssh/ssh_host_rsa_key" "/etc/ssh/ssh_host_ed25519_key" ];
       };
     };
 
