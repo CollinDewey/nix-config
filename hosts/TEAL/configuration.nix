@@ -77,6 +77,51 @@ in
     };
   };
 
+  # I need to talk to 172.31.0.0/24 to backup to Wireguard
+  virtualisation.docker.daemon.settings.default-address-pools = [ { base = "10.192.0.0/12"; size = 24; } ];
+
+  # Backup
+  #services.restic.backups = {
+  #  immich = {
+  #    repository = "rclone:drobo:files/restic";
+  #    paths = [ "/photos/Immich/library/" ];
+  #    passwordFile = "/services/backup/restic-password";
+  #    rcloneConfigFile = "/services/backup/rclone.conf";
+  #    extraBackupArgs = [ "--no-cache" ];
+  #
+  #    pruneOpts = [
+  #      "--keep-daily 3"
+  #      "--keep-weekly 2"
+  #      "--keep-monthly 2"
+  #    ];
+  #
+  #    timerConfig = {
+  #      OnCalendar = "daily";
+  #      Persistent = true;
+  #    };
+  #  };
+  #
+  #  blue = {
+  #    repository = "rclone:drobo:files/restic";
+  #    paths = [ "/vm_storage/BLUE.raw" ];
+  #    passwordFile = "/services/backup/restic-password";
+  #    rcloneConfigFile = "/services/backup/rclone.conf";
+  #    extraBackupArgs = [ "--no-cache" ];
+  #
+  #    pruneOpts = [
+  #      "--keep-daily 3"
+  #      "--keep-weekly 1"
+  #      "--keep-monthly 6"
+  #      "--keep-yearly 1"
+  #    ];
+  #
+  #    timerConfig = {
+  #      OnCalendar = "daily";
+  #      Persistent = true;
+  #    };
+  #  };
+  #};
+
   users.users.immich.extraGroups = [ "video" "render" ];
   services = {
     netdata.enable = true;
