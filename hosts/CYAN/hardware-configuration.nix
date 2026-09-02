@@ -1,7 +1,4 @@
 { config, lib, pkgs, inputs, ... }:
-let
-  nfs_opts = [ "x-systemd.automount" "x-systemd.idle-timeout=3600" "noauto" "noatime" ];
-in
 {
   # Imports
   imports = [
@@ -145,26 +142,10 @@ in
         linkConfig.Name = "ten0";
       };
     };
-    networks = {
-      "10-ten-lan" = {
-        matchConfig.Name = "ten0";
-        address = [ "172.16.1.10/16" ];
-        routes = [{
-          Gateway = "172.16.0.1";
-          Destination = "0.0.0.0/0";
-        }];
-      };
-    };
   };
   networking = {
     hostName = "CYAN";
-    networkmanager = {
-      enable = true;
-      unmanaged = [ "interface-name:ten0" ];
-    };
-    hosts = {
-      "172.16.0.100" = [ "TEAL" ]; # 10 Gigabit Link
-    };
+    networkmanager.enable = true;
     firewall = {
       enable = false;
       checkReversePath = false; # Wireguard
@@ -237,50 +218,6 @@ in
 
   # Partitioning
   disko.devices = import ./disko.nix;
-
-  # NFS
-  fileSystems = {
-    #"/mnt/TEAL" = {
-    #  device = "TEAL:/";
-    #  fsType = "nfs";
-    #  options = nfs_opts;
-    #};
-    "/mnt/vm_storage" = {
-      device = "TEAL:/vm_storage";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    #"/mnt/snapshots" = {
-    #  device = "TEAL:/snapshots";
-    #  fsType = "nfs";
-    #  options = nfs_opts;
-    #};
-    "/mnt/services" = {
-      device = "TEAL:/services";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/cyber" = {
-      device = "TEAL:/cyber";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/storage" = {
-      device = "TEAL:/storage";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/global" = {
-      device = "TEAL:/network_share/Global";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-    "/mnt/cmd" = {
-      device = "TEAL:/network_share/CMD";
-      fsType = "nfs";
-      options = nfs_opts;
-    };
-  };
 
   # Persistance
   users.mutableUsers = false;
