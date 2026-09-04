@@ -84,56 +84,40 @@
         linkConfig.Name = "ten1";
       };
       "10-ten-opnsense" = {
-        matchConfig.Path = "pci-0000:05:10.1";
+        matchConfig.Path = "pci-0000:04:10.1";
         linkConfig.Name = "ten1v0";
       };
       "10-ten-blue" = {
-        matchConfig.Path = "pci-0000:05:10.3";
+        matchConfig.Path = "pci-0000:04:10.3";
         linkConfig.Name = "ten1v1";
       };
       "10-ten-winserver" = {
-        matchConfig.Path = "pci-0000:05:10.5";
+        matchConfig.Path = "pci-0000:04:10.5";
         linkConfig.Name = "ten1v2";
       };
       "10-ten-cerise" = {
-        matchConfig.Path = "pci-0000:05:10.7";
+        matchConfig.Path = "pci-0000:04:10.7";
         linkConfig.Name = "ten1v3";
       };
       "10-ten-cyberl" = {
-        matchConfig.Path = "pci-0000:05:11.1";
+        matchConfig.Path = "pci-0000:04:11.1";
         linkConfig.Name = "ten1v4";
       };
       "10-ten-cyberw" = {
-        matchConfig.Path = "pci-0000:05:11.3";
+        matchConfig.Path = "pci-0000:04:11.3";
         linkConfig.Name = "ten1v5";
       };
       "10-ten-assist" = {
-        matchConfig.Path = "pci-0000:05:11.5";
+        matchConfig.Path = "pci-0000:04:11.5";
         linkConfig.Name = "ten1v6";
       };
       "10-ten-spare1" = {
-        matchConfig.Path = "pci-0000:05:11.7";
+        matchConfig.Path = "pci-0000:04:11.7";
         linkConfig.Name = "ten1v7";
       };
       "10-mobo" = {
         matchConfig.PermanentMACAddress = "0a:e0:af:ad:2a:57";
         linkConfig.Name = "mobo0";
-      };
-      "10-one-quad0" = {
-        matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4c";
-        linkConfig.Name = "quad0";
-      };
-      "10-one-quad1" = {
-        matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4d";
-        linkConfig.Name = "quad1";
-      };
-      "10-one-quad2" = {
-        matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4e";
-        linkConfig.Name = "quad2";
-      };
-      "10-one-quad3" = {
-        matchConfig.PermanentMACAddress = "d4:f5:ef:44:30:4f";
-        linkConfig.Name = "quad3";
       };
     };
     networks = {
