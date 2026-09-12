@@ -46,5 +46,10 @@ in {
       };
       parallelShutdown = 10;
     };
+
+    systemd.services.libvirtd-config.postStart = mkIf cfg.libvirt (mkAfter ''
+      ln -sfn ${pkgs.OVMFFull.fd}/FV/OVMF_CODE.fd /run/libvirt/nix-ovmf/edk2-x86_64-code.fd
+      ln -sfn ${pkgs.OVMFFull.fd}/FV/OVMF_CODE.ms.fd /run/libvirt/nix-ovmf/edk2-x86_64-secure-code.fd
+    '');
   };
 }
