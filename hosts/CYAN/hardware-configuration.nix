@@ -132,6 +132,7 @@
   time.timeZone = "America/Louisville";
   systemd.network = {
     enable = true;
+    wait-online.enable = false;
     links = {
       "10-gig-lan" = {
         matchConfig.PermanentMACAddress = "08:bf:b8:13:96:f4";
