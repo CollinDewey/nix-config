@@ -11,13 +11,6 @@ in
   # RAID
   boot.swraid.mdadmConf = lib.mkDefault "MAILADDR root";
 
-  # VGPU
-  hardware.nvidia.vgpu.fastapi-dls = {
-    enable = false;
-    dataDir = "/services/fastapi-dls";
-    port = 53492;
-  };
-
   # GUI
   services.seatd.enable = true;
   services.greetd = {

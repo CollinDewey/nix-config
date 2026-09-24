@@ -688,26 +688,6 @@
         "type": "github"
       }
     },
-    "nvidia-vgpu": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1760640609,
-        "narHash": "sha256-AYI4FuODo7s/S1thdSydarfXO1sIeItTAf/j7WcIryU=",
-        "owner": "CollinDewey",
-        "repo": "nixos-nvidia-vgpu",
-        "rev": "83c89013dc13ea1f844d550e31661df77ab0b7a2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "CollinDewey",
-        "repo": "nixos-nvidia-vgpu",
-        "type": "github"
-      }
-    },
     "plasma-manager": {
       "inputs": {
         "home-manager": [
@@ -852,7 +832,6 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixpkgs-unstable-small": "nixpkgs-unstable-small",
         "nixpkgs-xr": "nixpkgs-xr",
-        "nvidia-vgpu": "nvidia-vgpu",
         "plasma-manager": "plasma-manager",
         "pwndbg": "pwndbg",
         "sops-nix": "sops-nix",

@@ -4,7 +4,6 @@
   imports = [
     inputs.disko.nixosModules.disko
     inputs.impermanence.nixosModules.impermanence
-    inputs.nvidia-vgpu.nixosModules.nvidia-vgpu
   ];
 
   # Boot
@@ -76,7 +75,6 @@
         '';
       };
       modules.virtualisation.nvidia = lib.mkForce false;
-      hardware.nvidia.vgpu.enable = lib.mkForce false;
     };
   };
   services.xserver = {
@@ -95,35 +93,6 @@
   hardware.nvidia = {
     open = true;
     modesetting.enable = false;
-    vgpu = {
-      enable = false;
-      copyVGPUProfiles = {
-        "1E82:0000" = "1E30:12BA"; # 2080
-      };
-      vgpu_driver_src.url = "https://teal.terascripting.com/internal/NVIDIA-GRID-Linux-KVM-550.90.05-550.90.07-552.55.zip";
-      profile_overrides = {
-        "GRID RTX6000-1Q" = {
-          frameLimiter = false;
-          vramMB = 768;
-        };
-        "GRID RTX6000-2Q" = {
-          frameLimiter = false;
-          vramMB = 1536;
-        };
-        "GRID RTX6000-4Q" = {
-          frameLimiter = false;
-          vramMB = 3584;
-        };
-        "GRID RTX6000-6Q" = {
-          frameLimiter = false;
-          vramMB = 5632;
-        };
-        "GRID RTX6000-8Q" = {
-          frameLimiter = false;
-          vramMB = 7680;
-        };
-      };
-    };
   };
   environment.variables.__RM_NO_VERSION_CHECK = "1";
   environment.variables.KWIN_DRM_DEVICES = "/dev/amdgpu-card";
