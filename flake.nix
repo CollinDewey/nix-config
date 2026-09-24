@@ -403,6 +403,8 @@
             # Specialized Hardware Configuration
             ./hosts/TEAL/hardware-configuration.nix
 
+            ./overlays/immich.nix
+
             copyparty.nixosModules.default
             {
               nixpkgs.overlays = [ copyparty.overlays.default ];
