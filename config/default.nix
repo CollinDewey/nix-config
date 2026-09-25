@@ -38,7 +38,7 @@
     eza
     fzf
     zoxide
-  ] ++ lib.optionals (!pkgs.stdenv.isDarwin) (with pkgs; [
+  ] ++ lib.optionals (!pkgs.stdenv.hostPlatform.isDarwin) (with pkgs; [
     iotop
   ]);
 

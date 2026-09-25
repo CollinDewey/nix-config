@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 {
   home.username = "collin";
-  home.homeDirectory = if pkgs.stdenv.isDarwin then lib.mkForce "/Users/collin" else "/home/collin";
+  home.homeDirectory = if pkgs.stdenv.hostPlatform.isDarwin then lib.mkForce "/Users/collin" else "/home/collin";
 
   programs.git = {
     settings.user.name = "CollinDewey";
