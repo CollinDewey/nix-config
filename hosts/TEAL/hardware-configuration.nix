@@ -88,7 +88,7 @@
         matchConfig.Path = "pci-0000:04:11.5";
         linkConfig.Name = "ten1v6";
       };
-      "10-ten-spare1" = {
+      "10-ten-nous" = {
         matchConfig.Path = "pci-0000:04:11.7";
         linkConfig.Name = "ten1v7";
       };
