@@ -1,8 +1,4 @@
 { pkgs, lib, ... }:
-let
-  nfs_opts_rw = "rw,nohide,insecure,no_subtree_check,no_root_squash,async";
-  nfs_opts_ro = "ro,nohide,insecure,no_subtree_check,no_root_squash,async";
-in
 {
 
   # State
@@ -187,22 +183,37 @@ in
       };
       openFilesLimit = 8192;
     };
+  };
 
-    nfs.server = {
-      enable = true;
-      exports = ''
-        / 172.16.1.0/24(${nfs_opts_rw},crossmnt)
-        /snapshots 172.16.1.0/24(${nfs_opts_ro})
-        /services 172.16.1.0/24(${nfs_opts_rw})
-        /cyber 172.16.1.0/24(${nfs_opts_rw})
-        /storage 172.16.1.0/24(${nfs_opts_rw})
-        /vm_storage 172.16.1.0/24(${nfs_opts_rw})
-        /network_share/Global 172.16.0.0/12(${nfs_opts_rw}) 172.16.1.0/24(${nfs_opts_rw})
-        /network_share/CMD 172.16.1.0/24(${nfs_opts_rw})
-        /network_share/BLD 172.16.2.0/24(${nfs_opts_rw}) 172.16.1.0/24(${nfs_opts_rw})
-        /network_share/CEV 172.16.3.0/24(${nfs_opts_rw}) 172.16.1.0/24(${nfs_opts_rw})
-        /network_share/AMD 172.16.4.0/24(${nfs_opts_rw}) 172.16.1.0/24(${nfs_opts_rw})
-      '';
-    };
+  networking.firewall = {
+    enable = true;
+
+    trustedInterfaces = [ "virbr0" "ve-changede2KnI" "ve-jellyfin" ];
+
+    allowedTCPPorts = [
+      22     # SSH
+      80     # traefik
+      443    # traefik
+      631    # cups
+      6080   # noVNC websocket
+      6566   # cups
+      8080   # Omada (portal + console)
+      8043   # Omada (https console)
+      8384   # syncthing GUI
+      8843   # Omada (https portal)
+      9098   # Omada (legacy web)
+      19999  # netdata
+      22000  # syncthing
+    ];
+
+    # 29810-29817 Omada
+    allowedTCPPortRanges = [ { from = 29810; to = 29817; } ];
+
+    allowedUDPPorts = [
+      22000  # syncthing
+    ];
+
+    # 29810-29817 Omada
+    allowedUDPPortRanges = [ { from = 29810; to = 29817; } ];
   };
 }

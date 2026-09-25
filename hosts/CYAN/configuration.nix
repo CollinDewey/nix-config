@@ -50,29 +50,23 @@
   ];
 
   # Avahi
-  services.avahi.publish.enable = true;
-  services.avahi.publish.userServices = true;
+  services.avahi = {
+    publish.enable = true;
+    publish.userServices = true;
+    openFirewall = true;
+  };
 
   # Sunshine
   services.sunshine = {
     enable = true;
     capSysAdmin = true;
+    openFirewall = true;
   };
 
   # Cross compilation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" "armv7l-linux" ];
 
-  # NFS
-  services.nfs.server.enable = true;
-
   # Various Services
-  services.netdata.enable = true;
-  #services.openvscode-server = {
-  #  enable = true;
-  #  host = "0.0.0.0";
-  #  user = "collin";
-  #  withoutConnectionToken = true;
-  #};
   programs.noisetorch.enable = true;
   systemd.user.services.noisetorch = {
     enable = true;
@@ -105,6 +99,16 @@
   #  };
   #};
   #nixpkgs.config.rocmSupport = true;
+
+  # Firewall
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      22    # SSH
+      7777  # Multiple Games
+      25565 # Minecraft
+    ];
+  };
 
   # State
   system.stateVersion = "23.11";

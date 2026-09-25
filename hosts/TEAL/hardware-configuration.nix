@@ -111,7 +111,6 @@
   networking = {
     hostName = "TEAL";
     useDHCP = false;
-    firewall.enable = false;
   };
 
   # Disks

@@ -117,7 +117,6 @@
     hostName = "CYAN";
     networkmanager.enable = true;
     firewall = {
-      enable = false;
       checkReversePath = false; # Wireguard
     };
   };
