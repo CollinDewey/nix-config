@@ -195,6 +195,7 @@
       80     # traefik
       443    # traefik
       631    # cups
+      3010   # crw
       6080   # noVNC websocket
       6566   # cups
       8080   # Omada (portal + console)
