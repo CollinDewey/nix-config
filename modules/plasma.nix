@@ -51,6 +51,7 @@ in {
       pkgs.unrar
     ];
 
+    programs.kde-pim.enable = false;
     programs.kdeconnect.enable = true;
     services.system76-scheduler.enable = true;
 
