@@ -12,7 +12,7 @@
   boot = {
     # Kernel
     initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-    extraModulePackages = with config.boot.kernelPackages; [ kvmfr v4l2loopback ];
+    #extraModulePackages = with config.boot.kernelPackages; [ kvmfr v4l2loopback ];
     kernelModules = [ "kvm-amd" "uinput" "kvmfr" ];
     extraModprobeConfig = ''
       options kvmfr static_size_mb=128

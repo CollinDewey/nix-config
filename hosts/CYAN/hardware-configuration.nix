@@ -30,7 +30,7 @@
     #    };
     #  } # https://github.com/NixOS/nixpkgs/issues/217119
     #];
-    extraModulePackages = with config.boot.kernelPackages; [ kvmfr v4l2loopback ];
+    #extraModulePackages = with config.boot.kernelPackages; [ kvmfr v4l2loopback ];
     extraModprobeConfig = ''
       options kvmfr static_size_mb=128
       options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1

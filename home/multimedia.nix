@@ -11,7 +11,7 @@ in {
       mpv
       (pkgs.obs-studio.override { cudaSupport = true; })
       #kdePackages.kdenlive
-      audacity
+      #audacity
       ffmpeg-full
       yt-dlp
     ];
