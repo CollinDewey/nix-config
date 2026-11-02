@@ -81,7 +81,6 @@
       url = "github:nix-community/nixos-vscode-server";
     };
 
-    code-server-pr.url = "github:NixOS/nixpkgs/4c227bb1c8dbbd62e5017f201b67f8a042db6911";
     zenbook-duo-daemon = {
       url = "github:0Tick/zenbook-duo-daemon/copilot/convert-to-nix-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
